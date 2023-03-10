@@ -1,5 +1,5 @@
 :root {
-	--emoji-font: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--emoji-font: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji', 'EmojiOne Mozilla', 'Twemoji Mozilla', 'Noto Emoji', 'Segoe UI Symbol', EmojiSymbols;
 	--sans-font: system-ui, ui-sans-serif, Helvetica, sans-serif, var(--emoji-font);
 	--serif-font: 'Palatino Linotype', Palatino, Palladio, 'URW Palladio L', 'Book Antiqua', Baskerville, 'Bookman Old Style', 'Bitstream Charter', 'Nimbus Roman No9 L', Garamond, 'Apple Garamond', 'ITC Garamond Narrow', 'New Century Schoolbook', 'Century Schoolbook', 'Century Schoolbook L', Georgia, ui-serif, serif, var(--emoji-font);
 	--mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
