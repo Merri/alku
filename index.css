@@ -3,7 +3,7 @@
 	--sans-font: system-ui, ui-sans-serif, Helvetica, sans-serif, var(--emoji-font);
 	--serif-font: 'Palatino Linotype', Palatino, Palladio, 'URW Palladio L', 'Book Antiqua', Baskerville, 'Bookman Old Style', 'Bitstream Charter', 'Nimbus Roman No9 L', Garamond, 'Apple Garamond', 'ITC Garamond Narrow', 'New Century Schoolbook', 'Century Schoolbook', 'Century Schoolbook L', Georgia, ui-serif, serif, var(--emoji-font);
 	--mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
-  
+
 	--focus-color: Highlight;
 	--link-color: hsl(150, 255, 80);
 	--link-color: lch(32.2% 53.21 278.55);
@@ -40,7 +40,7 @@
 :where(div:has(> table):not([class])) {
 	overflow: hidden;
 	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;  
+	-webkit-overflow-scrolling: touch;
 }
 
 /* Generic scrolling utility */
@@ -209,7 +209,11 @@
 }
 
 :where([role='list']:is(ol, ul) > li) {
-  margin: 0;
+	margin: 0;
+}
+
+:where(summary) {
+	display: list-item;
 }
 
 :where(iframe) {
