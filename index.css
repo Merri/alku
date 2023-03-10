@@ -4,9 +4,9 @@
 	--serif-font: 'Palatino Linotype', Palatino, Palladio, 'URW Palladio L', 'Book Antiqua', Baskerville, 'Bookman Old Style', 'Bitstream Charter', 'Nimbus Roman No9 L', Garamond, 'Apple Garamond', 'ITC Garamond Narrow', 'New Century Schoolbook', 'Century Schoolbook', 'Century Schoolbook L', Georgia, ui-serif, serif, var(--emoji-font);
 	--mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
   
-  --focus-color: Highlight;
-  --link-color: hsl(150, 255, 80);
-  --link-color: lch(32.2% 53.21 278.55);
+	--focus-color: Highlight;
+	--link-color: hsl(150, 255, 80);
+	--link-color: lch(32.2% 53.21 278.55);
 }
 
 @media not (prefers-reduced-motion) {
