@@ -6,7 +6,7 @@ Stealing ideas from many sources (as we all do) and mixing in some ideas of my o
 
 ## Sources of inspiration
 
-- [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
+- [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css) & [Modern normalize](https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css)
 - [sanitize.css](https://github.com/csstools/sanitize.css/blob/main/sanitize.css)
 - [Simple.css](https://github.com/kevquirk/simple.css/blob/main/simple.css)
 - Emoji fonts from Emojiterra.com's stylesheet
