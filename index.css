@@ -256,10 +256,6 @@
 	margin: 0;
 }
 
-:where(button, input) {
-	overflow: visible;
-}
-
 :where(button, select) {
 	text-transform: none;
 }
