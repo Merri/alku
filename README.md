@@ -14,9 +14,11 @@ Stealing ideas from many sources (as we all do) and mixing in some ideas of my o
 
 There are others, maybe I find or remember them again some day.
 
+## Fonts
+
 ## HTML attribute utilities
 
-These are opinioned extensions of HTML via the CSS.
+These are opinioned usability related extensions of HTML via the CSS.
 
 | HTML attributes                                                    | Purpose                                                                                                                                                            |
 | :----------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -64,3 +66,33 @@ This is a modernized variant:
 -   `rel="noopener noreferrer"` is recommended for security reasons.
 -   Icon is part of the last word and does not wrap alone to a new line. (Except in Samsung Internet.)
 -   Implemented using `::after` pseudo-element.
+
+## Rendering fixes
+
+| Element                    | Description                                                                                                                                                             |
+| :------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Lists                      | List elements do not align correctly against floated elements. Especially noticeable with nested lists where the nesting is lost entirely next to a float.              |
+| Tables                     | When `border-collapse: collapse;` is enabled and you apply `filter` on a table cell part of it's border is or may be included to the effect in both Chrome and Firefox. |
+| Subscript<br />Superscript | As in original `normalize.css` these elements have been fixed not to have effect on line height.                                                                        |
+
+## Opinionated stylings
+
+This list may get outdated over time or may be incomplete.
+
+| Feature                     | Description                                                                                                                                           |
+| :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Anchor                      | Link style is also applied to regular anchor. Anchors as such have no use so this allows easy repurposing of them as buttons that appear as links.    |
+| Body                        | The page is in a centered grid column by default.                                                                                                     |
+| Cursor                      | Disabled elements have `not-allowed`. Busy elements have `progress`.                                                                                  |
+| Fieldset and legend         | Padding removed by default.                                                                                                                           |
+| Focus indication            | Strong `focus-visible` is applied to all elements by default.                                                                                         |
+| Form inputs, iframe, images | `height: auto; max-width: 100%;`                                                                                                                      |
+| Inline media and embeds     | `vertical-align: middle` by default.                                                                                                                  |
+| Links                       | Have `font-weight` of medium (500) by default. They are also underlined and have no color.                                                            |
+| Nested lists                | Have no margin.                                                                                                                                       |
+| Scroll behavior             | Smooth scrolling is enabled by default.                                                                                                               |
+| Search input                | Appear as regular text field for consistent styling.                                                                                                  |
+| Strong                      | Has default `font-weight` of semibold (600). `<b />` is bold (700).                                                                                   |
+| SVG                         | `fill: currentColor;` by default.                                                                                                                     |
+| Textarea                    | `resize: vertical;` by default.                                                                                                                       |
+| Transitions                 | Animations and transitions are disabled with `prefers-reduced-motion`. I'm not yet sure if this is desirable to keep as `opacity` transitions are OK. |

@@ -47,6 +47,7 @@
 	--mono-stack: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
 
 	--page-default-font: var(--system-sans-stack);
+	--page-marker-font: var(--mono-stack);
 	--page-heading-font: var(--old-style-serif-stack);
 	--page-mono-font: var(--mono-stack);
 
@@ -57,6 +58,18 @@
 	--mask-chevron-down: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M4 9L12 17L20 9' fill='none' stroke='black' stroke-width='2.5'/></svg>");
 	--mask-cross: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 5L5 19M5 5L19 19' fill='none' stroke='black' stroke-width='2.5'/></svg>");
 	--mask-new-screen: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M20 4L9.99997 14M20 4L20 9.99999M20 4L14 3.99998M10 4H4V20H20V14' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/></svg>");
+
+	--ol-indent: 2em;
+	--ul-indent: 1.375em;
+}
+
+:where(:root),
+:where([dir='ltr']) {
+	--dir-adjust: 1;
+}
+
+:where([dir='rtl']) {
+	--dir-adjust: -1;
 }
 
 @media not (prefers-reduced-motion) {
@@ -143,6 +156,8 @@
 
 :where(html) {
 	font-family: var(--page-default-font);
+	font-feature-settings: 'tnum';
+	font-variant-numeric: tabular-nums;
 	line-height: 1.375;
 	tab-size: 4;
 	-webkit-tap-highlight-color: transparent;
@@ -154,6 +169,7 @@
 
 :where(body) {
 	display: grid;
+	font-size: 1.125rem;
 	grid-template-columns: 1fr min(65rem, 90%) 1fr;
 	margin: 0;
 }
@@ -212,14 +228,19 @@
 
 :where(code, kbd, pre, samp) {
 	font-family: var(--page-mono-font);
-	font-size: 1em;
+	font-size: 1rem;
 }
 
 :where(code) {
-	background: rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+	background: rgba(0, 72, 0, 0.1);
+	border-radius: 0.25rem;
+	box-shadow: 0 0 0 3px rgba(0, 72, 0, 0.1);
 	margin-inline: 2px;
-	text-shadow: 0 0 1px rgba(0, 144, 0, 0.4);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+	margin-block: 2rem 1rem;
+	margin-inline: 0;
 }
 
 :where(h1) {
@@ -244,10 +265,6 @@
 
 :where(h6) {
 	font-size: 1.25rem;
-}
-
-:where(p) {
-	font-size: 1.25em;
 }
 
 :where(small) {
@@ -276,17 +293,32 @@
 	overflow: visible;
 }
 
-:where(li) {
-	margin: 0.25rem 0;
+/* List that aligns to content next to floats. */
+:where(ol) {
+	margin-block: 1rem;
+	margin-inline: 0 var(--ol-indent);
+	padding: 0;
+	transform: translateX(calc(var(--dir-adjust) * var(--ol-indent)));
 }
 
-:where(li + li) {
-	margin-top: 0.75rem;
+/* List that aligns to content next to floats. */
+:where(ul) {
+	margin-block: 1rem;
+	margin-inline: 0 var(--ul-indent);
+	padding: 0;
+	transform: translateX(calc(var(--dir-adjust) * var(--ul-indent)));
+}
+
+/* Ensure equal width numbers */
+:where(li)::marker {
+	font-family: var(--page-marker-font);
+	font-size: 1em;
+	line-height: 1.45rem;
 }
 
 /* List inside list margin reset */
 :where(dl, ol, ul) :where(dl, ol, ul) {
-	margin: 0;
+	margin-block: 0;
 }
 
 /* List style reset utility (workaround Safari VoiceOver removing list semantics based on CSS list-style) */
@@ -297,10 +329,6 @@
 
 :where([role='list']:is(ol, ul) > li) {
 	margin: 0;
-}
-
-:where(summary) {
-	display: list-item;
 }
 
 :where(iframe) {
@@ -394,16 +422,16 @@
 }
 
 :where(details) {
-	background: rgba(0, 0, 0, 0.1);
-	border: 1px solid rgba(255, 255, 255, 0.333);
+	background: rgba(0, 72, 0, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.25);
 	border-radius: 0.5rem;
 	display: block;
 	margin: 1rem 0;
+	max-width: 50rem;
 	padding: 0 1rem;
 }
 
 :where(summary) {
-	display: list-item;
 	font-size: 1.125rem;
 	font-weight: bolder;
 	margin: 0 -1rem;
