@@ -52,8 +52,7 @@
 	--page-mono-font: var(--mono-stack);
 
 	--focus-color: Highlight;
-	--link-color: hsl(150, 255, 80);
-	--link-color: lch(32.2% 53.21 278.55);
+	--link-color: hsl(212 100% 30%);
 
 	--mask-chevron-down: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M4 9L12 17L20 9' fill='none' stroke='black' stroke-width='2.5'/></svg>");
 	--mask-cross: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 5L5 19M5 5L19 19' fill='none' stroke='black' stroke-width='2.5'/></svg>");
@@ -61,6 +60,12 @@
 
 	--ol-indent: 2em;
 	--ul-indent: 1.375em;
+}
+
+@supports (color: lch(30.52% 51.73 278.81)) {
+	:where(:root) {
+		--link-color: lch(30.52% 51.73 278.81);
+	}
 }
 
 :where(:root),
@@ -324,7 +329,9 @@
 /* List style reset utility (workaround Safari VoiceOver removing list semantics based on CSS list-style) */
 :where([role='list']:is(ol, ul)) {
 	list-style: none;
+	margin: 0;
 	padding: 0;
+	transform: none;
 }
 
 :where([role='list']:is(ol, ul) > li) {
@@ -438,6 +445,7 @@
 	padding: 1rem 3rem 1rem 1rem;
 	position: relative;
 	user-select: none;
+	z-index: 1;
 }
 
 :where(summary:focus:focus-visible) {
@@ -458,7 +466,7 @@
 	-webkit-mask-image: var(--mask-chevron-down);
 	mask-image: var(--mask-chevron-down);
 	position: absolute;
-	right: 1rem;
+	inset-inline-end: 1rem;
 	top: 50%;
 	transform: translateY(-50%) rotate(0deg);
 	transition: transform var(--ms, 250ms) ease-in-out;
@@ -477,14 +485,17 @@
 }
 
 :where(details > summary + div) {
-	margin: 0 -1rem;
+	box-sizing: content-box;
+	margin: -1rem;
 	overflow: hidden;
-	padding: 0 1rem;
+	padding: 1rem;
 }
 
-:where(details > summary + div > div) {
-	margin: -1rem;
-	padding: 1rem;
+@supports (contain: content) {
+	:where(details > summary + div) {
+		contain: content;
+		overflow: visible;
+	}
 }
 
 :where(details[data-open]) {
@@ -507,6 +518,8 @@
 
 :where(details[data-open='false' i] > summary + div) {
 	height: 0;
+	margin: 0;
+	padding: 0;
 }
 
 :where(details[data-open='true' i] > summary + div) {
@@ -514,7 +527,6 @@
 }
 
 :where(details[data-open] > summary + div > div) {
-	contain: content;
 	opacity: var(--opacity);
 	transform: var(--transform);
 	transition: opacity var(--ms) ease-in-out, transform var(--ms) ease-in-out;
