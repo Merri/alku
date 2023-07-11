@@ -161,6 +161,13 @@
 	cursor: not-allowed;
 }
 
+/* Utility: invisible pseudo element to cover container area */
+:where([data-before='cover' i])::before {
+	content: '';
+	inset: 0;
+	position: absolute;
+}
+
 :where(html) {
 	font-family: var(--page-default-font);
 	font-feature-settings: 'tnum';

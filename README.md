@@ -22,6 +22,7 @@ These are opinioned usability related extensions of HTML via the CSS.
 
 | HTML attributes                                                    | Purpose                                                                                                                                                            |
 | :----------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data-before="cover"`                                              | Insert a transparent `::before` pseudo element which covers the container. Useful to make links cover their entire container.                                      |
 | `data-hidden="visually"`                                           | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>1</sup>](#1-visually-hidden)                            |
 | `data-scrolling="horizontal"`                                      | Wrap tables and other elements that are allowed to grow to be wider than the viewport.                                                                             |
 | `data-scrolling="vertical"`                                        | Wrap elements that you desire to scroll vertically. Note that you do need to have something that defines the height for the element such as a parent grid element. |
