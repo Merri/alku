@@ -38,6 +38,7 @@ This is a modernized variant:
 :root [data-hidden='visually' i]:not(:focus):not(:active) {
 	all: initial;
 	clip-path: path('');
+	contain: content;
 	position: absolute;
 	height: 1px;
 	width: 1px;

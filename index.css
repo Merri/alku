@@ -92,6 +92,8 @@
 	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
 	all: initial;
 	clip-path: path('');
+	/* Parent layouts will account for the size of the text unless this exists. */
+	contain: content;
 	/* Remove from flow, have minimal size to convince screen readers the element is visible */
 	position: absolute;
 	height: 1px;
@@ -177,6 +179,7 @@
 	font-size: 1.125rem;
 	grid-template-columns: 1fr min(65rem, 90%) 1fr;
 	margin: 0;
+	min-height: 100dvh;
 }
 
 :where(body > *) {
@@ -231,7 +234,12 @@
 	line-height: 1.125;
 }
 
-:where(code, kbd, pre, samp) {
+:where(code, kbd, samp) {
+	font-family: var(--page-mono-font);
+	font-size: 1em;
+}
+
+:where(pre) {
 	font-family: var(--page-mono-font);
 	font-size: 1rem;
 }
@@ -527,6 +535,7 @@
 }
 
 :where(details[data-open] > summary + div > div) {
+	contain: layout;
 	opacity: var(--opacity);
 	transform: var(--transform);
 	transition: opacity var(--ms) ease-in-out, transform var(--ms) ease-in-out;
