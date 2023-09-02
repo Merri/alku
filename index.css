@@ -91,7 +91,7 @@
 :root [data-hidden='visually' i]:not(:focus):not(:active) {
 	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
 	all: initial;
-	clip-path: path('');
+	clip-path: inset(50%);
 	/* Parent layouts will account for the size of the text unless this exists. */
 	contain: content;
 	/* Remove from flow, have minimal size to convince screen readers the element is visible */
