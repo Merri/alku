@@ -1,10 +1,26 @@
 # Alku
 
-This might become my classless + HTML attribute utility CSS. Maybe components library too, we shall see.
+A classless + HTML attribute utility CSS. Might become a component library later on, we shall see.
 
-Stealing ideas from many sources (as we all do) and mixing in some ideas of my own.
+## Installation
+
+```bash
+npm install alku --save-dev
+pnpm install alku --save-dev
+yarn add alku --save-dev
+```
+
+### Usage: Astro
+
+```astro
+---
+import 'alku/alku.css';
+---
+```
 
 ## Sources of inspiration
+
+Stealing ideas from many sources (as we all do) and mixing in some ideas of my own.
 
 -   [Modern Font Stacks](https://modernfontstacks.com/)
 -   [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css) & [Modern normalize](https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css)
@@ -14,7 +30,26 @@ Stealing ideas from many sources (as we all do) and mixing in some ideas of my o
 
 There are others, maybe I find or remember them again some day.
 
-## Fonts
+## Customization
+
+You can customize these CSS variables in your own stylesheet:
+
+```css
+:root {
+	--page-default-font: var(--system-sans-stack);
+	--page-marker-font: var(--mono-stack);
+	--page-heading-font: var(--old-style-serif-stack);
+	--page-mono-font: var(--mono-stack);
+
+	--focus-color: Highlight;
+	--link-color: currentColor;
+
+	--ol-indent: 2em;
+	--ul-indent: 1.375em;
+}
+```
+
+You can check the available font stack variables from [source alku.css file](src/alku.css).
 
 ## HTML attribute utilities
 
