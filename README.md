@@ -60,10 +60,10 @@ These are opinioned usability related extensions of HTML via the CSS.
 | `data-before="cover"`                                              | Insert a transparent `::before` pseudo element which covers the container. Useful to make links cover their entire container.                                      |
 | `data-scrolling="horizontal"`                                      | Wrap tables and other elements that are allowed to grow to be wider than the viewport.                                                                             |
 | `data-scrolling="vertical"`                                        | Wrap elements that you desire to scroll vertically. Note that you do need to have something that defines the height for the element such as a parent grid element. |
-| `<a aria-describedby rel="noopener noreferrer" target="_blank" />` | Link to external site with a matching icon. [<sup>1</sup>](#2-external-link-icon)                                                                                  |
+| `<a aria-describedby rel="noopener noreferrer" target="_blank" />` | Link to external site with a matching icon. [<sup>1</sup>](#1-external-link-icon)                                                                                  |
 | `<ol role="list" />`<br />`<ul role="list" />`                     | Remove `list-style` and reset margin and padding of the list. Safari VoiceOver workaround to retain list semantics.                                                |
-| `data-text`                                                        | Typographic utilities [<sup>2</sup>]                                                                                                                               |
-| `data-text="visually-hidden"`                                      | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>3</sup>](#1-visually-hidden)                            |
+| `data-text`                                                        | Typographic utilities [<sup>2</sup>](#2-typographic-utilities)                                                                                                     |
+| `data-text="visually-hidden"`                                      | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>3</sup>](#3-visually-hidden)                            |
 
 ### Notes
 
