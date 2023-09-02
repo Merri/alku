@@ -1,0 +1,33 @@
+{
+  "name": "alku",
+  "version": "1.0.0",
+  "description": "Opinionated classless CSS with HTML attribute utilities",
+  "main": "alku.css",
+  "scripts": {
+    "build": "npx postcss src/alku.css > alku.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Merri/alku.git"
+  },
+  "keywords": [
+    "css",
+    "normalize",
+    "reset",
+    "utility",
+    "attribute-utilities",
+    "css-framework",
+    "postcss"
+  ],
+  "author": "Vesa Piittinen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Merri/alku/issues"
+  },
+  "homepage": "https://github.com/Merri/alku#readme",
+  "devDependencies": {
+    "cssnano": "6.0.1",
+    "postcss": "8.4.29",
+    "postcss-cli": "10.1.0"
+  }
+}

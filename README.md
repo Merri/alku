@@ -23,35 +23,16 @@ These are opinioned usability related extensions of HTML via the CSS.
 | HTML attributes                                                    | Purpose                                                                                                                                                            |
 | :----------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data-before="cover"`                                              | Insert a transparent `::before` pseudo element which covers the container. Useful to make links cover their entire container.                                      |
-| `data-hidden="visually"`                                           | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>1</sup>](#1-visually-hidden)                            |
 | `data-scrolling="horizontal"`                                      | Wrap tables and other elements that are allowed to grow to be wider than the viewport.                                                                             |
 | `data-scrolling="vertical"`                                        | Wrap elements that you desire to scroll vertically. Note that you do need to have something that defines the height for the element such as a parent grid element. |
-| `<a aria-describedby rel="noopener noreferrer" target="_blank" />` | Link to external site with a matching icon. [<sup>2</sup>](#2-external-link-icon)                                                                                  |
+| `<a aria-describedby rel="noopener noreferrer" target="_blank" />` | Link to external site with a matching icon. [<sup>1</sup>](#2-external-link-icon)                                                                                  |
 | `<ol role="list" />`<br />`<ul role="list" />`                     | Remove `list-style` and reset margin and padding of the list. Safari VoiceOver workaround to retain list semantics.                                                |
+| `data-text`                                                        | Typographic utilities [<sup>2</sup]                                                                                                                                |
+| `data-text="visually-hidden"`                                      | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>3</sup>](#1-visually-hidden)                            |
 
 ### Notes
 
-#### 1) Visually hidden
-
-This is a modernized variant:
-
-```css
-:root [data-hidden='visually' i]:not(:focus):not(:active) {
-	all: initial;
-	clip-path: path('');
-	contain: content;
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	white-space: nowrap;
-}
-```
-
--   Has intentionally high specificity of `0, 4, 0` which should be enough to win over most other selectors without resorting to `!important`.
--   Does not have negative margin as [it can change the text reading order](https://github.com/alphagov/govuk-frontend/pull/1109).
--   Lack of negative margin may however [cause an edge case which adds extra scrolling](https://github.com/Orange-OpenSource/Orange-Boosted-Bootstrap/issues/84).
-
-#### 2) External link icon
+#### 1) External link icon
 
 `aria-describedby` should point to an element which describes that the link leads to an external site. For example:
 
@@ -68,6 +49,86 @@ This is a modernized variant:
 -   `rel="noopener noreferrer"` is recommended for security reasons.
 -   Icon is part of the last word and does not wrap alone to a new line. (Except in Samsung Internet.)
 -   Implemented using `::after` pseudo-element.
+
+#### 2) Typographic utilities
+
+`data-text` works as a typographic style reset (zero specificity), and it removes margin and padding, and inherits color
+by default (specificity of `0, 1, 0`). If you only need the resets you can write `data-text=""`.
+
+| Value           | Description                                                     |
+| :-------------- | :-------------------------------------------------------------- |
+| `heading1`      | `<h1 />` without margin                                         |
+| `heading2`      | `<h2 />` without margin                                         |
+| `heading3`      | `<h3 />` without margin                                         |
+| `heading4`      | `<h4 />` without margin                                         |
+| `heading5`      | `<h5 />` without margin                                         |
+| `heading6`      | `<h6 />` without margin                                         |
+| `heading`       | Use page default heading font                                   |
+| `default`       | Use page default font                                           |
+| `mono`          | Use page default monospace font                                 |
+| `link`          | Link style                                                      |
+| `external link` | External link style. Note that the words must be in this order. |
+| `thin`          | Weight 100                                                      |
+| `extralight`    | Weight 200                                                      |
+| `light`         | Weight 300                                                      |
+| `regular`       | Weight 400                                                      |
+| `medium`        | Weight 500                                                      |
+| `semibold`      | Weight 600                                                      |
+| `bold`          | Weight 700                                                      |
+| `extrabold`     | Weight 800                                                      |
+| `black`         | Weight 900                                                      |
+| `extrablack`    | Weight 950                                                      |
+| `italic`        | Oblique 10% (italic)                                            |
+| `underline`     | Underline                                                       |
+
+So for example `<div data-text="heading3 italic external link mono" />` will result into what you would expect from what
+it says: text in the size and weight of heading3, monospace italic, and looking like an external link.
+
+The following font sizes are available: 28, 24, 22, 20, 18, 16, 14. Usage:
+
+`<span data-text="regular 18">Slightly bigger text than the usual 16.</span>`
+
+All the variants from Modern Font Stacks are also available:
+
+| Value          | Description                         |
+| :------------- | :---------------------------------- |
+| `system`       | System sans serif stack             |
+| `handwritten`  | Handwritten stack                   |
+| `transitional` | Transitional serif stack            |
+| `oldstyle`     | Old style serif stack               |
+| `slab`         | Slab serif stack                    |
+| `antique`      | Antique serif stack                 |
+| `didone`       | Didone serif stack                  |
+| `humanist`     | Humanist sans serif stack           |
+| `geometric`    | Geometric humanist sans serif stack |
+| `classical`    | Classical humanist sans serif stack |
+| `grotesque`    | Neo-grotesque sans serif stack      |
+| `industrial`   | Industrial sans serif stack         |
+| `rounded`      | Rounded sans serif stack            |
+| `monoslab`     | Monospace slab serif stack          |
+| `monocode`     | Monospace code stack                |
+
+So if you want a part of the site use operating system default font you can do it with `data-text="system"`.
+
+#### 3) Visually hidden
+
+This is a modernized variant:
+
+```css
+:root [data-text='visually-hidden' i]:not(:focus):not(:active) {
+	all: initial;
+	clip-path: inset(50%);
+	contain: content;
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	white-space: nowrap;
+}
+```
+
+-   Has intentionally high specificity of `0, 4, 0` which should be enough to win over most other selectors without resorting to `!important`.
+-   Does not have negative margin as [it can change the text reading order](https://github.com/alphagov/govuk-frontend/pull/1109).
+-   Lack of negative margin may however [cause an edge case which adds extra scrolling](https://github.com/Orange-OpenSource/Orange-Boosted-Bootstrap/issues/84).
 
 ## Rendering fixes
 
@@ -86,15 +147,16 @@ This list may get outdated over time or may be incomplete.
 | Anchor                      | Link style is also applied to regular anchor. Anchors as such have no use so this allows easy repurposing of them as buttons that appear as links.    |
 | Body                        | The page is in a centered grid column by default.                                                                                                     |
 | Cursor                      | Disabled elements have `not-allowed`. Busy elements have `progress`.                                                                                  |
+| Disabled elements           | Reduced saturation and opacity.                                                                                                                       |
 | Fieldset and legend         | Padding removed by default.                                                                                                                           |
 | Focus indication            | Strong `focus-visible` is applied to all elements by default.                                                                                         |
 | Form inputs, iframe, images | `height: auto; max-width: 100%;`                                                                                                                      |
+| Headings                    | Have default `font-weight` of semibold (600).                                                                                                         |
 | Inline media and embeds     | `vertical-align: middle` by default.                                                                                                                  |
-| Links                       | Have `font-weight` of medium (500) by default. They are also underlined and have no color.                                                            |
+| Links                       | Have `font-weight` of medium (500) by default. They are also underlined and inherit color.                                                            |
 | Nested lists                | Have no margin.                                                                                                                                       |
 | Scroll behavior             | Smooth scrolling is enabled by default.                                                                                                               |
 | Search input                | Appear as regular text field for consistent styling.                                                                                                  |
 | Strong                      | Has default `font-weight` of semibold (600). `<b />` is bold (700).                                                                                   |
 | SVG                         | `fill: currentColor;` by default.                                                                                                                     |
 | Textarea                    | `resize: vertical;` by default.                                                                                                                       |
-| Transitions                 | Animations and transitions are disabled with `prefers-reduced-motion`. I'm not yet sure if this is desirable to keep as `opacity` transitions are OK. |
