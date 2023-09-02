@@ -27,7 +27,7 @@ These are opinioned usability related extensions of HTML via the CSS.
 | `data-scrolling="vertical"`                                        | Wrap elements that you desire to scroll vertically. Note that you do need to have something that defines the height for the element such as a parent grid element. |
 | `<a aria-describedby rel="noopener noreferrer" target="_blank" />` | Link to external site with a matching icon. [<sup>1</sup>](#2-external-link-icon)                                                                                  |
 | `<ol role="list" />`<br />`<ul role="list" />`                     | Remove `list-style` and reset margin and padding of the list. Safari VoiceOver workaround to retain list semantics.                                                |
-| `data-text`                                                        | Typographic utilities [<sup>2</sup]                                                                                                                                |
+| `data-text`                                                        | Typographic utilities [<sup>2</sup>]                                                                                                                               |
 | `data-text="visually-hidden"`                                      | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>3</sup>](#1-visually-hidden)                            |
 
 ### Notes
@@ -142,21 +142,21 @@ This is a modernized variant:
 
 This list may get outdated over time or may be incomplete.
 
-| Feature                     | Description                                                                                                                                           |
-| :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Anchor                      | Link style is also applied to regular anchor. Anchors as such have no use so this allows easy repurposing of them as buttons that appear as links.    |
-| Body                        | The page is in a centered grid column by default.                                                                                                     |
-| Cursor                      | Disabled elements have `not-allowed`. Busy elements have `progress`.                                                                                  |
-| Disabled elements           | Reduced saturation and opacity.                                                                                                                       |
-| Fieldset and legend         | Padding removed by default.                                                                                                                           |
-| Focus indication            | Strong `focus-visible` is applied to all elements by default.                                                                                         |
-| Form inputs, iframe, images | `height: auto; max-width: 100%;`                                                                                                                      |
-| Headings                    | Have default `font-weight` of semibold (600).                                                                                                         |
-| Inline media and embeds     | `vertical-align: middle` by default.                                                                                                                  |
-| Links                       | Have `font-weight` of medium (500) by default. They are also underlined and inherit color.                                                            |
-| Nested lists                | Have no margin.                                                                                                                                       |
-| Scroll behavior             | Smooth scrolling is enabled by default.                                                                                                               |
-| Search input                | Appear as regular text field for consistent styling.                                                                                                  |
-| Strong                      | Has default `font-weight` of semibold (600). `<b />` is bold (700).                                                                                   |
-| SVG                         | `fill: currentColor;` by default.                                                                                                                     |
-| Textarea                    | `resize: vertical;` by default.                                                                                                                       |
+| Feature                     | Description                                                                                                                                        |
+| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Anchor                      | Link style is also applied to regular anchor. Anchors as such have no use so this allows easy repurposing of them as buttons that appear as links. |
+| Body                        | The page is in a centered grid column by default.                                                                                                  |
+| Cursor                      | Disabled elements have `not-allowed`. Busy elements have `progress`.                                                                               |
+| Disabled elements           | Reduced saturation and opacity.                                                                                                                    |
+| Fieldset and legend         | Padding removed by default.                                                                                                                        |
+| Focus indication            | Strong `focus-visible` is applied to all elements by default.                                                                                      |
+| Form inputs, iframe, images | `height: auto; max-width: 100%;`                                                                                                                   |
+| Headings                    | Have default `font-weight` of semibold (600).                                                                                                      |
+| Inline media and embeds     | `vertical-align: middle` by default.                                                                                                               |
+| Links                       | Have `font-weight` of medium (500) by default. They are also underlined and inherit color.                                                         |
+| Nested lists                | Have no margin.                                                                                                                                    |
+| Scroll behavior             | Smooth scrolling is enabled by default.                                                                                                            |
+| Search input                | Appear as regular text field for consistent styling.                                                                                               |
+| Strong                      | Has default `font-weight` of semibold (600). `<b />` is bold (700).                                                                                |
+| SVG                         | `fill: currentColor;` by default.                                                                                                                  |
+| Textarea                    | `resize: vertical;` by default.                                                                                                                    |
