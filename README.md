@@ -2,6 +2,14 @@
 
 A classless + HTML attribute utility CSS. Might become a component library later on, we shall see.
 
+- Ideal for sites that are written in plain HTML or in markdown: you get good looking content by default when you use semantic elements.
+- Familiarity: you know browser defaults, they are mostly retained.
+- Compatibility: as defaults are mostly retained these styles work well with other CSS tools that don't repend on resets.
+- Opt-in resets: utilities do resets. Use utilities for UI development.
+- Typography: lots of font stacks to choose form.
+
+Also: does not change the default `box-sizing` behavior!
+
 ## Installation
 
 ```bash
@@ -17,6 +25,17 @@ yarn add alku --save-dev
 import 'alku/alku.css';
 ---
 ```
+
+### Usage: HTML
+
+```html
+<!-- minified -->
+<link rel="stylesheet" href="https://www.unpkg.com/alku/alku.css" />
+<!-- source -->
+<link rel="stylesheet" href="https://www.unpkg.com/alku/src/alku.css" />
+```
+
+Or host it yourself.
 
 ## Sources of inspiration
 
