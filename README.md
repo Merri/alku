@@ -2,10 +2,10 @@
 
 A classless + HTML attribute utility CSS. Might become a component library later on, we shall see.
 
-- Ideal for sites that are written in plain HTML or in markdown: you get good looking content by default when you use semantic elements.
-- Familiarity: you know browser defaults, they are mostly retained.
-- Opt-in resets: utilities do resets. Use utilities for UI development.
-- Typography: lots of font stacks to choose form.
+-   Ideal for sites that are written in plain HTML or in markdown: you get good looking content by default when you use semantic elements.
+-   Familiarity: you know browser defaults, they are mostly retained.
+-   Opt-in resets: utilities do resets. Use utilities for UI development.
+-   Typography: lots of font stacks to choose form.
 
 Also: does not change the default `box-sizing` behavior!
 
@@ -19,19 +19,25 @@ yarn add alku --save-dev
 
 ### Usage: Astro
 
+Intended to be the first CSS you load:
+
 ```astro
 ---
+import 'alku';
+// or alternatively if you wish to be more specific:
 import 'alku/alku.css';
 ---
 ```
 
 ### Usage: HTML
 
+As your first CSS:
+
 ```html
 <!-- minified -->
-<link rel="stylesheet" href="https://www.unpkg.com/alku/alku.css" />
+<link rel="stylesheet" href="https://www.unpkg.com/alku/alku.css" type="text/css" />
 <!-- source -->
-<link rel="stylesheet" href="https://www.unpkg.com/alku/src/alku.css" />
+<link rel="stylesheet" href="https://www.unpkg.com/alku/src/alku.css" type="text/css" />
 ```
 
 Or host it yourself.
