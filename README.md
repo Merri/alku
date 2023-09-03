@@ -4,7 +4,6 @@ A classless + HTML attribute utility CSS. Might become a component library later
 
 - Ideal for sites that are written in plain HTML or in markdown: you get good looking content by default when you use semantic elements.
 - Familiarity: you know browser defaults, they are mostly retained.
-- Compatibility: as defaults are mostly retained these styles work well with other CSS tools that don't repend on resets.
 - Opt-in resets: utilities do resets. Use utilities for UI development.
 - Typography: lots of font stacks to choose form.
 
