@@ -137,9 +137,11 @@ by default (specificity of `0, 1, 0`). If you only need the resets you can write
 So for example `<div data-text="heading3 italic external link mono" />` will result into what you would expect from what
 it says: text in the size and weight of heading3, monospace italic, and looking like an external link.
 
-The following font sizes are available: 28, 24, 22, 20, 18, 16, 14. Usage:
+The following font sizes are available: 24, 22, 20, 18, 16, 14. Usage:
 
 `<span data-text="regular 18">Slightly bigger text than the usual 16.</span>`
+
+The sizes are fluid and increase gradually from 400px to 800px viewport width being 4px bigger at the end.
 
 All the variants from Modern Font Stacks are also available:
 
