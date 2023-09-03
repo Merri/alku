@@ -1,6 +1,6 @@
 {
 	"name": "alku",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Opinionated classless CSS with HTML attribute utilities",
 	"main": "alku.css",
 	"scripts": {
