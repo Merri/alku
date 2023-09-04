@@ -25,8 +25,9 @@ better readability by default.
 | n/a         | 14px (0.875rem) | 18px (1.125rem) | `--page-font-size-14`                                |
 | `<small />` | 87.5%           | 87.5%           | n/a                                                  |
 
-Page default font size is applied to `<body />`, `<button />`, `<input />`, `<optgroup />`, `<select />`, and
-`<textarea />`.
+Page default font size is applied to `<body />`, `<button />`, and `<optgroup />`
+
+`<input />`, `<select />`, and `<textarea />` are set to 1rem (16px) to avoid Safari zooming in upon focus.
 
 You can make page wide overrides by altering the font CSS variables in `:root`.
 

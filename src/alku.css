@@ -625,16 +625,23 @@
 	filter: brightness(1);
 }
 
-:where(textarea) {
+:where(button, input, optgroup, select, textarea) {
+	font-family: var(--page-default-font);
+	line-height: 1.125;
 	margin: 0;
+}
+
+:where(textarea) {
 	resize: vertical;
 }
 
-:where(button, input, optgroup, select, textarea) {
-	font-family: var(--page-default-font);
+:where(button, optgroup) {
 	font-size: var(--page-default-font-size);
-	line-height: 1.125;
-	margin: 0;
+}
+
+/* Safari zooms if size is different than 16px */
+:where(input, select, textarea) {
+	font-size: 1rem;
 }
 
 :where(button, select) {
