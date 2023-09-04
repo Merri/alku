@@ -1,13 +1,34 @@
+![npm](https://img.shields.io/npm/v/alku)
+
 # Alku
 
-A classless + HTML attribute utility CSS. Might become a component library later on, we shall see.
+A classless + HTML attribute utility CSS. (Might become a component library later on, we shall see.)
 
--   Ideal for sites that are written in plain HTML or in markdown: you get good looking content by default when you use semantic elements.
--   Familiarity: you know browser defaults, they are mostly retained.
--   Opt-in resets: utilities do resets. Use utilities for UI development.
--   Typography: lots of font stacks to choose form.
+Goal: to provide a "color neutral" CSS framework that respects browser defaults where possible while fixing bugs /
+issues, and improving usability. Alku favors what is good for the user over what looks pretty.
 
-Also: does not change the default `box-sizing` behavior!
+This framework is ideal for sites that contain content written in plain HTML or markdown as you get good looking content
+just by using semantic HTML elements.
+
+For more app-like development there are also HTML attribute utilities which help out with some common issues.
+
+## Color neutral?
+
+By default Alku is rather black'n'white, even the links are in text color (but underlined). There are a few places where
+colors do exist, but they are system colors (such as text highlight) or very common conventions such as green color to
+indicate "positive" and red to indicate "negative". And even those colors are neutralized by using CSS color names
+(`seagreen` and `crimson`).
+
+Alku does not provide dark mode but all the colors used are compatible with dark mode, so feel free to go to the
+`color-scheme: dark;` side!
+
+## Status
+
+Alku is still early on it's lifespan. Expect major (breaking) changes and new features as long as it stays in version 1.
+
+You can expect maturity to improve as you can notice the documentation progressing.
+
+Notably still missing: form elements.
 
 ## Installation
 
@@ -50,6 +71,7 @@ Stealing ideas from many sources (as we all do) and mixing in some ideas of my o
 -   [normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css) & [Modern normalize](https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css)
 -   [sanitize.css](https://github.com/csstools/sanitize.css/blob/main/sanitize.css)
 -   [Simple.css](https://github.com/kevquirk/simple.css/blob/main/simple.css)
+-   [Pico.css](https://picocss.com)
 -   Emoji fonts from Emojiterra.com's stylesheet
 
 There are others, maybe I find or remember them again some day.
@@ -82,11 +104,13 @@ These are opinioned usability related extensions of HTML via the CSS.
 | HTML attributes                                                    | Purpose                                                                                                                                                            |
 | :----------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data-before="cover"`                                              | Insert a transparent `::before` pseudo element which covers the container. Useful to make links cover their entire container.                                      |
+| `data-indicate-focus="before"`                                     | Relocate element's focus indication outline to `::before` pseudo element.                                                                                          |
+| `data-indicate-focus="after"`                                      | Relocate element's focus indication outline to `::after` pseudo element.                                                                                           |
 | `data-scrolling="horizontal"`                                      | Wrap tables and other elements that are allowed to grow to be wider than the viewport.                                                                             |
 | `data-scrolling="vertical"`                                        | Wrap elements that you desire to scroll vertically. Note that you do need to have something that defines the height for the element such as a parent grid element. |
 | `<a aria-describedby rel="noopener noreferrer" target="_blank" />` | Link to external site with a matching icon. [<sup>1</sup>](#1-external-link-icon)                                                                                  |
 | `<ol role="list" />`<br />`<ul role="list" />`                     | Remove `list-style` and reset margin and padding of the list. Safari VoiceOver workaround to retain list semantics.                                                |
-| `data-text`                                                        | Typographic utilities [<sup>2</sup>](#2-typographic-utilities)                                                                                                     |
+| `data-text`                                                        | Typographic utilities [<sup>2</sup>](./docs/typography.md#typographic-utilities)                                                                                   |
 | `data-text="visually-hidden"`                                      | Hide text visually, keep it available for screen readers. Display if focused (useful for skip link). [<sup>3</sup>](#3-visually-hidden)                            |
 
 ### Notes
@@ -108,68 +132,6 @@ These are opinioned usability related extensions of HTML via the CSS.
 -   `rel="noopener noreferrer"` is recommended for security reasons.
 -   Icon is part of the last word and does not wrap alone to a new line. (Except in Samsung Internet.)
 -   Implemented using `::after` pseudo-element.
-
-#### 2) Typographic utilities
-
-`data-text` works as a typographic style reset (zero specificity), and it removes margin and padding, and inherits color
-by default (specificity of `0, 1, 0`). If you only need the resets you can write `data-text=""`.
-
-| Value           | Description                                                     |
-| :-------------- | :-------------------------------------------------------------- |
-| `heading1`      | `<h1 />` without margin                                         |
-| `heading2`      | `<h2 />` without margin                                         |
-| `heading3`      | `<h3 />` without margin                                         |
-| `heading4`      | `<h4 />` without margin                                         |
-| `heading5`      | `<h5 />` without margin                                         |
-| `heading6`      | `<h6 />` without margin                                         |
-| `heading`       | Use page default heading font                                   |
-| `default`       | Use page default font                                           |
-| `mono`          | Use page default monospace font                                 |
-| `link`          | Link style                                                      |
-| `external link` | External link style. Note that the words must be in this order. |
-| `thin`          | Weight 100                                                      |
-| `extralight`    | Weight 200                                                      |
-| `light`         | Weight 300                                                      |
-| `regular`       | Weight 400                                                      |
-| `medium`        | Weight 500                                                      |
-| `semibold`      | Weight 600                                                      |
-| `bold`          | Weight 700                                                      |
-| `extrabold`     | Weight 800                                                      |
-| `black`         | Weight 900                                                      |
-| `extrablack`    | Weight 950                                                      |
-| `italic`        | Oblique 10% (italic)                                            |
-| `underline`     | Underline                                                       |
-
-So for example `<div data-text="heading3 italic external link mono" />` will result into what you would expect from what
-it says: text in the size and weight of heading3, monospace italic, and looking like an external link.
-
-The following font sizes are available: 24, 22, 20, 18, 16, 14. Usage:
-
-`<span data-text="regular 18">Slightly bigger text than the usual 16.</span>`
-
-The sizes are fluid and increase gradually from 400px to 800px viewport width being 4px bigger at the end.
-
-All the variants from Modern Font Stacks are also available:
-
-| Value          | Description                         |
-| :------------- | :---------------------------------- |
-| `system`       | System sans serif stack             |
-| `handwritten`  | Handwritten stack                   |
-| `transitional` | Transitional serif stack            |
-| `oldstyle`     | Old style serif stack               |
-| `slab`         | Slab serif stack                    |
-| `antique`      | Antique serif stack                 |
-| `didone`       | Didone serif stack                  |
-| `humanist`     | Humanist sans serif stack           |
-| `geometric`    | Geometric humanist sans serif stack |
-| `classical`    | Classical humanist sans serif stack |
-| `grotesque`    | Neo-grotesque sans serif stack      |
-| `industrial`   | Industrial sans serif stack         |
-| `rounded`      | Rounded sans serif stack            |
-| `monoslab`     | Monospace slab serif stack          |
-| `monocode`     | Monospace code stack                |
-
-So if you want a part of the site use operating system default font you can do it with `data-text="system"`.
 
 #### 3) Visually hidden
 
