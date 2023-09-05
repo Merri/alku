@@ -64,7 +64,7 @@
 	--page-font-size-28: calc(4.25rem - clamp(1.75rem, -3vw + 3.25rem, 2.5rem));
 	/* 32px to 400px and grows to 48px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=32&fluidSize=-4&relativeSize=4&maxSize=48 */
 	--page-font-size-32: calc(5rem - clamp(2rem, -4vw + 4rem, 3rem));
-	--page-default-fons-size: var(--page-font-size-16);
+	--page-default-font-size: var(--page-font-size-16);
 
 	--focus-color: Highlight;
 	--focus-color: color-mix(in lch, Highlight, VisitedText 30%);
@@ -340,7 +340,9 @@
 }
 
 :where(h1, h2, h3, h4, h5, h6, strong),
-[data-text~='semibold' i] {
+[data-text~='semibold' i],
+[data-text^='heading' i],
+[data-text*=' heading' i] {
 	font-weight: 600;
 }
 
@@ -648,22 +650,62 @@
 	text-transform: none;
 }
 
-:where(button, [type='button'], [type='reset'], [type='submit'])::-moz-focus-inner {
+:where(button, [type='button' i], [type='reset' i], [type='submit' i])::-moz-focus-inner {
 	border-style: none;
 	padding: 0;
 }
 
 :where(fieldset) {
+	border: 0 solid transparent;
+	margin: 0;
 	padding: 0;
 }
 
 :where(legend) {
-	box-sizing: border-box;
-	color: inherit;
-	display: table;
-	max-width: 100%;
 	padding: 0;
-	white-space: normal;
+}
+
+:where(legend + label) {
+	margin-top: 1rem;
+}
+
+:where(label) {
+	align-items: center;
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 0.5rem;
+	padding: 0 0.25rem;
+	position: relative;
+	user-select: none;
+}
+
+:where(label > *) {
+	user-select: text;
+}
+
+:where(label > :is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) {
+	flex: 100%;
+}
+
+:where(:is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) ~ [data-text-color='state' i] {
+	color: color-mix(in lch, currentColor, transparent 40%);
+}
+
+:where([aria-invalid='true' i]) ~ [data-text-color='state' i] {
+	color: crimson;
+}
+
+:where([aria-invalid='false' i]) ~ [data-text-color='state' i] {
+	color: seagreen;
+}
+
+:where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible)) {
+	outline: 3px solid var(--focus-color);
+	outline-offset: 3px;
+}
+
+:where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible) > :focus) {
+	outline: none;
 }
 
 :where([type='search']) {
