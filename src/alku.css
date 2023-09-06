@@ -69,10 +69,17 @@
 	--focus-color: Highlight;
 	--focus-color: color-mix(in lch, Highlight, VisitedText 30%);
 	--link-color: currentColor;
+	--muted-color: color-mix(in lch, currentColor, transparent 40%);
 	--negative-color: crimson;
 	--negative-color: color-mix(in lch, crimson, currentColor 10%);
 	--positive-color: seagreen;
 	--positive-color: color-mix(in lch, seagreen, currentColor 10%);
+
+	--option-background-color: Field;
+	--option-border-color: FieldText;
+	--option-color: FieldText;
+	--option-muted-color: color-mix(in lch, FieldText, Field 50%);
+	--option-size: 1.5rem;
 
 	--mask-chevron-down: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M4 9L12 17L20 9' fill='none' stroke='black' stroke-width='2.5'/></svg>");
 	--mask-cross: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 5L5 19M5 5L19 19' fill='none' stroke='black' stroke-width='2.5'/></svg>");
@@ -208,6 +215,18 @@
 	text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+	:where(html) {
+		color-scheme: light;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:where(html) {
+		color-scheme: dark;
+	}
 }
 
 :where(body) {
@@ -464,7 +483,7 @@
 
 :where(hgroup > :is(h1, h2, h3, h4, h5, h6) + p),
 [data-text-color='muted' i] {
-	color: color-mix(in lch, currentColor, transparent 40%);
+	color: var(--muted-color);
 }
 
 :where(hgroup > *) {
@@ -671,12 +690,14 @@
 
 :where(label) {
 	align-items: center;
+	align-self: flex-start;
 	display: inline-flex;
 	flex-wrap: wrap;
 	gap: 0.25rem 0.5rem;
 	padding: 0 0.25rem;
 	position: relative;
 	user-select: none;
+	vertical-align: top;
 }
 
 :where(label > *) {
@@ -688,15 +709,15 @@
 }
 
 :where(:is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) ~ [data-text-color='state' i] {
-	color: color-mix(in lch, currentColor, transparent 40%);
+	color: var(--muted-color);
 }
 
 :where([aria-invalid='true' i]) ~ [data-text-color='state' i] {
-	color: crimson;
+	color: var(--negative-color);
 }
 
 :where([aria-invalid='false' i]) ~ [data-text-color='state' i] {
-	color: seagreen;
+	color: var(--positive-color);
 }
 
 :where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible)) {
@@ -706,6 +727,74 @@
 
 :where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible) > :focus) {
 	outline: none;
+}
+
+:where(:is([type='checkbox' i], [type='radio' i])) {
+	-webkit-appearance: none;
+	appearance: none;
+	aspect-ratio: 1 / 1;
+	background: var(--option-background-color);
+	border: 0.125rem solid var(--option-border-color);
+	color: var(--option-background-color);
+	display: inline-grid;
+	font-size: calc(var(--option-size) - 0.5rem);
+	font-weight: bolder;
+	height: var(--option-size);
+	line-height: 1;
+	place-content: center;
+}
+
+@media not all and (prefers-reduced-motion) {
+	:where(:is([type='checkbox' i], [type='radio' i])) {
+		transition: background 125ms ease-in-out, color 125ms ease-in-out;
+	}
+}
+
+:where([type='checkbox' i]) {
+	border-radius: 0.25rem;
+}
+
+:where([type='checkbox' i][role='switch' i]) {
+	--switch-softness: 2px;
+	aspect-ratio: 2 / 1;
+	background-color: var(--option-background-color);
+	background-image: radial-gradient(
+		circle,
+		currentColor calc(33.333% - var(--switch-softness)),
+		transparent calc(33.333% + 1px)
+	);
+	background-position: calc(var(--option-size) * -0.5);
+	background-repeat: no-repeat;
+	border-radius: calc(var(--option-size) * 0.5);
+	color: var(--option-muted-color);
+}
+
+:where([type='radio' i]) {
+	background-image: radial-gradient(circle, currentColor 50%, transparent calc(50% + 1px));
+	border-radius: 50%;
+}
+
+:where(:is([type='checkbox' i], [type='radio' i]):checked) {
+	color: var(--option-color);
+}
+
+:where([type='checkbox' i][role='switch' i]:checked) {
+	--switch-softness: 0px;
+	background-position: calc(var(--option-size) * 0.5);
+}
+
+:where([type='checkbox' i]:not([role='switch' i]))::after {
+	content: '\2713';
+}
+
+:where(:is(input, select, textarea)[aria-invalid='true' i]) {
+	outline: 2px solid var(--negative-color);
+	outline-offset: 2px;
+}
+
+:where(:is(input, select, textarea)[aria-invalid='false' i]) {
+	outline: 2px solid var(--positive-color);
+	outline-offset: 2px;
 }
 
 :where([type='search']) {
