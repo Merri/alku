@@ -208,7 +208,7 @@
 :where(html) {
 	font-feature-settings: 'tnum';
 	font-variant-numeric: tabular-nums;
-	line-height: 1.375;
+	line-height: 1.5;
 	tab-size: 4;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-text-size-adjust: 100%;
@@ -558,9 +558,13 @@
 }
 
 :where(hr) {
+	block-size: 0;
+	border: 0.125rem solid currentColor;
 	box-sizing: content-box;
-	color: inherit;
-	height: 0;
+	color: var(--muted-color);
+	inline-size: 100%;
+	margin-block: 2rem;
+	margin-inline: 0;
 	overflow: visible;
 }
 
@@ -648,8 +652,18 @@
 
 :where(button, input, optgroup, select, textarea) {
 	font-family: var(--page-default-font);
-	line-height: 1.125;
+	line-height: 1.5;
 	margin: 0;
+}
+
+:where(input:not([type='checkbox' i], [type='radio' i], [type='range' i], [type='file' i]), select, textarea) {
+	-webkit-appearance: none;
+	appearance: none;
+	background: var(--option-background-color);
+	border: thin solid var(--option-muted-color);
+	border-radius: 0.25rem;
+	color: var(--option-color);
+	padding: 0.75rem 1rem;
 }
 
 :where(textarea) {
@@ -750,7 +764,7 @@
 	}
 }
 
-:where([type='checkbox' i]) {
+:where([type='checkbox' i]:not([role='switch' i])) {
 	border-radius: 0.25rem;
 }
 
@@ -774,8 +788,12 @@
 	border-radius: 50%;
 }
 
-:where(:is([type='checkbox' i], [type='radio' i]):checked) {
+:where(:is([type='checkbox' i][role='switch' i], [type='radio' i]):checked) {
 	color: var(--option-color);
+}
+
+:where([type='checkbox' i]:not([role='switch' i]):checked) {
+	background-color: var(--option-color);
 }
 
 :where([type='checkbox' i][role='switch' i]:checked) {
@@ -788,13 +806,20 @@
 }
 
 :where(:is(input, select, textarea)[aria-invalid='true' i]) {
-	outline: 2px solid var(--negative-color);
-	outline-offset: 2px;
+	box-shadow: inset 0 -2px 0 var(--negative-color);
+	outline-color: var(--negative-color);
 }
 
 :where(:is(input, select, textarea)[aria-invalid='false' i]) {
-	outline: 2px solid var(--positive-color);
+	box-shadow: inset 0 -2px 0 var(--positive-color);
+	outline-color: var(--positive-color);
+}
+
+:where(:is([type='checkbox' i], [type='radio' i])[aria-invalid]) {
+	box-shadow: unset;
 	outline-offset: 2px;
+	outline-style: solid;
+	outline-width: 2px;
 }
 
 :where([type='search']) {
