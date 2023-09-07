@@ -183,21 +183,6 @@
 	cursor: progress;
 }
 
-/* Indicate element is disabled */
-:is([aria-disabled='true' i], [disabled], :disabled) {
-	cursor: not-allowed;
-}
-
-:where([aria-disabled='true' i], [disabled], :disabled) {
-	filter: saturate(0.4);
-	opacity: 0.6;
-}
-
-:where([aria-disabled='true' i], [disabled], :disabled) :where([aria-disabled='true' i], [disabled], :disabled) {
-	filter: unset;
-	opacity: unset;
-}
-
 /* Utility: invisible pseudo element to cover container area */
 :where([data-before='cover' i])::before {
 	content: '';
@@ -656,14 +641,104 @@
 	margin: 0;
 }
 
-:where(input:not([type='checkbox' i], [type='radio' i], [type='range' i], [type='file' i]), select, textarea) {
+:where(
+		input:not([type='checkbox' i], [type='radio' i], [type='range' i], [type='file' i], [type='color' i]),
+		select,
+		textarea
+	) {
 	-webkit-appearance: none;
 	appearance: none;
 	background: var(--option-background-color);
-	border: thin solid var(--option-muted-color);
+	border: 2px solid var(--option-muted-color);
 	border-radius: 0.25rem;
 	color: var(--option-color);
-	padding: 0.75rem 1rem;
+	padding: 0.625rem 1rem;
+}
+
+:where([type*='date' i], [type='time' i], [type='month' i], [type='week' i]) {
+	font-family: var(--page-mono-font);
+}
+
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-calendar-picker-indicator {
+	padding: 0;
+}
+
+input[type='button' i], /* Use <button /> */
+input[type='reset' i], /* Use <button /> */
+input[type='submit' i], /* Use <button /> */
+[type='datetime' i], /* Use datetime-local */
+[type='number' i] /* Use <input type="text" inputmode="numeric" pattern="\d*" /> or <input type="tel" /> */ {
+	background: var(--negative-color) !important;
+	border-color: var(--negative-color) !important;
+}
+
+:where([type='color' i]) {
+	background: var(--option-background-color);
+	border: 2px solid var(--option-muted-color);
+	border-radius: 0.25rem;
+	padding: 2px;
+}
+
+::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+::-moz-color-swatch {
+	border: 0;
+	min-block-size: 2.5rem;
+	min-inline-size: 2.5rem;
+}
+
+::-webkit-color-swatch {
+	border: 0;
+	min-block-size: 2.5rem;
+	min-inline-size: 2.5rem;
+}
+
+::-webkit-file-upload-button {
+	-webkit-appearance: button;
+	font: inherit;
+}
+
+::-webkit-input-placeholder {
+	color: inherit;
+	opacity: 0.5625;
+}
+
+:where(button),
+::file-selector-button {
+	align-items: center;
+	-webkit-appearance: none;
+	appearance: none;
+	background: ButtonFace;
+	border: 2px solid rgb(0 0 0 / 50%);
+	border: 2px solid color-mix(in lch, ButtonFace, ButtonText 50%);
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 3px rgb(0 0 0 / 12.5%), 0 -2px 3px rgb(255 255 255 / 12.5%);
+	color: ButtonText;
+	display: inline-flex;
+	filter: brightness(1);
+	flex-flow: wrap;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 1.5rem;
+	padding: 0.625rem 1.5rem;
+	user-select: none;
+}
+
+::file-selector-button {
+	margin-right: 0.5rem;
+	padding-inline: 0.5rem;
+}
+
+:where(button:is(:hover, :focus-visible)),
+:where([type='file' i]:is(:hover, :focus-visible))::file-selector-button {
+	filter: contrast(0.9375) brightness(1.25);
+}
+
+:where(button:active) {
+	filter: brightness(0.875);
 }
 
 :where(textarea) {
@@ -708,7 +783,7 @@
 	display: inline-flex;
 	flex-wrap: wrap;
 	gap: 0.25rem 0.5rem;
-	padding: 0 0.25rem;
+	padding: 0.25rem;
 	position: relative;
 	user-select: none;
 	vertical-align: top;
@@ -829,21 +904,6 @@
 
 :where([type='search'])::-webkit-search-decoration {
 	-webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-	-webkit-appearance: button;
-	font: inherit;
-}
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-	height: auto;
-}
-
-::-webkit-input-placeholder {
-	color: inherit;
-	opacity: 0.5625;
 }
 
 :where(details) {
@@ -973,4 +1033,19 @@
 :where(details[data-open='true' i] > summary)::-webkit-details-marker,
 :where(details[data-open='true' i] > summary)::after {
 	transform: translateY(-50%) rotate(180deg);
+}
+
+/* Indicate element is disabled */
+:is([aria-disabled='true' i], [disabled], :disabled) {
+	cursor: not-allowed;
+}
+
+:where([aria-disabled='true' i], [disabled], :disabled) {
+	filter: saturate(0.4);
+	opacity: 0.6;
+}
+
+:where([aria-disabled='true' i], [disabled], :disabled) :where([aria-disabled='true' i], [disabled], :disabled) {
+	filter: unset;
+	opacity: unset;
 }
