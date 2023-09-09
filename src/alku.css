@@ -642,7 +642,14 @@
 }
 
 :where(
-		input:not([type='checkbox' i], [type='radio' i], [type='range' i], [type='file' i], [type='color' i]),
+		input:not(
+				[type='checkbox' i],
+				[type='radio' i],
+				[type='range' i],
+				[type='file' i],
+				[type='color' i],
+				[type='image' i]
+			),
 		select,
 		textarea
 	) {
@@ -706,6 +713,81 @@ input[type='submit' i], /* Use <button /> */
 	opacity: 0.5625;
 }
 
+:where([type='range' i]) {
+	--outline: unset;
+	--outline-offset: unset;
+	-webkit-appearance: none;
+	appearance: none;
+	background: unset;
+	display: inline-grid;
+	height: 0.5rem;
+	outline: none;
+}
+
+:where(label > [type='range' i]) {
+	padding: 1rem 0 1.5rem;
+}
+
+:where([type='range' i]:focus-visible) {
+	--outline: 3px solid var(--focus-color);
+	--outline-offset: 6px;
+}
+
+::-webkit-slider-runnable-track {
+	background: var(--option-background-color);
+	border: 2px solid var(--option-muted-color);
+	border-radius: 0.25rem;
+	box-sizing: border-box;
+	height: 0.5rem;
+	outline: var(--outline);
+	outline-offset: var(--outline-offset);
+}
+
+::-moz-range-track {
+	background: var(--option-background-color);
+	border: 2px solid var(--option-muted-color);
+	border-radius: 0.25rem;
+	box-sizing: border-box;
+	height: 0.5rem;
+	outline: var(--outline);
+	outline-offset: var(--outline-offset);
+}
+
+::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	background: var(--option-color);
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px var(--option-background-color);
+	height: 1.5rem;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%) scale(var(--thumb-scale, 1));
+	width: 1.5rem;
+}
+
+::-moz-range-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	background: var(--option-color);
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px var(--option-background-color);
+	height: 1.5rem;
+	position: relative;
+	top: 50%;
+	transform: translateY(0%) scale(var(--thumb-scale, 1));
+	width: 1.5rem;
+}
+
+:where([type='range' i]:active)::-webkit-slider-thumb {
+	--thumb-scale: 1.25;
+}
+
+:where([type='range' i]:active)::-moz-range-thumb {
+	--thumb-scale: 1.25;
+}
+
 :where(button),
 ::file-selector-button {
 	align-items: center;
@@ -737,7 +819,8 @@ input[type='submit' i], /* Use <button /> */
 	filter: contrast(0.9375) brightness(1.25);
 }
 
-:where(button:active) {
+:where(button:active),
+:where([type='file' i]:active)::file-selector-button {
 	filter: brightness(0.875);
 }
 
