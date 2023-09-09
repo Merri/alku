@@ -90,11 +90,11 @@
 }
 
 :where(:root),
-:where([dir='ltr']) {
+:where([dir='ltr' i]) {
 	--dir-adjust: 1;
 }
 
-:where([dir='rtl']) {
+:where([dir='rtl' i]) {
 	--dir-adjust: -1;
 }
 
@@ -124,38 +124,38 @@
 }
 
 /* Generic scrolling utility */
-:where(div:has(> table:only-child)) {
+:where(*:has(> table:only-child)) {
 	overflow: hidden;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
 }
 
 /* Generic scrolling utility */
-:where([data-scrolling]) {
+[data-scrolling] {
 	overflow: hidden;
 	-webkit-overflow-scrolling: touch;
 }
 
 /* Generic scrolling utility */
-:where([data-scrolling='block' i]) {
+[data-scrolling='block' i] {
 	overflow-block: auto;
 }
 
 /* Generic scrolling utility */
-:where([data-scrolling='inline' i]) {
+[data-scrolling='inline' i] {
 	overflow-inline: auto;
 }
 
 /* https://caniuse.com/mdn-css_properties_overflow-block */
 @supports not (overflow-block: auto) {
-	:where([data-scrolling='block' i]) {
+	[data-scrolling='block' i] {
 		overflow-y: auto;
 	}
 }
 
 /* https://caniuse.com/mdn-css_properties_overflow-inline */
 @supports not (overflow-inline: auto) {
-	:where([data-scrolling='inline' i]) {
+	[data-scrolling='inline' i] {
 		overflow-x: auto;
 	}
 }
@@ -168,7 +168,7 @@
 /* Focus indicator */
 :where(:focus-visible),
 :where([data-indicate-focus='before']:focus-visible)::before,
-:where([data-indicate-focus='after']:focus-visible)::before {
+:where([data-indicate-focus='after']:focus-visible)::after {
 	outline: 3px solid var(--focus-color);
 	outline-offset: 3px;
 }
@@ -725,7 +725,7 @@ input[type='submit' i], /* Use <button /> */
 }
 
 :where(label > [type='range' i]) {
-	padding: 1rem 0 1.5rem;
+	padding: 1.125rem 0 1.375rem;
 }
 
 :where([type='range' i]:focus-visible) {
@@ -802,6 +802,7 @@ input[type='submit' i], /* Use <button /> */
 	display: inline-flex;
 	filter: brightness(1);
 	flex-flow: wrap;
+	font-size: var(--page-default-font-size);
 	font-weight: 600;
 	justify-content: center;
 	line-height: 1.5rem;
@@ -824,21 +825,39 @@ input[type='submit' i], /* Use <button /> */
 	filter: brightness(0.875);
 }
 
+:where(select:not([multiple], [size])) {
+	/* chevron */
+	background-image: linear-gradient(45deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
+		linear-gradient(315deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
+		linear-gradient(135deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
+		linear-gradient(225deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
+		linear-gradient(45deg, currentColor calc(35% - 1px), transparent 35%),
+		linear-gradient(315deg, currentColor calc(35% - 1px), transparent 35%);
+	/* 1rem or calc(100% - 1rem) */
+	background-position: calc((100% - 2rem) / 2 * (var(--dir-adjust) + 1) + 1rem) calc(50% - 0.125rem);
+	background-repeat: no-repeat;
+	background-size: 1rem 1rem;
+	/* 1rem or 3rem */
+	padding-left: calc(var(--dir-adjust) * -1rem + 2rem);
+	padding-right: calc(var(--dir-adjust) * 1rem + 2rem);
+}
+
 :where(textarea) {
 	resize: vertical;
 }
 
-:where(button, optgroup) {
-	font-size: var(--page-default-font-size);
-}
-
 /* Safari zooms if size is different than 16px */
-:where(input, select, textarea) {
+:where(input, optgroup, select, textarea) {
 	font-size: 1rem;
 }
 
 :where(button, select) {
 	text-transform: none;
+}
+
+:where(optgroup) {
+	font-style: normal;
+	font-weight: 600;
 }
 
 :where(button, [type='button' i], [type='reset' i], [type='submit' i])::-moz-focus-inner {

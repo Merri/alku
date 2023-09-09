@@ -1,0 +1,30 @@
+[data-grid] {
+	display: grid;
+}
+
+[data-grid~='centerItems' i] {
+	place-content: center;
+}
+
+:where([data-grid~='stackItems' i] > *) {
+	grid-area: 1 / 1;
+}
+
+[data-grid~='auto' i] {
+	--grid-auto: var(--grid-default-auto-min-width, 16rem);
+	gap: 1rem;
+	/* I think this was stolen somewhere from https://moderncss.dev */
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-auto)), 1fr));
+}
+
+[data-grid~='padding' i] {
+	padding-inline: var(--grid-default-padding-medium, 15%);
+}
+
+[data-grid~='paddingStart' i] {
+	padding-inline-start: var(--grid-default-padding-large, 30%);
+}
+
+[data-grid~='paddingEnd' i] {
+	padding-inline-end: var(--grid-default-padding-large, 30%);
+}
