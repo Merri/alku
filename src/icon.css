@@ -1,0 +1,37 @@
+@property --icon-color {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: unset;
+}
+
+@property --icon-light-color {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: unset;
+}
+
+@property --icon-dark-color {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: unset;
+}
+
+@property --icon-shade-color {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --icon-stroke-color {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: currentColor;
+}
+
+:where(:root) {
+	--icon-color: unset;
+	--icon-dark-color: unset;
+	--icon-light-color: unset;
+	--icon-stroke-color: currentColor;
+	--icon-shade-color: transparent;
+}

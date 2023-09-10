@@ -1,85 +1,59 @@
-@font-face {
-	font-family: 'Rockwell';
-	src: local('Rockwell');
-	ascent-override: 100%;
-}
-
-/* TODO: does this do the desired thing? @see https://github.com/system-fonts/modern-font-stacks/blob/e566f38736e759e868cb0ce3661b99d650285ed8/site/src/_styles.css#L756 */
-@font-face {
-	font-family: 'Didot';
-	src: local('Didot');
-	-webkit-font-smoothing: auto;
-	-moz-osx-font-smoothing: auto;
-}
-
 :where(:root) {
 	--emoji-font: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji', 'EmojiOne Mozilla',
 		'Twemoji Mozilla', 'Noto Emoji', 'Segoe UI Symbol', EmojiSymbols;
-
-	/* https://modernfontstacks.com/ */
-	--system-sans-stack: system-ui, ui-sans-serif, Helvetica, sans-serif, var(--emoji-font);
-	--handwritten-stack: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive, var(--emoji-font);
-
-	--transitional-serif-stack: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif, var(--emoji-font);
-	--old-style-serif-stack: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif, var(--emoji-font);
-	--slab-serif-stack: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif,
-		var(--emoji-font);
-	--antique-serif-stack: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia,
-		serif, var(--emoji-font);
-	--didone-serif-stack: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif,
-		var(--emoji-font);
-
-	--humanist-sans-stack: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif,
-		var(--emoji-font);
-	--geometric-humanist-sans-stack: Avenir, 'Avenir Next LT Pro', Montserrat, Corbel, 'URW Gothic', source-sans-pro,
-		sans-serif, var(--emoji-font);
-	--classical-humanist-sans-stack: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif, var(--emoji-font);
-	--neo-grotesque-sans-stack: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif,
-		var(--emoji-font);
-	--industrial-sans-stack: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow',
-		sans-serif-condensed, sans-serif, var(--emoji-font);
-	--rounded-sans-stack: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari,
-		'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif, var(--emoji-font);
-
-	--mono-slab-serif-stack: 'Nimbus Mono PS', 'Courier New', 'Cutive Mono', monospace, var(--emoji-font);
-	--mono-code-stack: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace,
-		var(--emoji-font);
-	--mono-stack: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
-
-	--page-default-font: var(--system-sans-stack);
-	--page-marker-font: var(--mono-stack);
-	--page-heading-font: var(--old-style-serif-stack);
-	--page-mono-font: var(--mono-stack);
+	--mono-font-stack: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
 
 	/* 16px to 400px and grows to 20px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=16&fluidSize=-1&relativeSize=1.5&maxSize=20 */
-	--page-font-size-16: calc(2.25rem - clamp(1rem, -1vw + 1.5rem, 1.25rem));
-	--page-font-size-14: calc(2rem - clamp(0.875rem, -1vw + 1.375rem, 1.125rem));
-	--page-font-size-18: calc(2.5rem - clamp(1.125rem, -1vw + 1.625rem, 1.375rem));
-	--page-font-size-20: calc(2.75rem - clamp(1.25rem, -1vw + 1.75rem, 1.5rem));
-	--page-font-size-22: calc(3rem - clamp(1.375rem, -1vw + 1.875rem, 1.625rem));
-	--page-font-size-24: calc(3.25rem - clamp(1.5rem, -1vw + 2rem, 1.75rem));
+	--font-size-16: calc(2.25rem - clamp(1rem, -1vw + 1.5rem, 1.25rem));
+	--font-size-14: calc(2rem - clamp(0.875rem, -1vw + 1.375rem, 1.125rem));
+	--font-size-18: calc(2.5rem - clamp(1.125rem, -1vw + 1.625rem, 1.375rem));
+	--font-size-20: calc(2.75rem - clamp(1.25rem, -1vw + 1.75rem, 1.5rem));
+	--font-size-22: calc(3rem - clamp(1.375rem, -1vw + 1.875rem, 1.625rem));
+	--font-size-24: calc(3.25rem - clamp(1.5rem, -1vw + 2rem, 1.75rem));
 	/* 26px to 400px and grows to 32px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=26&fluidSize=-1.5&relativeSize=2.375&maxSize=32 */
-	--page-font-size-26: calc(3.625rem - clamp(1.625rem, -1.5vw + 2.375rem, 2rem));
+	--font-size-26: calc(3.625rem - clamp(1.625rem, -1.5vw + 2.375rem, 2rem));
 	/* 28px to 400px and grows to 40px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=28&fluidSize=-3&relativeSize=3.25&maxSize=40 */
-	--page-font-size-28: calc(4.25rem - clamp(1.75rem, -3vw + 3.25rem, 2.5rem));
+	--font-size-28: calc(4.25rem - clamp(1.75rem, -3vw + 3.25rem, 2.5rem));
 	/* 32px to 400px and grows to 48px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=32&fluidSize=-4&relativeSize=4&maxSize=48 */
-	--page-font-size-32: calc(5rem - clamp(2rem, -4vw + 4rem, 3rem));
-	--page-default-font-size: var(--page-font-size-16);
+	--font-size-32: calc(5rem - clamp(2rem, -4vw + 4rem, 3rem));
 
+	--default-font: sans-serif, var(--emoji-font);
+	--heading-font: serif, var(--emoji-font);
+	--marker-font: var(--mono-font-stack);
+	--mono-font: var(--mono-font-stack);
+
+	--default-font-size: var(--font-size-16);
+	--default-font-weight: 400;
+
+	--highlight-10: rgb(255 255 255 / 10%);
+	--highlight-30: rgb(255 255 255 / 30%);
+	--highlight-50: rgb(255 255 255 / 50%);
+	--highlight-70: rgb(255 255 255 / 70%);
+	--highlight-90: rgb(255 255 255 / 90%);
+	--shadow-10: rgb(0 0 0 / 10%);
+	--shadow-30: rgb(0 0 0 / 30%);
+	--shadow-50: rgb(0 0 0 / 50%);
+	--shadow-70: rgb(0 0 0 / 70%);
+	--shadow-90: rgb(0 0 0 / 90%);
+
+	--code-color: Field;
+	--code-border-color: var(--code-color);
+	--code-text-color: FieldText;
 	--focus-color: Highlight;
-	--focus-color: color-mix(in lch, Highlight, VisitedText 30%);
+	--kbd-color: FieldText;
+	--kbd-border-color: var(--muted-30);
+	--kbd-text-color: Field;
 	--link-color: currentColor;
-	--muted-color: color-mix(in lch, currentColor, transparent 40%);
+	--mark-color: Mark;
+	--mark-border-color: var(--mark-color);
+	--mark-text-color: MarkText;
+	--muted-color: var(--muted-50);
 	--negative-color: crimson;
-	--negative-color: color-mix(in lch, crimson, currentColor 10%);
 	--positive-color: seagreen;
-	--positive-color: color-mix(in lch, seagreen, currentColor 10%);
 
-	--option-background-color: Field;
-	--option-border-color: FieldText;
-	--option-color: FieldText;
-	--option-muted-color: color-mix(in lch, FieldText, Field 50%);
-	--option-size: 1.5rem;
+	--focus-indication: 3px solid var(--focus-color);
+	--focus-inside: -3px;
+	--focus-outside: 3px;
 
 	--mask-chevron-down: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M4 9L12 17L20 9' fill='none' stroke='black' stroke-width='2.5'/></svg>");
 	--mask-cross: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 5L5 19M5 5L19 19' fill='none' stroke='black' stroke-width='2.5'/></svg>");
@@ -87,6 +61,43 @@
 
 	--ol-indent: 2em;
 	--ul-indent: 1.375em;
+}
+
+/* muted variants like this are especially useful when color-mix is not supported */
+@media (prefers-color-scheme: light) {
+	:where(:root) {
+		--muted-10: var(--shadow-10);
+		--muted-30: var(--shadow-30);
+		--muted-50: var(--shadow-50);
+		--muted-70: var(--shadow-70);
+		--muted-90: var(--shadow-90);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:where(:root) {
+		--muted-10: var(--highlight-10);
+		--muted-30: var(--highlight-30);
+		--muted-50: var(--highlight-50);
+		--muted-70: var(--highlight-70);
+		--muted-90: var(--highlight-90);
+	}
+}
+
+@supports (color: color-mix(in lch, black, white 50%)) {
+	:where(:root) {
+		--code-color: color-mix(in lch, Field, currentColor 10%);
+		--code-text-color: color-mix(in lch, FieldText, currentColor 10%);
+		--focus-color: color-mix(in lch, Highlight, VisitedText 30%);
+		--kbd-color: color-mix(in lch, FieldText, currentColor 10%);
+		--kbd-border-color: color-mix(in lch, FieldText, currentColor 30%);
+		--kbd-text-color: color-mix(in lch, Field, currentColor 10%);
+		--mark-color: color-mix(in lch, Mark, currentColor 20%);
+		--mark-text-color: color-mix(in lch, MarkText, currentColor 20%);
+		--muted-color: color-mix(in lch, transparent, currentColor 70%);
+		--negative-color: color-mix(in lch, crimson, currentColor 10%);
+		--positive-color: color-mix(in lch, seagreen, currentColor 10%);
+	}
 }
 
 :where(:root),
@@ -124,7 +135,7 @@
 }
 
 /* Generic scrolling utility */
-:where(*:has(> table:only-child)) {
+:where(*:not([data-scrolling]):has(> table:only-child)) {
 	overflow: hidden;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
@@ -169,13 +180,19 @@
 :where(:focus-visible),
 :where([data-indicate-focus='before']:focus-visible)::before,
 :where([data-indicate-focus='after']:focus-visible)::after {
-	outline: 3px solid var(--focus-color);
-	outline-offset: 3px;
+	outline: var(--focus-indication);
+	outline-offset: var(--focus-outside);
 }
 
 /* Focus indicator */
 :where([data-indicate-focus]):focus {
 	outline: none;
+}
+
+/* Focus indicator no longer needed in Firefox */
+::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
 }
 
 /* Indicate element is busy */
@@ -191,6 +208,7 @@
 }
 
 :where(html) {
+	color-scheme: dark light;
 	font-feature-settings: 'tnum';
 	font-variant-numeric: tabular-nums;
 	line-height: 1.5;
@@ -202,21 +220,8 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: light) {
-	:where(html) {
-		color-scheme: light;
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	:where(html) {
-		color-scheme: dark;
-	}
-}
-
 :where(body) {
 	display: grid;
-	font-size: var(--page-default-font-size);
 	grid-template-columns: 1fr min(65rem, 90%) 1fr;
 	margin: 0;
 	min-height: 100dvh;
@@ -246,80 +251,26 @@
 	text-decoration: inherit;
 }
 
+:where(body),
+[data-text=''] {
+	font-family: var(--default-font);
+	font-size: var(--default-font-size);
+	font-weight: var(--default-font-weight);
+}
+
 :where(h1, h2, h3, h4, h5, h6),
 [data-text^='heading' i],
 [data-text*=' heading' i] {
-	font-family: var(--page-heading-font);
+	font-family: var(--heading-font);
 }
 
-:where(html),
 [data-text~='default' i] {
-	font-family: var(--page-default-font);
+	font-family: var(--default-font);
 }
 
 :where(code, kbd, pre, samp),
 [data-text~='mono' i] {
-	font-family: var(--page-mono-font);
-}
-
-[data-text~='system' i] {
-	font-family: var(--system-sans-stack);
-}
-
-[data-text~='handwritten' i] {
-	font-family: var(--handwritten-stack);
-}
-
-[data-text~='transitional' i] {
-	font-family: var(--transitional-serif-stack);
-}
-
-[data-text~='oldstyle' i] {
-	font-family: var(--old-style-serif-stack);
-}
-
-[data-text~='slab' i] {
-	font-family: var(--slab-serif-stack);
-}
-
-[data-text~='antique' i] {
-	font-family: var(--antique-serif-stack);
-}
-
-[data-text~='didone' i] {
-	font-family: var(--didone-serif-stack);
-}
-
-[data-text~='humanist' i] {
-	font-family: var(--humanist-sans-stack);
-}
-
-[data-text~='geometric' i] {
-	font-family: var(--geometric-humanist-sans-stack);
-}
-
-[data-text~='classical' i] {
-	font-family: var(--classical-humanist-sans-stack);
-}
-
-[data-text~='grotesque' i] {
-	font-family: var(--neo-grotesque-sans-stack);
-}
-
-[data-text~='industrial' i] {
-	font-family: var(--industrial-sans-stack);
-}
-
-[data-text~='rounded' i] {
-	font-family: var(--rounded-sans-stack);
-}
-
-[data-text~='monoslab' i] {
-	font-family: var(--mono-slab-serif-stack);
-}
-
-[data-text~='monocode' i] {
-	font-family: var(--mono-code-stack);
+	font-family: var(--mono-font);
 }
 
 [data-text~='thin' i] {
@@ -386,49 +337,49 @@
 
 :where(h1),
 [data-text~='heading1' i] {
-	font-size: var(--page-font-size-32);
+	font-size: var(--font-size-32);
 }
 
 :where(h2),
 [data-text~='heading2' i] {
-	font-size: var(--page-font-size-28);
+	font-size: var(--font-size-28);
 }
 
-[data-text~='26' i] {
-	font-size: var(--page-font-size-26);
+[data-text~='26'] {
+	font-size: var(--font-size-26);
 }
 
 :where(h3),
-[data-text~='24' i],
+[data-text~='24'],
 [data-text~='heading3' i] {
-	font-size: var(--page-font-size-24);
+	font-size: var(--font-size-24);
 }
 
 :where(h4),
-[data-text~='22' i],
+[data-text~='22'],
 [data-text~='heading4' i] {
-	font-size: var(--page-font-size-22);
+	font-size: var(--font-size-22);
 }
 
 :where(h5),
-[data-text~='20' i],
+[data-text~='20'],
 [data-text~='heading5' i] {
-	font-size: var(--page-font-size-20);
+	font-size: var(--font-size-20);
 }
 
 :where(h6),
-[data-text~='18' i],
+[data-text~='18'],
 [data-text~='heading6' i] {
-	font-size: var(--page-font-size-18);
+	font-size: var(--font-size-18);
 }
 
 :where(pre),
-[data-text~='16' i] {
-	font-size: var(--page-font-size-16);
+[data-text~='16'] {
+	font-size: var(--font-size-16);
 }
 
-[data-text~='14' i] {
-	font-size: var(--page-font-size-14);
+[data-text~='14'] {
+	font-size: var(--font-size-14);
 }
 
 :where(small) {
@@ -480,27 +431,27 @@
 }
 
 :where(code) {
-	background: color-mix(in lch, Field, currentColor 10%);
+	background: var(--code-color);
 	border-radius: 0.125rem;
-	box-shadow: 0 0 0 0.125rem color-mix(in lch, Field, currentColor 10%);
-	color: color-mix(in lch, FieldText, currentColor 10%);
+	box-shadow: var(--code-border-color);
+	color: var(--code-text-color);
 	margin-inline: 0.125rem;
 	padding-inline: 0.125rem;
 }
 
 :where(kbd) {
-	background: color-mix(in lch, FieldText, currentColor 10%);
+	background: var(--kbd-color);
 	border-radius: 0.125rem;
-	box-shadow: 0 0 0 0.125rem color-mix(in lch, FieldText, currentColor 30%);
-	color: color-mix(in lch, Field, currentColor 10%);
+	box-shadow: 0 0 0 0.125rem var(--kbd-border-color);
+	color: var(--kbd-text-color);
 	margin-inline: 0.125rem;
 	padding-inline: 0.125rem;
 }
 
 :where(mark) {
-	background: color-mix(in lch, Mark, currentColor 20%);
-	box-shadow: 0 0 0 0.125rem color-mix(in lch, Mark, currentColor 20%);
-	color: color-mix(in lch, MarkText, currentColor 20%);
+	background: var(--mark-color);
+	box-shadow: 0 0 0 0.125rem var(--mark-border-color);
+	color: var(--mark-text-color);
 	padding-inline: 0.125rem;
 }
 
@@ -571,7 +522,7 @@
 
 /* Ensure equal width numbers */
 :where(li)::marker {
-	font-family: var(--page-marker-font);
+	font-family: var(--marker-font);
 	font-size: 1em;
 	line-height: 1.45rem;
 }
@@ -635,56 +586,58 @@
 	filter: brightness(1);
 }
 
-:where(button, input, optgroup, select, textarea) {
-	font-family: var(--page-default-font);
+:where(fieldset) {
+	border: 0 solid transparent;
+	margin: 0;
+	padding: 0;
+}
+
+:where(legend) {
+	padding: 0;
+}
+
+:where(button, input, optgroup, select, textarea),
+[data-button] {
+	font-family: var(--default-font);
+	font-size: inherit;
 	line-height: 1.5;
 	margin: 0;
 }
 
-:where(
-		input:not(
-				[type='checkbox' i],
-				[type='radio' i],
-				[type='range' i],
-				[type='file' i],
-				[type='color' i],
-				[type='image' i]
-			),
-		select,
-		textarea
-	) {
-	-webkit-appearance: none;
-	appearance: none;
-	background: var(--option-background-color);
-	border: 2px solid var(--option-muted-color);
-	border-radius: 0.25rem;
-	color: var(--option-color);
-	padding: 0.625rem 1rem;
-}
-
 :where([type*='date' i], [type='time' i], [type='month' i], [type='week' i]) {
-	font-family: var(--page-mono-font);
+	font-family: var(--mono-font);
 }
 
-::-webkit-datetime-edit-fields-wrapper,
-::-webkit-calendar-picker-indicator {
-	padding: 0;
+/* Safari zooms if size is different than 16px */
+:where(input, optgroup, select, textarea) {
+	font-size: 1rem;
 }
 
-input[type='button' i], /* Use <button /> */
-input[type='reset' i], /* Use <button /> */
-input[type='submit' i], /* Use <button /> */
-[type='datetime' i], /* Use datetime-local */
-[type='number' i] /* Use <input type="text" inputmode="numeric" pattern="\d*" /> or <input type="tel" /> */ {
-	background: var(--negative-color) !important;
-	border-color: var(--negative-color) !important;
+:where(button, select) {
+	text-transform: none;
 }
 
-:where([type='color' i]) {
-	background: var(--option-background-color);
-	border: 2px solid var(--option-muted-color);
-	border-radius: 0.25rem;
-	padding: 2px;
+:where(optgroup) {
+	font-style: normal;
+	font-weight: 600;
+}
+
+:where(textarea) {
+	resize: vertical;
+}
+
+:where([type='search']) {
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+
+::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+::-webkit-input-placeholder {
+	color: inherit;
+	opacity: 0.5625;
 }
 
 ::-webkit-color-swatch-wrapper {
@@ -703,451 +656,12 @@ input[type='submit' i], /* Use <button /> */
 	min-inline-size: 2.5rem;
 }
 
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-calendar-picker-indicator {
+	padding: 0;
+}
+
 ::-webkit-file-upload-button {
 	-webkit-appearance: button;
 	font: inherit;
-}
-
-::-webkit-input-placeholder {
-	color: inherit;
-	opacity: 0.5625;
-}
-
-:where([type='range' i]) {
-	--outline: unset;
-	--outline-offset: unset;
-	-webkit-appearance: none;
-	appearance: none;
-	background: unset;
-	display: inline-grid;
-	height: 0.5rem;
-	outline: none;
-}
-
-:where(label > [type='range' i]) {
-	padding: 1.125rem 0 1.375rem;
-}
-
-:where([type='range' i]:focus-visible) {
-	--outline: 3px solid var(--focus-color);
-	--outline-offset: 6px;
-}
-
-::-webkit-slider-runnable-track {
-	background: var(--option-background-color);
-	border: 2px solid var(--option-muted-color);
-	border-radius: 0.25rem;
-	box-sizing: border-box;
-	height: 0.5rem;
-	outline: var(--outline);
-	outline-offset: var(--outline-offset);
-}
-
-::-moz-range-track {
-	background: var(--option-background-color);
-	border: 2px solid var(--option-muted-color);
-	border-radius: 0.25rem;
-	box-sizing: border-box;
-	height: 0.5rem;
-	outline: var(--outline);
-	outline-offset: var(--outline-offset);
-}
-
-::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	background: var(--option-color);
-	border-radius: 50%;
-	box-shadow: 0 0 0 2px var(--option-background-color);
-	height: 1.5rem;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%) scale(var(--thumb-scale, 1));
-	width: 1.5rem;
-}
-
-::-moz-range-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	background: var(--option-color);
-	border: none;
-	border-radius: 50%;
-	box-shadow: 0 0 0 2px var(--option-background-color);
-	height: 1.5rem;
-	position: relative;
-	top: 50%;
-	transform: translateY(0%) scale(var(--thumb-scale, 1));
-	width: 1.5rem;
-}
-
-:where([type='range' i]:active)::-webkit-slider-thumb {
-	--thumb-scale: 1.25;
-}
-
-:where([type='range' i]:active)::-moz-range-thumb {
-	--thumb-scale: 1.25;
-}
-
-:where(button),
-::file-selector-button {
-	align-items: center;
-	-webkit-appearance: none;
-	appearance: none;
-	background: ButtonFace;
-	border: 2px solid rgb(0 0 0 / 50%);
-	border: 2px solid color-mix(in lch, ButtonFace, ButtonText 50%);
-	border-radius: 0.5rem;
-	box-shadow: 0 2px 3px rgb(0 0 0 / 12.5%), 0 -2px 3px rgb(255 255 255 / 12.5%);
-	color: ButtonText;
-	display: inline-flex;
-	filter: brightness(1);
-	flex-flow: wrap;
-	font-size: var(--page-default-font-size);
-	font-weight: 600;
-	justify-content: center;
-	line-height: 1.5rem;
-	padding: 0.625rem 1.5rem;
-	user-select: none;
-}
-
-::file-selector-button {
-	margin-right: 0.5rem;
-	padding-inline: 0.5rem;
-}
-
-:where(button:is(:hover, :focus-visible)),
-:where([type='file' i]:is(:hover, :focus-visible))::file-selector-button {
-	filter: contrast(0.9375) brightness(1.25);
-}
-
-:where(button:active),
-:where([type='file' i]:active)::file-selector-button {
-	filter: brightness(0.875);
-}
-
-:where(select:not([multiple], [size])) {
-	/* chevron */
-	background-image: linear-gradient(45deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
-		linear-gradient(315deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
-		linear-gradient(135deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
-		linear-gradient(225deg, var(--option-background-color) 22.5%, transparent calc(22.5% + 1px)),
-		linear-gradient(45deg, currentColor calc(35% - 1px), transparent 35%),
-		linear-gradient(315deg, currentColor calc(35% - 1px), transparent 35%);
-	/* 1rem or calc(100% - 1rem) */
-	background-position: calc((100% - 2rem) / 2 * (var(--dir-adjust) + 1) + 1rem) calc(50% - 0.125rem);
-	background-repeat: no-repeat;
-	background-size: 1rem 1rem;
-	/* 1rem or 3rem */
-	padding-left: calc(var(--dir-adjust) * -1rem + 2rem);
-	padding-right: calc(var(--dir-adjust) * 1rem + 2rem);
-}
-
-:where(textarea) {
-	resize: vertical;
-}
-
-/* Safari zooms if size is different than 16px */
-:where(input, optgroup, select, textarea) {
-	font-size: 1rem;
-}
-
-:where(button, select) {
-	text-transform: none;
-}
-
-:where(optgroup) {
-	font-style: normal;
-	font-weight: 600;
-}
-
-:where(button, [type='button' i], [type='reset' i], [type='submit' i])::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
-}
-
-:where(fieldset) {
-	border: 0 solid transparent;
-	margin: 0;
-	padding: 0;
-}
-
-:where(legend) {
-	padding: 0;
-}
-
-:where(legend + label) {
-	margin-top: 1rem;
-}
-
-:where(label) {
-	align-items: center;
-	align-self: flex-start;
-	display: inline-flex;
-	flex-wrap: wrap;
-	gap: 0.25rem 0.5rem;
-	padding: 0.25rem;
-	position: relative;
-	user-select: none;
-	vertical-align: top;
-}
-
-:where(label > *) {
-	user-select: text;
-}
-
-:where(label > :is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) {
-	flex: 100%;
-}
-
-:where(:is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) ~ [data-text-color='state' i] {
-	color: var(--muted-color);
-}
-
-:where([aria-invalid='true' i]) ~ [data-text-color='state' i] {
-	color: var(--negative-color);
-}
-
-:where([aria-invalid='false' i]) ~ [data-text-color='state' i] {
-	color: var(--positive-color);
-}
-
-:where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible)) {
-	outline: 3px solid var(--focus-color);
-	outline-offset: 3px;
-}
-
-:where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible) > :focus) {
-	outline: none;
-}
-
-:where(:is([type='checkbox' i], [type='radio' i])) {
-	-webkit-appearance: none;
-	appearance: none;
-	aspect-ratio: 1 / 1;
-	background: var(--option-background-color);
-	border: 0.125rem solid var(--option-border-color);
-	color: var(--option-background-color);
-	display: inline-grid;
-	font-size: calc(var(--option-size) - 0.5rem);
-	font-weight: bolder;
-	height: var(--option-size);
-	line-height: 1;
-	place-content: center;
-}
-
-@media not all and (prefers-reduced-motion) {
-	:where(:is([type='checkbox' i], [type='radio' i])) {
-		transition: background 125ms ease-in-out, color 125ms ease-in-out;
-	}
-}
-
-:where([type='checkbox' i]:not([role='switch' i])) {
-	border-radius: 0.25rem;
-}
-
-:where([type='checkbox' i][role='switch' i]) {
-	--switch-softness: 2px;
-	aspect-ratio: 2 / 1;
-	background-color: var(--option-background-color);
-	background-image: radial-gradient(
-		circle,
-		currentColor calc(33.333% - var(--switch-softness)),
-		transparent calc(33.333% + 1px)
-	);
-	background-position: calc(var(--option-size) * -0.5);
-	background-repeat: no-repeat;
-	border-radius: calc(var(--option-size) * 0.5);
-	color: var(--option-muted-color);
-}
-
-:where([type='radio' i]) {
-	background-image: radial-gradient(circle, currentColor 50%, transparent calc(50% + 1px));
-	border-radius: 50%;
-}
-
-:where(:is([type='checkbox' i][role='switch' i], [type='radio' i]):checked) {
-	color: var(--option-color);
-}
-
-:where([type='checkbox' i]:not([role='switch' i]):checked) {
-	background-color: var(--option-color);
-}
-
-:where([type='checkbox' i][role='switch' i]:checked) {
-	--switch-softness: 0px;
-	background-position: calc(var(--option-size) * 0.5);
-}
-
-:where([type='checkbox' i]:not([role='switch' i]))::after {
-	content: '\2713';
-}
-
-:where(:is(input, select, textarea)[aria-invalid='true' i]) {
-	box-shadow: inset 0 -2px 0 var(--negative-color);
-	outline-color: var(--negative-color);
-}
-
-:where(:is(input, select, textarea)[aria-invalid='false' i]) {
-	box-shadow: inset 0 -2px 0 var(--positive-color);
-	outline-color: var(--positive-color);
-}
-
-:where(:is([type='checkbox' i], [type='radio' i])[aria-invalid]) {
-	box-shadow: unset;
-	outline-offset: 2px;
-	outline-style: solid;
-	outline-width: 2px;
-}
-
-:where([type='search']) {
-	-webkit-appearance: textfield;
-	appearance: textfield;
-}
-
-:where([type='search'])::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
-
-:where(details) {
-	background: rgba(0, 72, 0, 0.05);
-	border: 1px solid rgba(0, 0, 0, 0.25);
-	border-radius: 0.5rem;
-	display: block;
-	margin: 1rem 0;
-	max-width: 50rem;
-	padding: 0 1rem;
-}
-
-:where(summary) {
-	font-size: var(--page-font-size-18);
-	font-weight: bolder;
-	margin: 0 -1rem;
-	padding: 1rem 3rem 1rem 1rem;
-	position: relative;
-	user-select: none;
-	z-index: 1;
-}
-
-:where(summary:focus-visible) {
-	border-radius: 0.5rem;
-	outline-offset: -3px;
-}
-
-:where(summary)::marker {
-	content: none;
-}
-
-:where(summary)::-webkit-details-marker,
-:where(summary)::after {
-	background: radial-gradient(currentColor 66%, transparent 66%);
-	content: '';
-	height: 1.5rem;
-	margin: 0;
-	-webkit-mask-image: var(--mask-chevron-down);
-	mask-image: var(--mask-chevron-down);
-	position: absolute;
-	inset-inline-end: 1rem;
-	top: 50%;
-	transform: translateY(-50%) rotate(0deg);
-	width: 1.5rem;
-}
-
-@media not all and (prefers-reduced-motion) {
-	:where(summary)::-webkit-details-marker,
-	:where(summary)::after {
-		transition: transform var(--ms, 250ms) ease-in-out;
-	}
-}
-
-:where(details[open] > summary)::-webkit-details-marker,
-:where(details[open] > summary)::after {
-	transform: translateY(-50%) rotate(180deg);
-}
-
-@supports (-webkit-backdrop-filter: blur(0)) {
-	:where(summary)::after {
-		content: none; /* Prefer ::-webkit-details-marker on Safari because it animates. */
-	}
-}
-
-:where(details > summary + div) {
-	box-sizing: content-box;
-	margin: -1rem;
-	overflow: hidden;
-	padding: 1rem;
-}
-
-@supports (contain: content) {
-	:where(details > summary + div) {
-		contain: content;
-		overflow: visible;
-	}
-}
-
-:where(details[data-open]) {
-	--ms: 250ms;
-}
-
-:where(details[data-open='false' i]) {
-	--opacity: 0;
-	--transform: translateY(-50%);
-}
-
-:where(details[data-open='true' i]) {
-	--opacity: 1;
-	--transform: translateY(0%);
-}
-
-@media not all and (prefers-reduced-motion) {
-	:where(details[data-open] > summary + div) {
-		transition: height var(--ms) ease-in-out;
-	}
-}
-
-:where(details[data-open='false' i] > summary + div) {
-	height: 0;
-	margin: 0;
-	padding: 0;
-}
-
-:where(details[data-open='true' i] > summary + div) {
-	height: var(--height, auto);
-}
-
-:where(details[data-open] > summary + div > div) {
-	contain: layout;
-	opacity: var(--opacity);
-	transform: var(--transform);
-	transition: opacity var(--ms) ease-in-out;
-}
-
-@media not all and (prefers-reduced-motion) {
-	:where(details[data-open] > summary + div > div) {
-		transition: opacity var(--ms) ease-in-out, transform var(--ms) ease-in-out;
-	}
-}
-
-:where(details[data-open='false' i] > summary)::-webkit-details-marker,
-:where(details[data-open='false' i] > summary)::after {
-	transform: translateY(-50%) rotate(0deg);
-}
-
-:where(details[data-open='true' i] > summary)::-webkit-details-marker,
-:where(details[data-open='true' i] > summary)::after {
-	transform: translateY(-50%) rotate(180deg);
-}
-
-/* Indicate element is disabled */
-:is([aria-disabled='true' i], [disabled], :disabled) {
-	cursor: not-allowed;
-}
-
-:where([aria-disabled='true' i], [disabled], :disabled) {
-	filter: saturate(0.4);
-	opacity: 0.6;
-}
-
-:where([aria-disabled='true' i], [disabled], :disabled) :where([aria-disabled='true' i], [disabled], :disabled) {
-	filter: unset;
-	opacity: unset;
 }

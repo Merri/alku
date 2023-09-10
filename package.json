@@ -4,7 +4,7 @@
 	"description": "Opinionated classless CSS with HTML attribute utilities",
 	"main": "alku.css",
 	"scripts": {
-		"build": "npx postcss src/alku.css > alku.css && npx postcss src/grid.css > grid.css"
+		"build": "npx postcss src/*.css --dir ./ && mv ./alku.css ./normalize.css && cat src/*.css | npx postcss > ./alku.css"
 	},
 	"repository": {
 		"type": "git",

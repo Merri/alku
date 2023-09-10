@@ -1,0 +1,108 @@
+/* https://modernfontstacks.com/ */
+
+@font-face {
+	font-family: 'Rockwell';
+	src: local('Rockwell');
+	ascent-override: 100%;
+}
+
+/* TODO: does this do the desired thing? @see https://github.com/system-fonts/modern-font-stacks/blob/e566f38736e759e868cb0ce3661b99d650285ed8/site/src/_styles.css#L756 */
+@font-face {
+	font-family: 'Didot';
+	src: local('Didot');
+	-webkit-font-smoothing: auto;
+	-moz-osx-font-smoothing: auto;
+}
+
+:where(:root) {
+	--system-sans-stack: system-ui, ui-sans-serif, Helvetica, sans-serif, var(--emoji-font);
+	--handwritten-stack: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive, var(--emoji-font);
+
+	--transitional-serif-stack: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif, var(--emoji-font);
+	--old-style-serif-stack: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif, var(--emoji-font);
+	--slab-serif-stack: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif,
+		var(--emoji-font);
+	--antique-serif-stack: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia,
+		serif, var(--emoji-font);
+	--didone-serif-stack: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif,
+		var(--emoji-font);
+
+	--humanist-sans-stack: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif,
+		var(--emoji-font);
+	--geometric-humanist-sans-stack: Avenir, 'Avenir Next LT Pro', Montserrat, Corbel, 'URW Gothic', source-sans-pro,
+		sans-serif, var(--emoji-font);
+	--classical-humanist-sans-stack: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif, var(--emoji-font);
+	--neo-grotesque-sans-stack: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif,
+		var(--emoji-font);
+	--industrial-sans-stack: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow',
+		sans-serif-condensed, sans-serif, var(--emoji-font);
+	--rounded-sans-stack: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari,
+		'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif, var(--emoji-font);
+
+	--mono-slab-serif-stack: 'Nimbus Mono PS', 'Courier New', 'Cutive Mono', monospace, var(--emoji-font);
+	--mono-code-stack: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace,
+		var(--emoji-font);
+
+	--default-font: var(--classical-humanist-sans-stack);
+	--heading-font: var(--old-style-serif-stack);
+}
+
+[data-text~='system' i] {
+	font-family: var(--system-sans-stack);
+}
+
+[data-text~='handwritten' i] {
+	font-family: var(--handwritten-stack);
+}
+
+[data-text~='transitional' i] {
+	font-family: var(--transitional-serif-stack);
+}
+
+[data-text~='oldstyle' i] {
+	font-family: var(--old-style-serif-stack);
+}
+
+[data-text~='slab' i] {
+	font-family: var(--slab-serif-stack);
+}
+
+[data-text~='antique' i] {
+	font-family: var(--antique-serif-stack);
+}
+
+[data-text~='didone' i] {
+	font-family: var(--didone-serif-stack);
+}
+
+[data-text~='humanist' i] {
+	font-family: var(--humanist-sans-stack);
+}
+
+[data-text~='geometric' i] {
+	font-family: var(--geometric-humanist-sans-stack);
+}
+
+[data-text~='classical' i] {
+	font-family: var(--classical-humanist-sans-stack);
+}
+
+[data-text~='grotesque' i] {
+	font-family: var(--neo-grotesque-sans-stack);
+}
+
+[data-text~='industrial' i] {
+	font-family: var(--industrial-sans-stack);
+}
+
+[data-text~='rounded' i] {
+	font-family: var(--rounded-sans-stack);
+}
+
+[data-text~='monoslab' i] {
+	font-family: var(--mono-slab-serif-stack);
+}
+
+[data-text~='monocode' i] {
+	font-family: var(--mono-code-stack);
+}

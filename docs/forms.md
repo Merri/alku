@@ -61,3 +61,18 @@ The description fields can match `aria-invalid` state of the field.
 	<span id="username-desc" aria-hidden="true" data-text-color="state">Username is correct</span>
 </label>
 ```
+
+## Input types
+
+## Numbers
+
+You should not use `<input type="number" />` due to usability issues.
+
+Use `<input type="text" inputmode="numeric" pattern="\d*" />` or `<input type="tel" />` instead.
+
+## Buttons
+
+You should not use `<input type="button" />`, `<input type="reset" />`, or `<input type="submit" />`.
+
+These elements &ndash; while not deprecated &ndash; can only accept text as their contents. They don't even support
+pseudo elements. This makes it very hard to find practical use cases for these elements.
