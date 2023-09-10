@@ -178,7 +178,7 @@
 	outline-offset: var(--focus-outside);
 }
 
-:where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible) > :focus) {
+:where(label:has(> :is([type='checkbox' i], [type='radio' i]):focus-visible) > :focus:not([aria-invalid])) {
 	outline: none;
 }
 
@@ -256,6 +256,9 @@
 
 :where(:is([type='checkbox' i], [type='radio' i])[aria-invalid]) {
 	box-shadow: unset;
+}
+
+:where(:is([type='checkbox' i], [type='radio' i])[aria-invalid]:not(:focus-visible)) {
 	outline-offset: 2px;
 	outline-style: solid;
 	outline-width: 2px;
