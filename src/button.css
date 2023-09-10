@@ -1,7 +1,7 @@
+/* all basic button resets + desirable default behavior: color CSS vars, icon support, alignment */
 :where(button),
 ::file-selector-button,
 [data-button] {
-	align-items: center;
 	-webkit-appearance: none;
 	appearance: none;
 	background-color: var(--button-color-background, transparent);
@@ -17,14 +17,15 @@
 	font-size: var(--default-font-size);
 	font-weight: 600;
 	gap: 0.5rem;
-	justify-content: center;
 	line-height: 1;
 	padding: 0;
+	place-content: center;
 	position: relative;
 	user-select: none;
 	vertical-align: middle;
 }
 
+/* focused button outline should always appear above other elements */
 :where(button:focus-visible),
 [data-button]:where(:focus-visible) {
 	z-index: 1;
@@ -33,7 +34,7 @@
 :where(button:not([data-button])),
 ::file-selector-button,
 [data-button~='mediumSize' i] {
-	border-width: 2px;
+	border-width: 0.125rem;
 	border-radius: 0.5rem;
 	line-height: 1.5rem;
 	padding: 0.625rem 1.5rem;
@@ -61,7 +62,7 @@
 ::file-selector-button,
 [data-button~='systemColor' i] {
 	--button-color-background: ButtonFace;
-	--button-color-border: rgb(0 0 0 / 50%);
+	--button-color-border: var(--muted-50);
 	--button-color-border: color-mix(in lch, ButtonFace, ButtonText 50%);
 	--button-color-text: ButtonText;
 }
