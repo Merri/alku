@@ -2,9 +2,11 @@
 	"name": "alku",
 	"version": "1.0.1",
 	"description": "Opinionated classless CSS with HTML attribute utilities",
-	"main": "alku.css",
+	"main": "index.css",
 	"scripts": {
-		"build": "npx postcss src/*.css --dir ./ && mv ./alku.css ./normalize.css && cat src/*.css | npx postcss > ./alku.css"
+		"build": "npx postcss src/*.css --dir ./ && cat ./src/*.css | npx postcss > ./index.css",
+		"win-shell-bash": "npm config set script-shell \"C:\\\\Program Files\\\\git\\\\bin\\\\bash.exe\"",
+		"win-shell-none": "npm config delete script-shell"
 	},
 	"repository": {
 		"type": "git",
