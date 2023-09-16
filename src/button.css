@@ -13,7 +13,7 @@
 }
 
 @supports (color: color-mix(in oklch, black, white 50%)) {
-	:where(button, [data-button], [type='file' i]) {
+	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
 		--system-hover: color-mix(in oklch, var(--button-color-background, ButtonFace), white 25%);
 		--system-active: color-mix(in oklch, var(--button-color-background, ButtonFace), black 25%);
 		--canvas-border: color-mix(
@@ -63,6 +63,22 @@
 	--button-color-active: var(--canvas-contrast-active);
 }
 
+[data-button~='positive' i]:where(:not([data-button*='contrast' i])) {
+	--button-color-text: var(--positive-color);
+}
+
+[data-button~='positive' i]:where([data-button*='contrast' i]) {
+	--button-color-background: var(--positive-color);
+}
+
+[data-button~='negative' i]:where(:not([data-button*='contrast' i])) {
+	--button-color-text: var(--negative-color);
+}
+
+[data-button~='negative' i]:where([data-button*='contrast' i]) {
+	--button-color-background: var(--negative-color);
+}
+
 /* intentionally higher specificity to allow outline to override */
 [data-button~='outline' i] {
 	--button-color-border: currentColor;
@@ -71,7 +87,7 @@
 /* all basic button resets + desirable default behavior: color CSS vars, icon support, alignment */
 :where(button),
 ::file-selector-button,
-[data-button] {
+[data-button]:where(:not([type='file' i])) {
 	-webkit-appearance: none;
 	appearance: none;
 	background-color: var(--button-color-background, transparent);
@@ -98,7 +114,7 @@
 
 /* focused button outline should always appear above other elements */
 :where(button:focus-visible),
-[data-button]:where(:focus-visible) {
+[data-button]:where(:focus-visible:not([type='file' i])) {
 	z-index: 1;
 }
 

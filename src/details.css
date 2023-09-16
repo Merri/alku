@@ -62,10 +62,14 @@
 }
 
 :where(details > summary + div) {
-	box-sizing: content-box;
 	margin: -1rem;
 	overflow: hidden;
 	padding: 1rem;
+}
+
+/* Higher specificity than a global star reset */
+:where(details > summary) + div {
+	box-sizing: content-box;
 }
 
 @supports (contain: content) {

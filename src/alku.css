@@ -36,9 +36,9 @@
 	--shadow-70: rgb(0 0 0 / 70%);
 	--shadow-90: rgb(0 0 0 / 90%);
 
-	--code-color: Field;
+	--code-color: var(--shadow-10);
 	--code-border-color: var(--code-color);
-	--code-text-color: FieldText;
+	--code-text-color: currentColor;
 	--focus-color: Highlight;
 	--hash-underline-color: var(--muted-30);
 	--kbd-color: CanvasText;
@@ -86,7 +86,7 @@
 }
 
 @supports (color: color-mix(in oklch, black, white 50%)) {
-	:where(:root) {
+	:where(:root:not([data-color-mix='false'] i)) {
 		--code-color: color-mix(in oklch, Field, currentColor 10%);
 		--code-text-color: color-mix(in oklch, FieldText, currentColor 10%);
 		--focus-color: color-mix(in oklch, color-mix(in oklch, Highlight, VisitedText 50%), currentColor 25%);
@@ -409,12 +409,12 @@
 	cursor: pointer;
 }
 
-:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]),
+:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button])),
 [data-text*='external link' i] {
 	padding-right: 1.5rem;
 }
 
-:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby])::after,
+:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button]))::after,
 [data-text*='external link' i]::after {
 	background: currentColor;
 	content: '';
@@ -518,12 +518,16 @@
 :where(hr) {
 	block-size: 0;
 	border: 0.125rem solid currentColor;
-	box-sizing: content-box;
 	color: var(--muted-color);
 	inline-size: 100%;
 	margin-block: 2rem;
 	margin-inline: 0;
 	overflow: visible;
+}
+
+/* Higher specificity than a global star reset */
+hr {
+	box-sizing: content-box;
 }
 
 /* List that aligns to content next to floats. */
