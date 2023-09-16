@@ -67,22 +67,22 @@
 
 [data-button~='positive' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--positive-color);
-	--button-color-on-background: var(--state-on-background);
+	--button-color-on-state: var(--state-on-background);
 }
 
 [data-button~='positive' i]:where([data-button*='contrast' i]) {
 	--button-color-background: var(--positive-color);
-	--button-color-text: CanvasText;
+	--button-color-text: var(--positive-color-text);
 }
 
 [data-button~='negative' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--negative-color);
-	--button-color-on-background: var(--state-on-background);
+	--button-color-on-state: var(--state-on-background);
 }
 
 [data-button~='negative' i]:where([data-button*='contrast' i]) {
 	--button-color-background: var(--negative-color);
-	--button-color-text: CanvasText;
+	--button-color-text: var(--negative-color-text);
 }
 
 /* intentionally higher specificity to allow outline to override */
@@ -98,9 +98,10 @@
 	appearance: none;
 	background-color: var(--button-color-background, transparent);
 	background-image: linear-gradient(
-		var(--button-color-on-background, transparent),
-		var(--button-color-on-background, transparent)
-	);
+			var(--button-color-on-background, transparent),
+			var(--button-color-on-background, transparent)
+		),
+		linear-gradient(var(--button-color-on-state, transparent), var(--button-color-on-state, transparent));
 	border: 0 solid var(--button-color-border, transparent);
 	color: var(--button-color-text, inherit);
 	cursor: pointer;

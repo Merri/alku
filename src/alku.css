@@ -50,7 +50,9 @@
 	--mark-text-color: MarkText;
 	--muted-color: GrayText;
 	--negative-color: crimson;
+	--negative-color-text: white;
 	--positive-color: seagreen;
+	--positive-color-text: white;
 
 	--focus-indication: 3px solid var(--focus-color);
 	--focus-inside: -3px;
