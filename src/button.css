@@ -10,6 +10,7 @@
 	--system-contrast-active: var(--shadow-30);
 	--canvas-contrast-hover: var(--muted-10);
 	--canvas-contrast-active: var(--muted-30);
+	--state-on-background: var(--muted-90);
 }
 
 @supports (color: color-mix(in oklch, black, white 50%)) {
@@ -27,6 +28,7 @@
 		--system-contrast-active: color-mix(in oklch, var(--button-color-background, ButtonText), currentColor 25%);
 		--canvas-contrast-hover: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 15%);
 		--canvas-contrast-active: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 25%);
+		--state-on-background: color-mix(in oklch, var(--button-color-background), Canvas 85%);
 	}
 }
 
@@ -65,18 +67,22 @@
 
 [data-button~='positive' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--positive-color);
+	--button-color-on-background: var(--state-on-background);
 }
 
 [data-button~='positive' i]:where([data-button*='contrast' i]) {
 	--button-color-background: var(--positive-color);
+	--button-color-text: CanvasText;
 }
 
 [data-button~='negative' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--negative-color);
+	--button-color-on-background: var(--state-on-background);
 }
 
 [data-button~='negative' i]:where([data-button*='contrast' i]) {
 	--button-color-background: var(--negative-color);
+	--button-color-text: CanvasText;
 }
 
 /* intentionally higher specificity to allow outline to override */
