@@ -1,3 +1,73 @@
+/* fallback colors for color-mix */
+:where(button, [data-button], [type='file' i]) {
+	/* system = OS default button color */
+	--system-hover: var(--highlight-10);
+	--system-active: var(--shadow-10);
+	--canvas-border: var(--muted-50);
+	--canvas-hover: var(--muted-10);
+	--canvas-active: var(--muted-30);
+	--system-contrast-hover: var(--shadow-10);
+	--system-contrast-active: var(--shadow-30);
+	--canvas-contrast-hover: var(--muted-10);
+	--canvas-contrast-active: var(--muted-30);
+}
+
+@supports (color: color-mix(in oklch, black, white 50%)) {
+	:where(button, [data-button], [type='file' i]) {
+		--system-hover: color-mix(in oklch, var(--button-color-background, ButtonFace), white 25%);
+		--system-active: color-mix(in oklch, var(--button-color-background, ButtonFace), black 25%);
+		--canvas-border: color-mix(
+			in oklch,
+			var(--button-color-background, Canvas),
+			var(--button-color-text, CanvasText) 50%
+		);
+		--canvas-hover: color-mix(in oklch, var(--button-color-background, Canvas), Highlight 25%);
+		--canvas-active: color-mix(in oklch, var(--button-color-background, Canvas), Highlight 50%);
+		--system-contrast-hover: color-mix(in oklch, var(--button-color-background, ButtonText), currentColor 15%);
+		--system-contrast-active: color-mix(in oklch, var(--button-color-background, ButtonText), currentColor 25%);
+		--canvas-contrast-hover: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 15%);
+		--canvas-contrast-active: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 25%);
+	}
+}
+
+/* default system theme */
+:where(button:not([data-button]), [type='file' i], [data-button~='systemColor' i]) {
+	--button-color-background: ButtonFace;
+	--button-color-border: ButtonBorder;
+	--button-color-text: ButtonText;
+	--button-color-hover: var(--system-hover);
+	--button-color-active: var(--system-active);
+}
+
+:where([data-button~='systemContrast' i]) {
+	--button-color-background: ButtonText;
+	--button-color-border: ButtonText;
+	--button-color-text: ButtonFace;
+	--button-color-hover: var(--system-contrast-hover);
+	--button-color-active: var(--system-contrast-active);
+}
+
+:where([data-button~='canvasColor' i]) {
+	--button-color-background: Canvas;
+	--button-color-border: var(--canvas-border);
+	--button-color-text: CanvasText;
+	--button-color-hover: var(--canvas-hover);
+	--button-color-active: var(--canvas-active);
+}
+
+:where([data-button~='canvasContrast' i]) {
+	--button-color-background: CanvasText;
+	--button-color-border: CanvasText;
+	--button-color-text: Canvas;
+	--button-color-hover: var(--canvas-contrast-hover);
+	--button-color-active: var(--canvas-contrast-active);
+}
+
+/* intentionally higher specificity to allow outline to override */
+[data-button~='outline' i] {
+	--button-color-border: currentColor;
+}
+
 /* all basic button resets + desirable default behavior: color CSS vars, icon support, alignment */
 :where(button),
 ::file-selector-button,
@@ -21,6 +91,7 @@
 	padding: 0;
 	place-content: center;
 	position: relative;
+	text-decoration: none;
 	user-select: none;
 	vertical-align: middle;
 }
@@ -31,6 +102,14 @@
 	z-index: 1;
 }
 
+:where(:is(button:not([data-button]), [type='file' i], [data-button]):is(:hover, :focus-visible)) {
+	--button-color-on-background: var(--button-color-hover);
+}
+
+:where(:is(button:not([data-button]), [type='file' i], [data-button]):active) {
+	--button-color-on-background: var(--button-color-active);
+}
+
 :where(button:not([data-button])),
 ::file-selector-button,
 [data-button~='mediumSize' i] {
@@ -38,6 +117,11 @@
 	border-radius: 0.5rem;
 	line-height: 1.5rem;
 	padding: 0.625rem 1.5rem;
+}
+
+::file-selector-button {
+	margin-right: 0.5rem;
+	padding-inline: 0.5rem;
 }
 
 [data-button~='smallCircle' i] {
@@ -56,32 +140,4 @@
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	padding: 0.75rem;
-}
-
-:where(button:not([data-button])),
-::file-selector-button,
-[data-button~='systemColor' i] {
-	--button-color-background: ButtonFace;
-	--button-color-border: var(--muted-50);
-	--button-color-border: color-mix(in lch, ButtonFace, ButtonText 50%);
-	--button-color-text: ButtonText;
-}
-
-:where(button:not([data-button]):is(:hover, :focus-visible)),
-:where([type='file' i]:is(:hover, :focus-visible))::file-selector-button,
-[data-button~='systemColor' i]:where(:hover, :focus-visible) {
-	--button-color-on-background: rgb(255 255 255 / 25%);
-	--button-color-on-background: color-mix(in lch, ButtonFace, white 25%);
-}
-
-:where(button:not([data-button]):active),
-:where([type='file' i]:active)::file-selector-button,
-[data-button~='systemColor' i]:where(:active) {
-	--button-color-on-background: rgb(0 0 0 / 25%);
-	--button-color-on-background: color-mix(in lch, ButtonFace, black 25%);
-}
-
-::file-selector-button {
-	margin-right: 0.5rem;
-	padding-inline: 0.5rem;
 }

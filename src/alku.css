@@ -40,14 +40,15 @@
 	--code-border-color: var(--code-color);
 	--code-text-color: FieldText;
 	--focus-color: Highlight;
-	--kbd-color: FieldText;
+	--hash-underline-color: var(--muted-30);
+	--kbd-color: CanvasText;
 	--kbd-border-color: var(--muted-30);
-	--kbd-text-color: Field;
+	--kbd-text-color: Canvas;
 	--link-color: currentColor;
 	--mark-color: Mark;
 	--mark-border-color: var(--mark-color);
 	--mark-text-color: MarkText;
-	--muted-color: var(--muted-50);
+	--muted-color: GrayText;
 	--negative-color: crimson;
 	--positive-color: seagreen;
 
@@ -84,19 +85,19 @@
 	}
 }
 
-@supports (color: color-mix(in lch, black, white 50%)) {
+@supports (color: color-mix(in oklch, black, white 50%)) {
 	:where(:root) {
-		--code-color: color-mix(in lch, Field, currentColor 10%);
-		--code-text-color: color-mix(in lch, FieldText, currentColor 10%);
-		--focus-color: color-mix(in lch, Highlight, VisitedText 30%);
-		--kbd-color: color-mix(in lch, FieldText, currentColor 10%);
-		--kbd-border-color: color-mix(in lch, FieldText, currentColor 30%);
-		--kbd-text-color: color-mix(in lch, Field, currentColor 10%);
-		--mark-color: color-mix(in lch, Mark, currentColor 20%);
-		--mark-text-color: color-mix(in lch, MarkText, currentColor 20%);
-		--muted-color: color-mix(in lch, transparent, currentColor 70%);
-		--negative-color: color-mix(in lch, crimson, currentColor 10%);
-		--positive-color: color-mix(in lch, seagreen, currentColor 10%);
+		--code-color: color-mix(in oklch, Field, currentColor 10%);
+		--code-text-color: color-mix(in oklch, FieldText, currentColor 10%);
+		--focus-color: color-mix(in oklch, color-mix(in oklch, Highlight, VisitedText 50%), currentColor 25%);
+		--kbd-color: color-mix(in oklch, CanvasText, currentColor 10%);
+		--kbd-border-color: color-mix(in oklch, CanvasText, currentColor 30%);
+		--kbd-text-color: color-mix(in oklch, Canvas, currentColor 10%);
+		--mark-color: color-mix(in oklch, Mark, currentColor 20%);
+		--mark-text-color: color-mix(in oklch, MarkText, currentColor 10%);
+		--muted-color: color-mix(in oklch, transparent, currentColor 70%);
+		--negative-color: color-mix(in oklch, crimson, currentColor 10%);
+		--positive-color: color-mix(in oklch, seagreen, currentColor 10%);
 	}
 }
 
@@ -120,7 +121,7 @@
 }
 
 /* Skip links, visually hidden utilities */
-:root [data-text='visually-hidden' i]:not(:focus):not(:active) {
+:root [data-text='visuallyHidden' i]:not(:focus):not(:active) {
 	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
 	all: initial;
 	clip-path: inset(50%);
@@ -135,7 +136,7 @@
 }
 
 /* Generic scrolling utility */
-:where(*:not([data-scrolling]):has(> table:only-child)) {
+:where(*:not([data-scrolling]):has(> table:only-child), pre) {
 	overflow: hidden;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
@@ -258,6 +259,18 @@
 	font-weight: var(--default-font-weight);
 }
 
+[data-text~='sans' i] {
+	font-family: sans-serif, var(--emoji-font);
+}
+
+[data-text~='serif' i] {
+	font-family: serif, var(--emoji-font);
+}
+
+[data-text~='monospace' i] {
+	font-family: monospace, var(--emoji-font);
+}
+
 :where(h1, h2, h3, h4, h5, h6),
 [data-text^='heading' i],
 [data-text*=' heading' i] {
@@ -289,7 +302,6 @@
 	font-weight: 400;
 }
 
-:where(a),
 [data-text~='medium' i] {
 	font-weight: 500;
 }
@@ -324,9 +336,14 @@
 }
 
 :where(a),
+[data-text~='link' i],
 [data-text~='underline' i] {
 	text-decoration: underline;
 	text-underline-offset: 0.25em;
+}
+
+:where(:is(li > a, a[href^='#']):not(:hover, :active)) {
+	text-decoration-color: var(--hash-underline-color);
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
@@ -393,12 +410,12 @@
 }
 
 :where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]),
-[data-text~='external link' i] {
+[data-text*='external link' i] {
 	padding-right: 1.5rem;
 }
 
 :where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby])::after,
-[data-text~='external link' i]::after {
+[data-text*='external link' i]::after {
 	background: currentColor;
 	content: '';
 	height: 1.25em;
@@ -469,13 +486,18 @@
 	color: var(--negative-color);
 }
 
-:where(pre > code) {
+:where(:is(pre, td, th) > code) {
 	background: unset;
 	border-radius: unset;
 	box-shadow: unset;
 	color: unset;
 	margin-inline: unset;
 	padding-inline: unset;
+}
+
+:where(pre > code) {
+	display: block;
+	padding: 1rem;
 }
 
 :where(sub, sup) {
