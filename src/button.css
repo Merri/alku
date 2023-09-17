@@ -1,8 +1,13 @@
 /* fallback colors for color-mix */
 :where(button, [data-button], [type='file' i]) {
+	--accent-color-background: Canvas;
+	--accent-color-text: LinkText;
+	--accent-border: var(--muted-50);
+	--accent-hover: var(--muted-10);
+	--accent-active: var(--muted-30);
 	/* system = OS default button color */
-	--system-hover: var(--highlight-10);
-	--system-active: var(--shadow-10);
+	--system-hover: var(--muted-10);
+	--system-active: var(--muted-30);
 	--canvas-border: var(--muted-50);
 	--canvas-hover: var(--muted-10);
 	--canvas-active: var(--muted-30);
@@ -13,8 +18,23 @@
 	--state-on-background: var(--muted-90);
 }
 
+@supports (color: AccentColor) {
+	:where(button, [data-button], [type='file' i]) {
+		/* this seems backwards, but we want the default canvas equivalent color (= whitest or blackest) in the bg */
+		--accent-color-background: AccentColorText;
+		--accent-color-text: AccentColor;
+	}
+}
+
 @supports (color: color-mix(in oklch, black, white 50%)) {
 	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
+		--accent-border: color-mix(
+			in oklch,
+			var(--button-color-background, var(--accent-color-background)),
+			var(--button-color-text, var(--accent-color-text)) 50%
+		);
+		--accent-hover: color-mix(in oklch, var(--button-color-background, Canvas), var(--accent-color-text) 25%);
+		--accent-active: color-mix(in oklch, var(--button-color-background, Canvas), var(--accent-color-text) 50%);
 		--canvas-border: color-mix(
 			in oklch,
 			var(--button-color-background, Canvas),
@@ -41,7 +61,7 @@
 
 :where([data-button~='systemContrast' i]) {
 	--button-color-background: ButtonText;
-	--button-color-border: ButtonText;
+	--button-color-border: transparent;
 	--button-color-text: ButtonFace;
 	--button-color-hover: var(--system-contrast-hover);
 	--button-color-active: var(--system-contrast-active);
@@ -57,8 +77,24 @@
 
 :where([data-button~='canvasContrast' i]) {
 	--button-color-background: CanvasText;
-	--button-color-border: CanvasText;
+	--button-color-border: transparent;
 	--button-color-text: Canvas;
+	--button-color-hover: var(--canvas-contrast-hover);
+	--button-color-active: var(--canvas-contrast-active);
+}
+
+:where([data-button~='accentColor' i]) {
+	--button-color-background: var(--accent-color-background);
+	--button-color-border: var(--accent-border);
+	--button-color-text: var(--accent-color-text);
+	--button-color-hover: var(--accent-hover);
+	--button-color-active: var(--accent-active);
+}
+
+:where([data-button~='accentContrast' i]) {
+	--button-color-background: var(--accent-color-text);
+	--button-color-border: transparent;
+	--button-color-text: var(--accent-color-background);
 	--button-color-hover: var(--canvas-contrast-hover);
 	--button-color-active: var(--canvas-contrast-active);
 }
@@ -69,7 +105,7 @@
 }
 
 [data-button~='muted' i]:where([data-button*='contrast' i]) {
-	--button-color-background: var(--muted-color);
+	--button-color-on-state: var(--muted-color);
 }
 
 [data-button~='positive' i]:where(:not([data-button*='contrast' i])) {
