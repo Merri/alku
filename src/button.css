@@ -1,17 +1,17 @@
 /* fallback colors for color-mix */
 :where(button, [data-button], [type='file' i]) {
 	--accent-color: LinkText;
-	/* system = OS default button color */
 	--system-hover: var(--muted-10);
 	--system-active: var(--muted-30);
 	--canvas-border: var(--muted-50);
 	--canvas-hover: var(--muted-10);
 	--canvas-active: var(--muted-30);
+	/* Chrome Windows has a dark mode ButtonFace color of #6B6B6B which is way too light! So... a workaround. */
+	--button-face: Canvas;
 	--system-contrast-hover: var(--shadow-10);
 	--system-contrast-active: var(--shadow-30);
 	--canvas-contrast-hover: var(--muted-10);
 	--canvas-contrast-active: var(--muted-30);
-	--state-on-background: var(--muted-90);
 }
 
 @supports (color: AccentColor) {
@@ -30,11 +30,11 @@
 		);
 		--canvas-hover: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 25%);
 		--canvas-active: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 50%);
+		--button-face: color-mix(in oklab, ButtonFace, Canvas 65%);
 		--system-contrast-hover: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 15%);
 		--system-contrast-active: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 25%);
 		--canvas-contrast-hover: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 15%);
 		--canvas-contrast-active: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 25%);
-		--state-on-background: color-mix(in oklab, var(--button-color-background), Canvas 85%);
 	}
 
 	@supports (color: AccentColor) {
@@ -46,7 +46,7 @@
 
 /* default system theme */
 :where(button:not([data-button]), [type='file' i], [data-button~='systemColor' i]) {
-	--button-color-background: ButtonFace;
+	--button-color-background: var(--button-face);
 	--button-color-border: ButtonBorder;
 	--button-color-text: ButtonText;
 	--button-color-hover: var(--system-hover);
@@ -56,7 +56,7 @@
 :where([data-button~='systemContrast' i]) {
 	--button-color-background: ButtonText;
 	--button-color-border: transparent;
-	--button-color-text: ButtonFace;
+	--button-color-text: var(--button-face);
 	--button-color-hover: var(--system-contrast-hover);
 	--button-color-active: var(--system-contrast-active);
 }
@@ -79,16 +79,14 @@
 
 [data-button~='accent' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--accent-color);
-	--button-color-on-state: var(--state-on-background);
 }
 
 [data-button~='accent' i]:where([data-button*='contrast' i]) {
-	--button-color-on-state: var(--accent-color);
+	--button-color-background: var(--accent-color);
 }
 
 [data-button~='muted' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--muted-color);
-	--button-color-on-state: var(--state-on-background);
 }
 
 [data-button~='muted' i]:where([data-button*='contrast' i]) {
@@ -97,7 +95,6 @@
 
 [data-button~='positive' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--positive-color);
-	--button-color-on-state: var(--state-on-background);
 }
 
 [data-button~='positive' i]:where([data-button*='contrast' i]) {
@@ -107,7 +104,6 @@
 
 [data-button~='negative' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--negative-color);
-	--button-color-on-state: var(--state-on-background);
 }
 
 [data-button~='negative' i]:where([data-button*='contrast' i]) {
