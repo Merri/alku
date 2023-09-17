@@ -36,6 +36,8 @@
 	--shadow-70: rgb(0 0 0 / 70%);
 	--shadow-90: rgb(0 0 0 / 90%);
 
+	/* we do not use LinkText for links (by default) so it "frees" it up to use as AccentColor fallback */
+	--accent-color: LinkText;
 	--code-color: var(--shadow-10);
 	--code-border-color: var(--code-color);
 	--code-text-color: currentColor;
@@ -54,6 +56,9 @@
 	--positive-color: seagreen;
 	--positive-color-text: white;
 
+	--button-border: ButtonBorder;
+	--button-face: ButtonFace;
+
 	--focus-indication: 3px solid var(--focus-color);
 	--focus-inside: -3px;
 	--focus-outside: 3px;
@@ -64,6 +69,12 @@
 
 	--ol-indent: 2em;
 	--ul-indent: 1.375em;
+}
+
+@supports (color: AccentColor) {
+	:where(button, [data-button], [type='file' i]) {
+		--accent-color: AccentColor;
+	}
 }
 
 :where([data-color~='canvas' i]) {
@@ -87,6 +98,8 @@
 	--muted-50: var(--shadow-50);
 	--muted-70: var(--shadow-70);
 	--muted-90: var(--shadow-90);
+	/* Chrome Windows has a light mode ButtonBorder color of #000 which is insanely dark! So... a workaround. */
+	--button-border: var(--muted-10);
 }
 
 /* muted variants like this are especially useful when color-mix is not supported */
@@ -97,6 +110,8 @@
 		--muted-50: var(--shadow-50);
 		--muted-70: var(--shadow-70);
 		--muted-90: var(--shadow-90);
+		/* Chrome Windows has a light mode ButtonBorder color of #000 which is insanely dark! So... a workaround. */
+		--button-border: var(--muted-10);
 	}
 }
 
@@ -107,6 +122,8 @@
 	--muted-50: var(--highlight-50);
 	--muted-70: var(--highlight-70);
 	--muted-90: var(--highlight-90);
+	/* Chrome Windows has a dark mode ButtonFace color of #6B6B6B which is way too light! So... a workaround. */
+	--button-face: Canvas;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -116,6 +133,8 @@
 		--muted-50: var(--highlight-50);
 		--muted-70: var(--highlight-70);
 		--muted-90: var(--highlight-90);
+		/* Chrome Windows has a dark mode ButtonFace color of #6B6B6B which is way too light! So... a workaround. */
+		--button-face: Canvas;
 	}
 }
 
@@ -127,9 +146,16 @@
 		--kbd-text-color: color-mix(in oklab, Canvas, currentColor 10%);
 		--mark-color: color-mix(in oklab, Mark, currentColor 20%);
 		--mark-text-color: color-mix(in oklab, MarkText, currentColor 10%);
+		--accent-color: color-mix(in oklab, LinkText, CanvasText 35%);
 		--muted-color: color-mix(in oklab, transparent, currentColor 50%);
-		--negative-color: color-mix(in oklab, crimson, currentColor 12.5%);
-		--positive-color: color-mix(in oklab, seagreen, currentColor 12.5%);
+		--negative-color: color-mix(in oklab, crimson, CanvasText 12.5%);
+		--positive-color: color-mix(in oklab, seagreen, CanvasText 12.5%);
+	}
+
+	@supports (color: AccentColor) {
+		:where(:root:not([data-color-mix='false'] i)) {
+			--accent-color: color-mix(in oklab, AccentColor, CanvasText 35%);
+		}
 	}
 }
 

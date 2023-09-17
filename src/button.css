@@ -1,28 +1,18 @@
 /* fallback colors for color-mix */
 :where(button, [data-button], [type='file' i]) {
-	--accent-color: LinkText;
 	--system-hover: var(--muted-10);
 	--system-active: var(--muted-30);
 	--canvas-border: var(--muted-50);
 	--canvas-hover: var(--muted-10);
 	--canvas-active: var(--muted-30);
-	/* Chrome Windows has a dark mode ButtonFace color of #6B6B6B which is way too light! So... a workaround. */
-	--button-face: Canvas;
 	--system-contrast-hover: var(--shadow-10);
 	--system-contrast-active: var(--shadow-30);
 	--canvas-contrast-hover: var(--muted-10);
 	--canvas-contrast-active: var(--muted-30);
 }
 
-@supports (color: AccentColor) {
-	:where(button, [data-button], [type='file' i]) {
-		--accent-color: AccentColor;
-	}
-}
-
 @supports (color: color-mix(in oklab, black, white 50%)) {
 	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
-		--accent-color: color-mix(in oklab, LinkText, CanvasText 25%);
 		--canvas-border: color-mix(
 			in oklab,
 			var(--button-color-background, Canvas),
@@ -36,18 +26,12 @@
 		--canvas-contrast-hover: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 15%);
 		--canvas-contrast-active: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 25%);
 	}
-
-	@supports (color: AccentColor) {
-		:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
-			--accent-color: color-mix(in oklab, AccentColor, CanvasText 25%);
-		}
-	}
 }
 
 /* default system theme */
 :where(button:not([data-button]), [type='file' i], [data-button~='systemColor' i]) {
 	--button-color-background: var(--button-face);
-	--button-color-border: ButtonBorder;
+	--button-color-border: var(--button-border);
 	--button-color-text: ButtonText;
 	--button-color-hover: var(--system-hover);
 	--button-color-active: var(--system-active);
