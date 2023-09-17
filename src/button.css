@@ -63,6 +63,15 @@
 	--button-color-active: var(--canvas-contrast-active);
 }
 
+[data-button~='muted' i]:where(:not([data-button*='contrast' i])) {
+	--button-color-text: var(--muted-color);
+	--button-color-on-state: var(--state-on-background);
+}
+
+[data-button~='muted' i]:where([data-button*='contrast' i]) {
+	--button-color-background: var(--muted-color);
+}
+
 [data-button~='positive' i]:where(:not([data-button*='contrast' i])) {
 	--button-color-text: var(--positive-color);
 	--button-color-on-state: var(--state-on-background);

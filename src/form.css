@@ -38,6 +38,7 @@
 [type='number' i] /* Use <input type="text" inputmode="numeric" pattern="\d*" /> or <input type="tel" /> */ {
 	background: var(--negative-color) !important;
 	border-color: var(--negative-color) !important;
+	text-decoration: line-through;
 }
 
 :where([type='color' i]) {

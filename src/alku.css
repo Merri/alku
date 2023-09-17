@@ -66,6 +66,29 @@
 	--ul-indent: 1.375em;
 }
 
+:where([data-color~='canvas' i]) {
+	background-color: Canvas;
+	color: CanvasText;
+}
+
+:where([data-color~='contrast' i]) {
+	background-color: CanvasText;
+	color: Canvas;
+}
+
+:where([data-color*='dark' i][data-color*='light' i]) {
+	color-scheme: dark light;
+}
+
+:where([data-color*='light' i]:not([data-color*='dark' i])) {
+	color-scheme: light;
+	--muted-10: var(--shadow-10);
+	--muted-30: var(--shadow-30);
+	--muted-50: var(--shadow-50);
+	--muted-70: var(--shadow-70);
+	--muted-90: var(--shadow-90);
+}
+
 /* muted variants like this are especially useful when color-mix is not supported */
 @media (prefers-color-scheme: light) {
 	:where(:root) {
@@ -75,6 +98,15 @@
 		--muted-70: var(--shadow-70);
 		--muted-90: var(--shadow-90);
 	}
+}
+
+:where([data-color*='dark' i]:not([data-color*='light' i])) {
+	color-scheme: dark;
+	--muted-10: var(--highlight-10);
+	--muted-30: var(--highlight-30);
+	--muted-50: var(--highlight-50);
+	--muted-70: var(--highlight-70);
+	--muted-90: var(--highlight-90);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -95,7 +127,7 @@
 		--kbd-text-color: color-mix(in oklch, Canvas, currentColor 10%);
 		--mark-color: color-mix(in oklch, Mark, currentColor 20%);
 		--mark-text-color: color-mix(in oklch, MarkText, currentColor 10%);
-		--muted-color: color-mix(in oklch, transparent, currentColor 70%);
+		--muted-color: color-mix(in oklch, transparent, currentColor 50%);
 		--negative-color: color-mix(in oklch, crimson, currentColor 12.5%);
 		--positive-color: color-mix(in oklch, seagreen, currentColor 12.5%);
 	}
