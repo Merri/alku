@@ -1,10 +1,6 @@
 /* fallback colors for color-mix */
 :where(button, [data-button], [type='file' i]) {
-	--accent-color-background: Canvas;
-	--accent-color-text: LinkText;
-	--accent-border: var(--muted-50);
-	--accent-hover: var(--muted-10);
-	--accent-active: var(--muted-30);
+	--accent-color: LinkText;
 	/* system = OS default button color */
 	--system-hover: var(--muted-10);
 	--system-active: var(--muted-30);
@@ -18,23 +14,9 @@
 	--state-on-background: var(--muted-90);
 }
 
-@supports (color: AccentColor) {
-	:where(button, [data-button], [type='file' i]) {
-		/* this seems backwards, but we want the default canvas equivalent color (= whitest or blackest) in the bg */
-		--accent-color-background: AccentColorText;
-		--accent-color-text: AccentColor;
-	}
-}
-
 @supports (color: color-mix(in oklch, black, white 50%)) {
 	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
-		--accent-border: color-mix(
-			in oklch,
-			var(--button-color-background, var(--accent-color-background)),
-			var(--button-color-text, var(--accent-color-text)) 50%
-		);
-		--accent-hover: color-mix(in oklch, var(--button-color-background, Canvas), var(--accent-color-text) 25%);
-		--accent-active: color-mix(in oklch, var(--button-color-background, Canvas), var(--accent-color-text) 50%);
+		--accent-color: color-mix(in oklch, var(--accent-color, LinkText), CanvasText 25%);
 		--canvas-border: color-mix(
 			in oklch,
 			var(--button-color-background, Canvas),
@@ -47,6 +29,12 @@
 		--canvas-contrast-hover: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 15%);
 		--canvas-contrast-active: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 25%);
 		--state-on-background: color-mix(in oklch, var(--button-color-background), Canvas 85%);
+	}
+}
+
+@supports (color: AccentColor) {
+	:where(button, [data-button], [type='file' i]) {
+		--accent-color: AccentColor;
 	}
 }
 
@@ -83,20 +71,13 @@
 	--button-color-active: var(--canvas-contrast-active);
 }
 
-:where([data-button~='accentColor' i]) {
-	--button-color-background: var(--accent-color-background);
-	--button-color-border: var(--accent-border);
-	--button-color-text: var(--accent-color-text);
-	--button-color-hover: var(--accent-hover);
-	--button-color-active: var(--accent-active);
+[data-button~='accent' i]:where(:not([data-button*='contrast' i])) {
+	--button-color-text: var(--accent-color);
+	--button-color-on-state: var(--state-on-background);
 }
 
-:where([data-button~='accentContrast' i]) {
-	--button-color-background: var(--accent-color-text);
-	--button-color-border: transparent;
-	--button-color-text: var(--accent-color-background);
-	--button-color-hover: var(--canvas-contrast-hover);
-	--button-color-active: var(--canvas-contrast-active);
+[data-button~='accent' i]:where([data-button*='contrast' i]) {
+	--button-color-on-state: var(--accent-color);
 }
 
 [data-button~='muted' i]:where(:not([data-button*='contrast' i])) {
