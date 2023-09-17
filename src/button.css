@@ -14,27 +14,33 @@
 	--state-on-background: var(--muted-90);
 }
 
-@supports (color: color-mix(in oklch, black, white 50%)) {
-	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
-		--accent-color: color-mix(in oklch, var(--accent-color, LinkText), CanvasText 25%);
-		--canvas-border: color-mix(
-			in oklch,
-			var(--button-color-background, Canvas),
-			var(--button-color-text, CanvasText) 50%
-		);
-		--canvas-hover: color-mix(in oklch, var(--button-color-background, Canvas), Highlight 25%);
-		--canvas-active: color-mix(in oklch, var(--button-color-background, Canvas), Highlight 50%);
-		--system-contrast-hover: color-mix(in oklch, var(--button-color-background, ButtonText), currentColor 15%);
-		--system-contrast-active: color-mix(in oklch, var(--button-color-background, ButtonText), currentColor 25%);
-		--canvas-contrast-hover: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 15%);
-		--canvas-contrast-active: color-mix(in oklch, var(--button-color-background, CanvasText), currentColor 25%);
-		--state-on-background: color-mix(in oklch, var(--button-color-background), Canvas 85%);
-	}
-}
-
 @supports (color: AccentColor) {
 	:where(button, [data-button], [type='file' i]) {
 		--accent-color: AccentColor;
+	}
+}
+
+@supports (color: color-mix(in oklab, black, white 50%)) {
+	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
+		--accent-color: color-mix(in oklab, LinkText, CanvasText 25%);
+		--canvas-border: color-mix(
+			in oklab,
+			var(--button-color-background, Canvas),
+			var(--button-color-text, CanvasText) 50%
+		);
+		--canvas-hover: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 25%);
+		--canvas-active: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 50%);
+		--system-contrast-hover: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 15%);
+		--system-contrast-active: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 25%);
+		--canvas-contrast-hover: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 15%);
+		--canvas-contrast-active: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 25%);
+		--state-on-background: color-mix(in oklab, var(--button-color-background), Canvas 85%);
+	}
+
+	@supports (color: AccentColor) {
+		:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
+			--accent-color: color-mix(in oklab, AccentColor, CanvasText 25%);
+		}
 	}
 }
 

@@ -119,17 +119,17 @@
 	}
 }
 
-@supports (color: color-mix(in oklch, black, white 50%)) {
+@supports (color: color-mix(in oklab, black, white 50%)) {
 	:where(:root:not([data-color-mix='false'] i)) {
-		--focus-color: color-mix(in oklch, color-mix(in oklch, Highlight, VisitedText 30%), currentColor 12.5%);
-		--kbd-color: color-mix(in oklch, CanvasText, currentColor 10%);
-		--kbd-border-color: color-mix(in oklch, CanvasText, currentColor 30%);
-		--kbd-text-color: color-mix(in oklch, Canvas, currentColor 10%);
-		--mark-color: color-mix(in oklch, Mark, currentColor 20%);
-		--mark-text-color: color-mix(in oklch, MarkText, currentColor 10%);
-		--muted-color: color-mix(in oklch, transparent, currentColor 50%);
-		--negative-color: color-mix(in oklch, crimson, currentColor 12.5%);
-		--positive-color: color-mix(in oklch, seagreen, currentColor 12.5%);
+		--focus-color: color-mix(in oklab, color-mix(in oklab, Highlight, VisitedText 30%), currentColor 12.5%);
+		--kbd-color: color-mix(in oklab, CanvasText, currentColor 10%);
+		--kbd-border-color: color-mix(in oklab, CanvasText, currentColor 30%);
+		--kbd-text-color: color-mix(in oklab, Canvas, currentColor 10%);
+		--mark-color: color-mix(in oklab, Mark, currentColor 20%);
+		--mark-text-color: color-mix(in oklab, MarkText, currentColor 10%);
+		--muted-color: color-mix(in oklab, transparent, currentColor 50%);
+		--negative-color: color-mix(in oklab, crimson, currentColor 12.5%);
+		--positive-color: color-mix(in oklab, seagreen, currentColor 12.5%);
 	}
 }
 
