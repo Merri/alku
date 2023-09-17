@@ -89,17 +89,15 @@
 
 @supports (color: color-mix(in oklch, black, white 50%)) {
 	:where(:root:not([data-color-mix='false'] i)) {
-		--code-color: color-mix(in oklch, Field, currentColor 10%);
-		--code-text-color: color-mix(in oklch, FieldText, currentColor 10%);
-		--focus-color: color-mix(in oklch, color-mix(in oklch, Highlight, VisitedText 50%), currentColor 25%);
+		--focus-color: color-mix(in oklch, color-mix(in oklch, Highlight, VisitedText 30%), currentColor 12.5%);
 		--kbd-color: color-mix(in oklch, CanvasText, currentColor 10%);
 		--kbd-border-color: color-mix(in oklch, CanvasText, currentColor 30%);
 		--kbd-text-color: color-mix(in oklch, Canvas, currentColor 10%);
 		--mark-color: color-mix(in oklch, Mark, currentColor 20%);
 		--mark-text-color: color-mix(in oklch, MarkText, currentColor 10%);
 		--muted-color: color-mix(in oklch, transparent, currentColor 70%);
-		--negative-color: color-mix(in oklch, crimson, currentColor 10%);
-		--positive-color: color-mix(in oklch, seagreen, currentColor 10%);
+		--negative-color: color-mix(in oklch, crimson, currentColor 12.5%);
+		--positive-color: color-mix(in oklch, seagreen, currentColor 12.5%);
 	}
 }
 
