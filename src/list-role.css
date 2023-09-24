@@ -1,0 +1,11 @@
+/* List style reset utility (workaround Safari VoiceOver removing list semantics based on CSS list-style) */
+:where([role='list']:is(ol, ul)) {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	transform: none;
+}
+
+:where([role='list']:is(ol, ul) > li) {
+	margin: 0;
+}

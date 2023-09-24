@@ -1,0 +1,23 @@
+/* List style reset utility (workaround Safari VoiceOver removing list semantics based on CSS list-style) */
+:where(nav :is(ol, ul)) {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	transform: none;
+}
+
+:where(nav li) {
+	margin: 0;
+}
+
+/* Render lists as rows inside navigation. */
+:where(nav :is(ol, ul)) {
+	display: flex;
+	flex-flow: wrap;
+	gap: 0.25rem 1rem;
+}
+
+/* Render lists as columns inside aside navigation. */
+:where(aside nav :is(ol, ul)) {
+	flex-direction: column;
+}

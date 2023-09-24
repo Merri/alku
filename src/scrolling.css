@@ -1,0 +1,36 @@
+/* Generic scrolling utility */
+:where(*:not([data-scrolling]):has(> table:only-child), pre) {
+	overflow: hidden;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Generic scrolling utility */
+[data-scrolling] {
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* Generic scrolling utility */
+[data-scrolling='block' i] {
+	overflow-block: auto;
+}
+
+/* Generic scrolling utility */
+[data-scrolling='inline' i] {
+	overflow-inline: auto;
+}
+
+/* https://caniuse.com/mdn-css_properties_overflow-block */
+@supports not (overflow-block: auto) {
+	[data-scrolling='block' i] {
+		overflow-y: auto;
+	}
+}
+
+/* https://caniuse.com/mdn-css_properties_overflow-inline */
+@supports not (overflow-inline: auto) {
+	[data-scrolling='inline' i] {
+		overflow-x: auto;
+	}
+}

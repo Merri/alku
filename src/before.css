@@ -1,0 +1,6 @@
+/* Utility: invisible pseudo element to cover container area */
+:where([data-before='cover' i])::before {
+	content: '';
+	inset: 0;
+	position: absolute;
+}

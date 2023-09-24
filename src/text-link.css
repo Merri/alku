@@ -1,0 +1,30 @@
+:where(:root) {
+	--mask-new-screen: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M20 4L9.99997 14M20 4L20 9.99999M20 4L14 3.99998M10 4H4V20H20V14' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/></svg>");
+}
+
+:where(a),
+[data-text~='link' i] {
+	color: var(--link-color);
+	cursor: pointer;
+}
+
+:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button])),
+[data-text*='external link' i] {
+	padding-right: 1.5rem;
+}
+
+:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button]))::after,
+[data-text*='external link' i]::after {
+	background: currentColor;
+	content: '';
+	height: 1.25em;
+	position: absolute;
+	width: 1.25rem;
+	transform: translateX(0.1875rem);
+	-webkit-mask-image: var(--mask-new-screen);
+	mask-image: var(--mask-new-screen);
+	-webkit-mask-position: bottom;
+	mask-position: bottom;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+}

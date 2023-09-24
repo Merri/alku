@@ -3,27 +3,10 @@
 		'Twemoji Mozilla', 'Noto Emoji', 'Segoe UI Symbol', EmojiSymbols;
 	--mono-font-stack: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, var(--emoji-font);
 
-	/* 16px to 400px and grows to 20px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=16&fluidSize=-1&relativeSize=1.5&maxSize=20 */
-	--font-size-16: calc(2.25rem - clamp(1rem, -1vw + 1.5rem, 1.25rem));
-	--font-size-14: calc(2rem - clamp(0.875rem, -1vw + 1.375rem, 1.125rem));
-	--font-size-18: calc(2.5rem - clamp(1.125rem, -1vw + 1.625rem, 1.375rem));
-	--font-size-20: calc(2.75rem - clamp(1.25rem, -1vw + 1.75rem, 1.5rem));
-	--font-size-22: calc(3rem - clamp(1.375rem, -1vw + 1.875rem, 1.625rem));
-	--font-size-24: calc(3.25rem - clamp(1.5rem, -1vw + 2rem, 1.75rem));
-	/* 26px to 400px and grows to 32px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=26&fluidSize=-1.5&relativeSize=2.375&maxSize=32 */
-	--font-size-26: calc(3.625rem - clamp(1.625rem, -1.5vw + 2.375rem, 2rem));
-	/* 28px to 400px and grows to 40px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=28&fluidSize=-3&relativeSize=3.25&maxSize=40 */
-	--font-size-28: calc(4.25rem - clamp(1.75rem, -3vw + 3.25rem, 2.5rem));
-	/* 32px to 400px and grows to 48px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=32&fluidSize=-4&relativeSize=4&maxSize=48 */
-	--font-size-32: calc(5rem - clamp(2rem, -4vw + 4rem, 3rem));
-
 	--default-font: sans-serif, var(--emoji-font);
 	--heading-font: serif, var(--emoji-font);
 	--marker-font: var(--mono-font-stack);
 	--mono-font: var(--mono-font-stack);
-
-	--default-font-size: var(--font-size-16);
-	--default-font-weight: 400;
 
 	--highlight-10: rgb(255 255 255 / 10%);
 	--highlight-30: rgb(255 255 255 / 30%);
@@ -65,14 +48,13 @@
 
 	--mask-chevron-down: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M4 9L12 17L20 9' fill='none' stroke='black' stroke-width='2.5'/></svg>");
 	--mask-cross: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 5L5 19M5 5L19 19' fill='none' stroke='black' stroke-width='2.5'/></svg>");
-	--mask-new-screen: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M20 4L9.99997 14M20 4L20 9.99999M20 4L14 3.99998M10 4H4V20H20V14' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/></svg>");
 
 	--ol-indent: 2em;
 	--ul-indent: 1.375em;
 }
 
 @supports (color: AccentColor) {
-	:where(button, [data-button], [type='file' i]) {
+	:where(:root) {
 		--accent-color: AccentColor;
 	}
 }
@@ -178,96 +160,14 @@
 	scroll-margin-top: 2rem;
 }
 
-/* Skip links, visually hidden utilities */
-:root [data-text='visuallyHidden' i]:not(:focus):not(:active) {
-	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
-	all: initial;
-	clip-path: inset(50%);
-	/* Parent layouts will account for the size of the text unless this exists. */
-	contain: content;
-	/* Remove from flow, have minimal size to convince screen readers the element is visible */
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	/* Prevent text wrapping as that would effect how screen readers read the text */
-	white-space: nowrap;
-}
-
-/* Generic scrolling utility */
-:where(*:not([data-scrolling]):has(> table:only-child), pre) {
-	overflow: hidden;
-	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
-}
-
-/* Generic scrolling utility */
-[data-scrolling] {
-	overflow: hidden;
-	-webkit-overflow-scrolling: touch;
-}
-
-/* Generic scrolling utility */
-[data-scrolling='block' i] {
-	overflow-block: auto;
-}
-
-/* Generic scrolling utility */
-[data-scrolling='inline' i] {
-	overflow-inline: auto;
-}
-
-/* https://caniuse.com/mdn-css_properties_overflow-block */
-@supports not (overflow-block: auto) {
-	[data-scrolling='block' i] {
-		overflow-y: auto;
-	}
-}
-
-/* https://caniuse.com/mdn-css_properties_overflow-inline */
-@supports not (overflow-inline: auto) {
-	[data-scrolling='inline' i] {
-		overflow-x: auto;
-	}
-}
-
-/* Focus indicator */
-:where(:focus:not(:focus-visible)) {
-	outline: none;
-}
-
-/* Focus indicator */
-:where(:focus-visible),
-:where([data-indicate-focus='before']:focus-visible)::before,
-:where([data-indicate-focus='after']:focus-visible)::after {
-	outline: var(--focus-indication);
-	outline-offset: var(--focus-outside);
-}
-
-/* Focus indicator */
-:where([data-indicate-focus]):focus {
-	outline: none;
-}
-
-/* Focus indicator no longer needed in Firefox */
-::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
-}
-
 /* Indicate element is busy */
 :where([aria-busy='true' i]) {
 	cursor: progress;
 }
 
-/* Utility: invisible pseudo element to cover container area */
-:where([data-before='cover' i])::before {
-	content: '';
-	inset: 0;
-	position: absolute;
-}
-
 :where(html) {
 	color-scheme: dark light;
+	font-family: var(--default-font);
 	font-feature-settings: 'tnum';
 	font-variant-numeric: tabular-nums;
 	line-height: 1.5;
@@ -295,197 +195,17 @@
 	grid-column: 1 / -1;
 }
 
-:where([data-text]) {
-	font-family: inherit;
-	font-size: inherit;
-	font-style: inherit;
-	font-weight: inherit;
-	letter-spacing: 0;
-}
-
-[data-text] {
-	color: inherit;
-	margin: 0;
-	padding: 0;
-	text-decoration: inherit;
-}
-
-:where(body),
-[data-text=''] {
-	font-family: var(--default-font);
-	font-size: var(--default-font-size);
-	font-weight: var(--default-font-weight);
-}
-
-[data-text~='sans' i] {
-	font-family: sans-serif, var(--emoji-font);
-}
-
-[data-text~='serif' i] {
-	font-family: serif, var(--emoji-font);
-}
-
-[data-text~='monospace' i] {
-	font-family: monospace, var(--emoji-font);
-}
-
-:where(h1, h2, h3, h4, h5, h6),
-[data-text^='heading' i],
-[data-text*=' heading' i] {
-	font-family: var(--heading-font);
-}
-
-[data-text~='default' i] {
-	font-family: var(--default-font);
-}
-
-:where(code, kbd, pre, samp),
-[data-text~='mono' i] {
-	font-family: var(--mono-font);
-}
-
-[data-text~='thin' i] {
-	font-weight: 100;
-}
-
-[data-text~='extralight' i] {
-	font-weight: 200;
-}
-
-[data-text~='light' i] {
-	font-weight: 300;
-}
-
-[data-text~='regular' i] {
-	font-weight: 400;
-}
-
-[data-text~='medium' i] {
-	font-weight: 500;
-}
-
-:where(h1, h2, h3, h4, h5, h6, strong),
-[data-text~='semibold' i],
-[data-text^='heading' i],
-[data-text*=' heading' i] {
-	font-weight: 600;
-}
-
-:where(b),
-[data-text~='bold' i] {
-	font-weight: 700;
-}
-
-[data-text~='extrabold' i] {
-	font-weight: 800;
-}
-
-[data-text~='black' i] {
-	font-weight: 900;
-}
-
-[data-text~='extrablack' i] {
-	font-weight: 950;
-}
-
-:where(cite, em, i),
-[data-text~='italic' i] {
-	font-style: oblique 10deg;
-}
-
-:where(a),
-[data-text~='link' i],
-[data-text~='underline' i] {
-	text-decoration: underline;
-	text-underline-offset: 0.25em;
-}
-
-:where(:is(li > a, a[href^='#']):not(:hover, :active)) {
-	text-decoration-color: var(--hash-underline-color);
+/* Correct the font size on `h1` elements within `section` and `article` contexts in Chrome, Edge, Firefox, and Safari. */
+:where(h1) {
+	font-size: 2em;
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--heading-font);
+	line-height: var(--heading-line-height, inherit);
+	/* Have more space above to make heading more a part of the text below. */
 	margin-block: 2rem 1rem;
 	margin-inline: 0;
-	line-height: 1.125;
-}
-
-:where(h1),
-[data-text~='heading1' i] {
-	font-size: var(--font-size-32);
-}
-
-:where(h2),
-[data-text~='heading2' i] {
-	font-size: var(--font-size-28);
-}
-
-[data-text~='26'] {
-	font-size: var(--font-size-26);
-}
-
-:where(h3),
-[data-text~='24'],
-[data-text~='heading3' i] {
-	font-size: var(--font-size-24);
-}
-
-:where(h4),
-[data-text~='22'],
-[data-text~='heading4' i] {
-	font-size: var(--font-size-22);
-}
-
-:where(h5),
-[data-text~='20'],
-[data-text~='heading5' i] {
-	font-size: var(--font-size-20);
-}
-
-:where(h6),
-[data-text~='18'],
-[data-text~='heading6' i] {
-	font-size: var(--font-size-18);
-}
-
-:where(pre),
-[data-text~='16'] {
-	font-size: var(--font-size-16);
-}
-
-[data-text~='14'] {
-	font-size: var(--font-size-14);
-}
-
-:where(small) {
-	font-size: 0.875em;
-}
-
-:where(a),
-[data-text~='link' i] {
-	color: var(--link-color);
-	cursor: pointer;
-}
-
-:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button])),
-[data-text*='external link' i] {
-	padding-right: 1.5rem;
-}
-
-:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button]))::after,
-[data-text*='external link' i]::after {
-	background: currentColor;
-	content: '';
-	height: 1.25em;
-	position: absolute;
-	width: 1.25rem;
-	transform: translateX(0.1875rem);
-	-webkit-mask-image: var(--mask-new-screen);
-	mask-image: var(--mask-new-screen);
-	-webkit-mask-position: bottom;
-	mask-position: bottom;
-	-webkit-mask-repeat: no-repeat;
-	mask-repeat: no-repeat;
 }
 
 [data-text-color='current' i] {
@@ -501,7 +221,19 @@
 	margin: 0;
 }
 
+/* Text-level semantics
+ * ========================================================================== */
+
+/* Add the correct text decoration in Safari. */
+:where(abbr[title]) {
+	text-decoration: underline;
+	text-decoration: underline dotted;
+}
+
 :where(code, kbd, samp) {
+	/* Correct the inheritance and scaling of font size in all browsers. */
+	font-family: var(--mono-font);
+	/* Correct the odd `em` font sizing in all browsers. */
 	font-size: 1em;
 }
 
@@ -544,6 +276,12 @@
 	color: var(--negative-color);
 }
 
+/* Increase size from 80% for ease-of-read. */
+:where(small) {
+	font-size: 87.5%;
+}
+
+/* Remove code styling when as direct child of pre or table cell. */
 :where(:is(pre, td, th) > code) {
 	background: unset;
 	border-radius: unset;
@@ -553,11 +291,13 @@
 	padding-inline: unset;
 }
 
+/* This is a commonly used combination, add padding for visual appeal. */
 :where(pre > code) {
 	display: block;
 	padding: 1rem;
 }
 
+/* Prevent effecting line height in all browsers. */
 :where(sub, sup) {
 	font-size: 75%;
 	line-height: 0;
@@ -573,121 +313,93 @@
 	top: -0.5em;
 }
 
+/* Opinioned normalization: render as 4px thick divider, support both horizontal and vertical render */
 :where(hr) {
 	block-size: 0;
 	border: 0.125rem solid currentColor;
-	color: var(--muted-color);
+	border-radius: 0.125rem;
+	color: var(--muted-color, inherit);
 	inline-size: 100%;
 	margin-block: 2rem;
 	margin-inline: 0;
 	overflow: visible;
 }
 
-/* Higher specificity than a global star reset */
+/* Normalize: be more important than star reset */
 hr {
-	box-sizing: content-box;
+	box-sizing: border-box;
 }
 
-/* List that aligns to content next to floats. */
-:where(ol:not([role='list'])) {
-	margin-block: 1rem;
-	margin-inline: 0 var(--ol-indent);
-	padding: 0;
-	transform: translateX(calc(var(--dir-adjust) * var(--ol-indent)));
-}
-
-/* List that aligns to content next to floats. */
-:where(ul:not([role='list'])) {
-	margin-block: 1rem;
-	margin-inline: 0 var(--ul-indent);
-	padding: 0;
-	transform: translateX(calc(var(--dir-adjust) * var(--ul-indent)));
-}
-
-/* Ensure equal width numbers */
-:where(li)::marker {
-	font-family: var(--marker-font);
-	font-size: 1em;
-	line-height: 1.45rem;
-}
-
-/* List inside list margin reset */
+/* Remove the margin on nested lists in Chrome, Edge, and Safari. */
 :where(dl, ol, ul) :where(dl, ol, ul) {
 	margin-block: 0;
 }
 
-/* List style reset utility (workaround Safari VoiceOver removing list semantics based on CSS list-style) */
-:where([role='list']:is(ol, ul), nav :is(ol, ul)) {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	transform: none;
-}
-
-:where([role='list']:is(ol, ul) > li, nav li) {
-	margin: 0;
-}
-
-:where(nav :is(ol, ul)) {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.25rem 1rem;
-}
-
-:where(aside nav :is(ol, ul)) {
-	flex-direction: column;
-}
-
+/* Remove border for visual appeal. */
 :where(iframe) {
 	border-style: none;
 }
 
+/* Align vertically to center instead of baseline for visual appeal. */
 :where(audio, canvas, iframe, img, progress, svg, video) {
 	vertical-align: middle;
 }
 
+/* Restrict media elements from breaking layout in limited spaces. */
 :where(iframe, img, input, video, select, textarea) {
 	height: auto;
 	max-width: 100%;
 }
 
+/* Tabular data
+ * ========================================================================== */
+
+/* Fix undesired side-effect for this particular combination. */
 :where(table img) {
 	max-width: unset;
 }
 
-:where(svg:not([fill])) {
-	fill: currentColor;
-}
-
+/* Remove spacing between table cells by using collapsed variant. */
 :where(table) {
 	border-collapse: collapse;
 	border-color: currentColor;
 	text-indent: 0;
 }
 
+/* Fix glitches on how Chrome and Firefox handle border color when background color is applied to table cell */
 :where(td, th) {
 	background-clip: padding-box;
 	filter: brightness(1);
 }
 
+/* Forms
+ * ========================================================================== */
+
+/* Reset fieldset for visual appeal. */
 :where(fieldset) {
 	border: 0 solid transparent;
 	margin: 0;
 	padding: 0;
 }
 
+/* Remove padding to have expected appearance together with the fieldset reset. */
 :where(legend) {
 	padding: 0;
 }
 
-:where(button, input, optgroup, select, textarea),
-[data-button] {
+/* Use similar font on controls and inherit it by default. */
+:where(button, input, optgroup, select, textarea) {
 	font-family: var(--default-font);
 	font-size: inherit;
 	line-height: 1.5;
+}
+
+/* Remove the margin on controls in Safari. */
+:where(button, input, select) {
 	margin: 0;
 }
 
+/* Restore monospace font. */
 :where([type*='date' i], [type='time' i], [type='month' i], [type='week' i]) {
 	font-family: var(--mono-font);
 }
@@ -697,55 +409,135 @@ hr {
 	font-size: 1rem;
 }
 
-:where(button, select) {
+/* Remove the inheritance of text transform in Firefox. */
+:where(button) {
 	text-transform: none;
 }
 
-:where(optgroup) {
-	font-style: normal;
-	font-weight: 600;
+/* Correct the inability to style buttons in iOS and Safari. */
+:where(button, [type='button' i], [type='reset' i], [type='submit' i]) {
+	-webkit-appearance: button;
 }
 
+/* Remove italics for easier reading by default. */
+:where(address, optgroup) {
+	font-style: normal;
+}
+
+/* Resizing both X & Y is hard for some users, and easily breaks layouts. */
 :where(textarea) {
 	resize: vertical;
 }
 
+/* Provide more vertical space by default. */
+:where(textarea:not([rows])) {
+	height: 9em;
+}
+
+/* Interactive
+ * ========================================================================== */
+
+/* Add the correct styles in Safari. */
+:where(dialog) {
+	background-color: white;
+	border: solid;
+	color: black;
+	height: -moz-fit-content;
+	height: fit-content;
+	left: 0;
+	margin: auto;
+	padding: 1em;
+	position: absolute;
+	right: 0;
+	width: -moz-fit-content;
+	width: fit-content;
+}
+
+:where(dialog:not([open])) {
+	display: none;
+}
+
+/* Add the correct display in all browsers. */
+:where(summary) {
+	display: list-item;
+}
+
+/* Browser engine specific pseudo elements and selectors
+ * ========================================================================== */
+
+/* Correct the odd appearance in Chrome and Safari. */
 :where([type='search']) {
 	-webkit-appearance: textfield;
 	appearance: textfield;
 }
 
+/* Remove the inner padding in Chrome and Safari on macOS. */
 ::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 
+/* Correct the text style of placeholders in Chrome, Edge, and Safari. */
 ::-webkit-input-placeholder {
 	color: inherit;
 	opacity: 0.5625;
 }
 
+/* Change default color picker style. */
 ::-webkit-color-swatch-wrapper {
 	padding: 0;
 }
 
-::-moz-color-swatch {
-	border: 0;
-	min-block-size: 2.5rem;
-	min-inline-size: 2.5rem;
-}
-
+/* Change default color picker style. */
 ::-webkit-color-swatch {
 	border: 0;
 	min-block-size: 2.5rem;
 	min-inline-size: 2.5rem;
 }
 
+/* Change default color picker style. */
+::-moz-color-swatch {
+	border: 0;
+	min-block-size: 2.5rem;
+	min-inline-size: 2.5rem;
+}
+
+/* Make picker form fields have consistent sizing for when not defining explicit height. */
 ::-webkit-datetime-edit-fields-wrapper,
 ::-webkit-calendar-picker-indicator {
 	padding: 0;
 }
 
+/* Correct the inability to style clickable types in iOS and Safari. */
 ::-webkit-file-upload-button {
 	-webkit-appearance: button;
 	font: inherit;
+}
+
+/* Remove the additional :invalid styles in Firefox. */
+:where(:-moz-ui-invalid) {
+	box-shadow: none;
+}
+
+/* Not needed in Firefox when using strong focus indicator. */
+::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+/* Strong focus indicator + indicate focus utility
+ * ========================================================================== */
+
+:where(:focus:not(:focus-visible)) {
+	outline: none;
+}
+
+:where(:focus-visible),
+:where([data-indicate-focus='before' i]:focus-visible)::before,
+:where([data-indicate-focus='after' i]:focus-visible)::after {
+	outline: var(--focus-indication);
+	outline-offset: var(--focus-outside);
+}
+
+:where([data-indicate-focus]):focus {
+	outline: none;
 }

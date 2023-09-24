@@ -31,6 +31,7 @@
 	border-radius: 0.25rem;
 	color: var(--option-color);
 	padding: 0.625rem 1rem;
+	scroll-padding: 0.625rem 1rem;
 }
 
 :where(input):is([type='button' i], [type='reset' i], [type='submit' i]), /* Use <button /> */

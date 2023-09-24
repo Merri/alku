@@ -1,0 +1,14 @@
+/* Skip links, visually hidden utilities */
+:root [data-text='visuallyHidden' i]:not(:focus):not(:active) {
+	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
+	all: initial;
+	clip-path: inset(50%);
+	/* Parent layouts will account for the size of the text unless this exists. */
+	contain: content;
+	/* Remove from flow, have minimal size to convince screen readers the element is visible */
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	/* Prevent text wrapping as that would effect how screen readers read the text */
+	white-space: nowrap;
+}

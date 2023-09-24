@@ -1,0 +1,176 @@
+:where(:root) {
+	/* 16px to 400px and grows to 20px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=16&fluidSize=-1&relativeSize=1.5&maxSize=20 */
+	--font-size-16: calc(2.25rem - clamp(1rem, -1vw + 1.5rem, 1.25rem));
+	--font-size-14: calc(2rem - clamp(0.875rem, -1vw + 1.375rem, 1.125rem));
+	--font-size-18: calc(2.5rem - clamp(1.125rem, -1vw + 1.625rem, 1.375rem));
+	--font-size-20: calc(2.75rem - clamp(1.25rem, -1vw + 1.75rem, 1.5rem));
+	--font-size-22: calc(3rem - clamp(1.375rem, -1vw + 1.875rem, 1.625rem));
+	--font-size-24: calc(3.25rem - clamp(1.5rem, -1vw + 2rem, 1.75rem));
+	/* 26px to 400px and grows to 32px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=26&fluidSize=-1.5&relativeSize=2.375&maxSize=32 */
+	--font-size-26: calc(3.625rem - clamp(1.625rem, -1.5vw + 2.375rem, 2rem));
+	/* 28px to 400px and grows to 40px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=28&fluidSize=-3&relativeSize=3.25&maxSize=40 */
+	--font-size-28: calc(4.25rem - clamp(1.75rem, -3vw + 3.25rem, 2.5rem));
+	/* 32px to 400px and grows to 48px at 800px: https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=32&fluidSize=-4&relativeSize=4&maxSize=48 */
+	--font-size-32: calc(5rem - clamp(2rem, -4vw + 4rem, 3rem));
+
+	--default-font-size: var(--font-size-16);
+	--default-font-weight: 400;
+
+	--heading-line-height: 1.25;
+}
+
+:where([data-text]) {
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+}
+
+[data-text] {
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	text-decoration: inherit;
+}
+
+:where(body),
+[data-text=''] {
+	font-family: var(--default-font);
+	font-size: var(--default-font-size);
+	font-weight: var(--default-font-weight);
+}
+
+[data-text~='sans' i] {
+	font-family: sans-serif, var(--emoji-font);
+}
+
+[data-text~='serif' i] {
+	font-family: serif, var(--emoji-font);
+}
+
+[data-text~='monospace' i] {
+	font-family: monospace, var(--emoji-font);
+}
+
+[data-text^='heading' i],
+[data-text*=' heading' i] {
+	font-family: var(--heading-font);
+	line-height: var(--heading-line-height, inherit);
+}
+
+[data-text~='default' i] {
+	font-family: var(--default-font);
+}
+
+:where(code, kbd, pre, samp),
+[data-text~='mono' i] {
+	font-family: var(--mono-font);
+}
+
+[data-text~='thin' i] {
+	font-weight: 100;
+}
+
+[data-text~='extralight' i] {
+	font-weight: 200;
+}
+
+[data-text~='light' i] {
+	font-weight: 300;
+}
+
+[data-text~='regular' i] {
+	font-weight: 400;
+}
+
+[data-text~='medium' i] {
+	font-weight: 500;
+}
+
+:where(h1, h2, h3, h4, h5, h6, strong, optgroup),
+[data-text~='semibold' i],
+[data-text^='heading' i],
+[data-text*=' heading' i] {
+	font-weight: 600;
+}
+
+:where(b),
+[data-text~='bold' i] {
+	font-weight: 700;
+}
+
+[data-text~='extrabold' i] {
+	font-weight: 800;
+}
+
+[data-text~='black' i] {
+	font-weight: 900;
+}
+
+[data-text~='extrablack' i] {
+	font-weight: 950;
+}
+
+:where(cite, em, i),
+[data-text~='italic' i] {
+	font-style: oblique 10deg;
+}
+
+:where(a),
+[data-text~='link' i],
+[data-text~='underline' i] {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+
+:where(:is(li > a, a[href^='#']):not(:hover, :active)) {
+	text-decoration-color: var(--hash-underline-color);
+}
+
+:where(h1),
+[data-text~='heading1' i] {
+	font-size: var(--font-size-32);
+}
+
+:where(h2),
+[data-text~='heading2' i] {
+	font-size: var(--font-size-28);
+}
+
+[data-text~='26'] {
+	font-size: var(--font-size-26);
+}
+
+:where(h3),
+[data-text~='24'],
+[data-text~='heading3' i] {
+	font-size: var(--font-size-24);
+}
+
+:where(h4),
+[data-text~='22'],
+[data-text~='heading4' i] {
+	font-size: var(--font-size-22);
+}
+
+:where(h5),
+[data-text~='20'],
+[data-text~='heading5' i] {
+	font-size: var(--font-size-20);
+}
+
+:where(h6),
+[data-text~='18'],
+[data-text~='heading6' i] {
+	font-size: var(--font-size-18);
+}
+
+:where(pre),
+[data-text~='16'] {
+	font-size: var(--font-size-16);
+}
+
+[data-text~='14'] {
+	font-size: var(--font-size-14);
+}

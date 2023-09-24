@@ -43,6 +43,20 @@
 	--button-color-text: var(--button-face);
 	--button-color-hover: var(--system-contrast-hover);
 	--button-color-active: var(--system-contrast-active);
+	--button-color-on-state: var(--muted-10);
+}
+
+@supports (color: color-mix(in oklab, black, white 50%)) {
+	:where([data-button~='systemContrast' i]) {
+		--button-color-on-state: color-mix(in oklab, transparent, var(--button-face) 35%);
+	}
+}
+
+[data-button] {
+	font-family: var(--default-font);
+	font-size: inherit;
+	line-height: 1.5;
+	margin: 0;
 }
 
 :where([data-button~='canvasColor' i]) {
