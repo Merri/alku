@@ -1,3 +1,8 @@
+:where(:root) {
+	--ol-indent: 2em;
+	--ul-indent: 1.375em;
+}
+
 /* List that aligns to content next to floats. */
 :where(ol:not([role='list'])) {
 	margin-block: 1rem;

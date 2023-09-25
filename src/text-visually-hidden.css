@@ -1,4 +1,4 @@
-/* Skip links, visually hidden utilities */
+/* Skip links, visually hidden utility */
 :root [data-text='visuallyHidden' i]:not(:focus):not(:active) {
 	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
 	all: initial;

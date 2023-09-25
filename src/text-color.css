@@ -1,0 +1,15 @@
+[data-text-color='current' i] {
+	color: currentColor;
+}
+
+[data-text-color='muted' i] {
+	color: var(--muted-color);
+}
+
+[data-text-color='positive' i] {
+	color: var(--positive-color);
+}
+
+[data-text-color='negative' i] {
+	color: var(--negative-color);
+}

@@ -1,0 +1,9 @@
+:where([data-indicate-focus='before' i]:focus-visible)::before,
+:where([data-indicate-focus='after' i]:focus-visible)::after {
+	outline: var(--focus-indication);
+	outline-offset: var(--focus-outside);
+}
+
+:where([data-indicate-focus]):focus {
+	outline: none;
+}

@@ -1,3 +1,6 @@
+/* Essential font stacks, colors
+ * ========================================================================== */
+
 :where(:root) {
 	--emoji-font: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Android Emoji', 'EmojiOne Mozilla',
 		'Twemoji Mozilla', 'Noto Emoji', 'Segoe UI Symbol', EmojiSymbols;
@@ -39,18 +42,15 @@
 	--positive-color: seagreen;
 	--positive-color-text: white;
 
+	/* Chrome Windows has a light mode ButtonBorder color of #000 which is insanely dark! So... a workaround. */
 	--button-border: ButtonBorder;
+	/* Chrome Windows has a dark mode ButtonFace color of #6B6B6B which is way too light! So... a workaround. */
 	--button-face: ButtonFace;
 
+	/* Strong focus indicator */
 	--focus-indication: 3px solid var(--focus-color);
 	--focus-inside: -3px;
 	--focus-outside: 3px;
-
-	--mask-chevron-down: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M4 9L12 17L20 9' fill='none' stroke='black' stroke-width='2.5'/></svg>");
-	--mask-cross: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 5L5 19M5 5L19 19' fill='none' stroke='black' stroke-width='2.5'/></svg>");
-
-	--ol-indent: 2em;
-	--ul-indent: 1.375em;
 }
 
 @supports (color: AccentColor) {
@@ -59,6 +59,7 @@
 	}
 }
 
+/* Color utility */
 :where([data-color~='canvas' i]) {
 	background-color: Canvas;
 	color: CanvasText;
@@ -141,6 +142,9 @@
 	}
 }
 
+/* RTL utility
+ * ========================================================================== */
+
 :where(:root),
 :where([dir='ltr' i]) {
 	--dir-adjust: 1;
@@ -150,14 +154,24 @@
 	--dir-adjust: -1;
 }
 
+/* Usability
+ * ========================================================================== */
+
+/* Convey location in document better by smooth scrolling */
 @media not all and (prefers-reduced-motion) {
 	:where(html) {
 		scroll-behavior: smooth;
 	}
 }
 
-:where(:target) {
-	scroll-margin-top: 2rem;
+/* Strong focus indicator */
+:where(:focus:not(:focus-visible)) {
+	outline: none;
+}
+
+:where(:focus-visible) {
+	outline: var(--focus-indication);
+	outline-offset: var(--focus-outside);
 }
 
 /* Indicate element is busy */
@@ -165,19 +179,42 @@
 	cursor: progress;
 }
 
-:where(html) {
+/* Indicate element is disabled */
+:is([aria-disabled='true' i], [disabled], :disabled) {
+	cursor: not-allowed;
+}
+
+/* Reserve extra space when linking to hash anchors */
+:where(:target) {
+	scroll-margin-top: 2rem;
+}
+
+/* Document
+ * ========================================================================== */
+
+:where(:root) {
 	color-scheme: dark light;
 	font-family: var(--default-font);
+	/* Use equal width numbers when available */
 	font-feature-settings: 'tnum';
+	/* Use equal width numbers when available */
 	font-variant-numeric: tabular-nums;
+	/* Improve readability */
 	line-height: 1.5;
+	/* Four space tab width for visual appeal */
 	tab-size: 4;
+	/* Remove highlighting on tap in iOS */
 	-webkit-tap-highlight-color: transparent;
+	/* Disable font size adjustment on orientation changes in iOS */
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
+	/* Alternate font aliasing on Apple devices */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+/* Sections
+ * ========================================================================== */
 
 :where(body) {
 	display: grid;
@@ -208,17 +245,37 @@
 	margin-inline: 0;
 }
 
-[data-text-color='current' i] {
-	color: currentColor;
+:where(hgroup > *) {
+	margin: 0;
 }
 
-:where(hgroup > :is(h1, h2, h3, h4, h5, h6) + p),
-[data-text-color='muted' i] {
+:where(hgroup > :is(h1, h2, h3, h4, h5, h6) + p) {
 	color: var(--muted-color);
 }
 
-:where(hgroup > *) {
-	margin: 0;
+/* Grouping content
+ * ========================================================================== */
+
+/* Remove the margin on nested lists in Chrome, Edge, and Safari. */
+:where(dl, ol, ul) :where(dl, ol, ul) {
+	margin-block: 0;
+}
+
+/* Win over a global star reset even if it is imported later */
+hr {
+	box-sizing: border-box;
+}
+
+/* Display as rounded divider, support both horizontal and vertical render */
+:where(hr) {
+	block-size: 0;
+	border: 0.125rem solid currentColor;
+	border-radius: 0.125rem;
+	color: var(--muted-color, inherit);
+	inline-size: 100%;
+	margin-block: 2rem;
+	margin-inline: 0;
+	overflow: visible;
 }
 
 /* Text-level semantics
@@ -230,7 +287,7 @@
 	text-decoration: underline dotted;
 }
 
-:where(code, kbd, samp) {
+:where(code, kbd, pre, samp) {
 	/* Correct the inheritance and scaling of font size in all browsers. */
 	font-family: var(--mono-font);
 	/* Correct the odd `em` font sizing in all browsers. */
@@ -240,10 +297,19 @@
 :where(code) {
 	background: var(--code-color);
 	border-radius: 0.125rem;
-	box-shadow: var(--code-border-color);
+	box-shadow: 0 0 0 0.125rem var(--code-border-color);
 	color: var(--code-text-color);
 	margin-inline: 0.125rem;
 	padding-inline: 0.125rem;
+}
+
+:where(del) {
+	color: var(--negative-color);
+}
+
+:where(ins) {
+	color: var(--positive-color);
+	text-decoration: inherit;
 }
 
 :where(kbd) {
@@ -260,20 +326,6 @@
 	box-shadow: 0 0 0 0.125rem var(--mark-border-color);
 	color: var(--mark-text-color);
 	padding-inline: 0.125rem;
-}
-
-:where(ins) {
-	text-decoration: inherit;
-}
-
-:where(ins),
-[data-text-color='positive' i] {
-	color: var(--positive-color);
-}
-
-:where(del),
-[data-text-color='negative' i] {
-	color: var(--negative-color);
 }
 
 /* Increase size from 80% for ease-of-read. */
@@ -313,27 +365,8 @@
 	top: -0.5em;
 }
 
-/* Opinioned normalization: render as 4px thick divider, support both horizontal and vertical render */
-:where(hr) {
-	block-size: 0;
-	border: 0.125rem solid currentColor;
-	border-radius: 0.125rem;
-	color: var(--muted-color, inherit);
-	inline-size: 100%;
-	margin-block: 2rem;
-	margin-inline: 0;
-	overflow: visible;
-}
-
-/* Normalize: be more important than star reset */
-hr {
-	box-sizing: border-box;
-}
-
-/* Remove the margin on nested lists in Chrome, Edge, and Safari. */
-:where(dl, ol, ul) :where(dl, ol, ul) {
-	margin-block: 0;
-}
+/* Embedded content
+ * ========================================================================== */
 
 /* Remove border for visual appeal. */
 :where(iframe) {
@@ -359,14 +392,16 @@ hr {
 	max-width: unset;
 }
 
-/* Remove spacing between table cells by using collapsed variant. */
 :where(table) {
+	/* Remove spacing between table cells by using collapsed variant. */
 	border-collapse: collapse;
+	/* Correct table border color in Chrome, Edge, and Safari. */
 	border-color: currentColor;
+	/* Remove text indentation from table contents in Chrome, Edge, and Safari. */
 	text-indent: 0;
 }
 
-/* Fix glitches on how Chrome and Firefox handle border color when background color is applied to table cell */
+/* Workaround glitch in Chrome and Firefox border rendering when background color is applied to table cell */
 :where(td, th) {
 	background-clip: padding-box;
 	filter: brightness(1);
@@ -439,9 +474,9 @@ hr {
 
 /* Add the correct styles in Safari. */
 :where(dialog) {
-	background-color: white;
+	background-color: Canvas;
 	border: solid;
-	color: black;
+	color: CanvasText;
 	height: -moz-fit-content;
 	height: fit-content;
 	left: 0;
@@ -522,22 +557,4 @@ hr {
 ::-moz-focus-inner {
 	border-style: none;
 	padding: 0;
-}
-
-/* Strong focus indicator + indicate focus utility
- * ========================================================================== */
-
-:where(:focus:not(:focus-visible)) {
-	outline: none;
-}
-
-:where(:focus-visible),
-:where([data-indicate-focus='before' i]:focus-visible)::before,
-:where([data-indicate-focus='after' i]:focus-visible)::after {
-	outline: var(--focus-indication);
-	outline-offset: var(--focus-outside);
-}
-
-:where([data-indicate-focus]):focus {
-	outline: none;
 }
