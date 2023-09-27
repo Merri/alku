@@ -2,7 +2,6 @@
 	--mask-new-screen: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M20 4L9.99997 14M20 4L20 9.99999M20 4L14 3.99998M10 4H4V20H20V14' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/></svg>");
 }
 
-:where(a),
 [data-text~='link' i] {
 	color: var(--link-color);
 	cursor: pointer;

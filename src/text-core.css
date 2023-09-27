@@ -63,7 +63,6 @@
 	font-family: var(--default-font);
 }
 
-:where(code, kbd, pre, samp),
 [data-text~='mono' i] {
 	font-family: var(--mono-font);
 }
@@ -117,7 +116,6 @@
 	font-style: oblique 10deg;
 }
 
-:where(a),
 [data-text~='link' i],
 [data-text~='underline' i] {
 	text-decoration: underline;

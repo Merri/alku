@@ -130,7 +130,8 @@
 		--mark-color: color-mix(in oklab, Mark, currentColor 20%);
 		--mark-text-color: color-mix(in oklab, MarkText, currentColor 10%);
 		--accent-color: color-mix(in oklab, LinkText, CanvasText 35%);
-		--muted-color: color-mix(in oklab, transparent, currentColor 50%);
+		/* 65% is enough to pass WCAG AAA for normal text (black on white) */
+		--muted-color: color-mix(in oklab, transparent, currentColor 65%);
 		--negative-color: color-mix(in oklab, crimson, CanvasText 12.5%);
 		--positive-color: color-mix(in oklab, seagreen, CanvasText 12.5%);
 	}
@@ -280,6 +281,14 @@ hr {
 
 /* Text-level semantics
  * ========================================================================== */
+
+/* Provide underlined link style for anchor element */
+:where(a) {
+	color: var(--link-color);
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
 
 /* Add the correct text decoration in Safari. */
 :where(abbr[title]) {
