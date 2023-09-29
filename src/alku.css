@@ -51,6 +51,8 @@
 	--focus-indication: 3px solid var(--focus-color);
 	--focus-inside: -3px;
 	--focus-outside: 3px;
+
+	--content-width: 45rem;
 }
 
 @supports (color: AccentColor) {
@@ -200,6 +202,8 @@
 	font-feature-settings: 'tnum';
 	/* Use equal width numbers when available */
 	font-variant-numeric: tabular-nums;
+	/* The old way to allow stretching body to 100% viewport height */
+	height: 100%;
 	/* Improve readability */
 	line-height: 1.5;
 	/* Four space tab width for visual appeal */
@@ -218,18 +222,48 @@
  * ========================================================================== */
 
 :where(body) {
-	display: grid;
-	grid-template-columns: 1fr min(65rem, 90%) 1fr;
+	box-sizing: border-box;
 	margin: 0;
-	min-height: 100dvh;
+	min-height: 100%;
 }
 
-:where(body > *) {
+[data-content-column~='narrow'] {
+	--content-width: 35rem;
+}
+
+[data-content-column~='small'] {
+	--content-width: 40rem;
+}
+
+[data-content-column~='medium'] {
+	--content-width: 45rem;
+}
+
+[data-content-column~='large'] {
+	--content-width: 65rem;
+}
+
+[data-content-column~="center"] {
+	box-sizing: border-box;
+	margin-inline: auto;
+	padding-inline: 1rem;
+	max-width: var(--content-width);
+	width: 100%;
+}
+
+:where(body:not([data-content-column]), body[data-content-column~='simple']) {
+	display: grid;
+	grid-template-columns: 1fr min(var(--content-width), 90%) 1fr;
+	grid-template-rows: max-content;
+}
+
+:where(body:is(:not([data-content-column]), [data-content-column~='simple']) > *) {
 	grid-column: 2;
 }
 
-:where(body > footer),
-:where(body > header) {
+:where(body:is(:not([data-content-column]), [data-content-column~='simple']) > footer),
+:where(body:is(:not([data-content-column]), [data-content-column~='simple']) > header) {
+	align-self: flex-end;
 	grid-column: 1 / -1;
 }
 
