@@ -124,7 +124,7 @@
 }
 
 @supports (color: color-mix(in oklab, black, white 50%)) {
-	:where(:root:not([data-color-mix='false'] i)) {
+	:where(:root:not([data-color-mix='false' i])) {
 		--focus-color: color-mix(in oklab, color-mix(in oklab, Highlight, VisitedText 30%), currentColor 12.5%);
 		--kbd-color: color-mix(in oklab, CanvasText, currentColor 10%);
 		--kbd-border-color: color-mix(in oklab, CanvasText, currentColor 30%);
@@ -139,7 +139,7 @@
 	}
 
 	@supports (color: AccentColor) {
-		:where(:root:not([data-color-mix='false'] i)) {
+		:where(:root:not([data-color-mix='false' i])) {
 			--accent-color: color-mix(in oklab, AccentColor, CanvasText 35%);
 		}
 	}
@@ -227,23 +227,23 @@
 	min-height: 100%;
 }
 
-[data-content-column~='narrow'] {
+[data-content-column~='narrow' i] {
 	--content-width: 35rem;
 }
 
-[data-content-column~='small'] {
+[data-content-column~='small' i] {
 	--content-width: 40rem;
 }
 
-[data-content-column~='medium'] {
+[data-content-column~='medium' i] {
 	--content-width: 45rem;
 }
 
-[data-content-column~='large'] {
+[data-content-column~='large' i] {
 	--content-width: 65rem;
 }
 
-[data-content-column~="center"] {
+[data-content-column~='center' i] {
 	box-sizing: border-box;
 	margin-inline: auto;
 	padding-inline: 1rem;
@@ -251,18 +251,18 @@
 	width: 100%;
 }
 
-:where(body:not([data-content-column]), body[data-content-column~='simple']) {
+:where(body:not([data-content-column]), body[data-content-column~='simple' i]) {
 	display: grid;
 	grid-template-columns: 1fr min(var(--content-width), 90%) 1fr;
 	grid-template-rows: max-content;
 }
 
-:where(body:is(:not([data-content-column]), [data-content-column~='simple']) > *) {
+:where(body:is(:not([data-content-column]), [data-content-column~='simple' i]) > *) {
 	grid-column: 2;
 }
 
-:where(body:is(:not([data-content-column]), [data-content-column~='simple']) > footer),
-:where(body:is(:not([data-content-column]), [data-content-column~='simple']) > header) {
+:where(body:is(:not([data-content-column]), [data-content-column~='simple' i]) > footer),
+:where(body:is(:not([data-content-column]), [data-content-column~='simple' i]) > header) {
 	align-self: flex-end;
 	grid-column: 1 / -1;
 }
@@ -544,7 +544,7 @@ hr {
  * ========================================================================== */
 
 /* Correct the odd appearance in Chrome and Safari. */
-:where([type='search']) {
+:where([type='search' i]) {
 	-webkit-appearance: textfield;
 	appearance: textfield;
 }

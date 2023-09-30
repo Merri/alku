@@ -12,7 +12,7 @@
 }
 
 @supports (color: color-mix(in oklab, black, white 50%)) {
-	:where(:root:not([data-color-mix='false'] i) :is(button, [data-button], [type='file' i])) {
+	:where(:root:not([data-color-mix='false' i]) :is(button, [data-button], [type='file' i])) {
 		--canvas-border: color-mix(
 			in oklab,
 			var(--button-color-background, Canvas),
