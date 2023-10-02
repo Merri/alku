@@ -8,14 +8,21 @@
 
 	--default-font: sans-serif, var(--emoji-font);
 	--heading-font: serif, var(--emoji-font);
-	--marker-font: var(--mono-font-stack);
 	--mono-font: var(--mono-font-stack);
 
+	--highlight-02: rgb(255 255 255 / 2%);
+	--highlight-04: rgb(255 255 255 / 4%);
+	--highlight-06: rgb(255 255 255 / 6%);
+	--highlight-08: rgb(255 255 255 / 8%);
 	--highlight-10: rgb(255 255 255 / 10%);
 	--highlight-30: rgb(255 255 255 / 30%);
 	--highlight-50: rgb(255 255 255 / 50%);
 	--highlight-70: rgb(255 255 255 / 70%);
 	--highlight-90: rgb(255 255 255 / 90%);
+	--shadow-02: rgb(0 0 0 / 2%);
+	--shadow-04: rgb(0 0 0 / 4%);
+	--shadow-06: rgb(0 0 0 / 6%);
+	--shadow-08: rgb(0 0 0 / 8%);
 	--shadow-10: rgb(0 0 0 / 10%);
 	--shadow-30: rgb(0 0 0 / 30%);
 	--shadow-50: rgb(0 0 0 / 50%);
@@ -52,6 +59,7 @@
 	--focus-inside: -3px;
 	--focus-outside: 3px;
 
+	/* Same as in `[data-grid="mediumContent"]` = roughly the size of 80ch. */
 	--content-width: 45rem;
 }
 
@@ -78,6 +86,10 @@
 
 :where([data-color*='light' i]:not([data-color*='dark' i])) {
 	color-scheme: light;
+	--muted-02: var(--shadow-02);
+	--muted-04: var(--shadow-04);
+	--muted-06: var(--shadow-06);
+	--muted-08: var(--shadow-08);
 	--muted-10: var(--shadow-10);
 	--muted-30: var(--shadow-30);
 	--muted-50: var(--shadow-50);
@@ -90,6 +102,10 @@
 /* muted variants like this are especially useful when color-mix is not supported */
 @media (prefers-color-scheme: light) {
 	:where(:root) {
+		--muted-02: var(--shadow-02);
+		--muted-04: var(--shadow-04);
+		--muted-06: var(--shadow-06);
+		--muted-08: var(--shadow-08);
 		--muted-10: var(--shadow-10);
 		--muted-30: var(--shadow-30);
 		--muted-50: var(--shadow-50);
@@ -102,6 +118,10 @@
 
 :where([data-color*='dark' i]:not([data-color*='light' i])) {
 	color-scheme: dark;
+	--muted-02: var(--highlight-02);
+	--muted-04: var(--highlight-04);
+	--muted-06: var(--highlight-06);
+	--muted-08: var(--highlight-08);
 	--muted-10: var(--highlight-10);
 	--muted-30: var(--highlight-30);
 	--muted-50: var(--highlight-50);
@@ -113,6 +133,10 @@
 
 @media (prefers-color-scheme: dark) {
 	:where(:root) {
+		--muted-02: var(--highlight-02);
+		--muted-04: var(--highlight-04);
+		--muted-06: var(--highlight-06);
+		--muted-08: var(--highlight-08);
 		--muted-10: var(--highlight-10);
 		--muted-30: var(--highlight-30);
 		--muted-50: var(--highlight-50);
@@ -196,13 +220,15 @@
  * ========================================================================== */
 
 :where(:root) {
+	/* Support dark and light mode out-of-the-box */
 	color-scheme: dark light;
+	/* Default to a sans-serif font for commonly desired readability */
 	font-family: var(--default-font);
 	/* Use equal width numbers when available */
 	font-feature-settings: 'tnum';
 	/* Use equal width numbers when available */
 	font-variant-numeric: tabular-nums;
-	/* The old way to allow stretching body to 100% viewport height */
+	/* Allow minimum 100% viewport height for body */
 	height: 100%;
 	/* Improve readability */
 	line-height: 1.5;
@@ -222,49 +248,58 @@
  * ========================================================================== */
 
 :where(body) {
+	/* Allow adding borders and padding without scrollbar getting added even when content is not tall enough. */
 	box-sizing: border-box;
+	/* Do not add scrollbars; also a commonly desired style for body. */
 	margin: 0;
+	/* Let body cover the full viewport height. Depends on html having `height: 100%;`. */
 	min-height: 100%;
 }
 
-[data-content-column~='narrow' i] {
-	--content-width: 35rem;
-}
-
-[data-content-column~='small' i] {
-	--content-width: 40rem;
-}
-
-[data-content-column~='medium' i] {
-	--content-width: 45rem;
-}
-
-[data-content-column~='large' i] {
-	--content-width: 65rem;
-}
-
-[data-content-column~='center' i] {
-	box-sizing: border-box;
-	margin-inline: auto;
-	padding-inline: 1rem;
-	max-width: var(--content-width);
-	width: 100%;
-}
-
-:where(body:not([data-content-column]), body[data-content-column~='simple' i]) {
+:where(body:not([data-grid])),
+[data-grid]:where(:not([data-grid='false' i])) {
 	display: grid;
-	grid-template-columns: 1fr min(var(--content-width), 90%) 1fr;
+}
+
+/* The grid column idea is stolen from Simple.css */
+:where(body:not([data-grid])),
+[data-grid*='content ' i],
+[data-grid$='content' i] {
+	/* Three columns where middle is for content. */
+	grid-template-columns: 1fr min(var(--content-width, 45rem), 90%) 1fr;
+	/* Only allow the last grid item to stretch when viewport taller than total content. */
 	grid-template-rows: max-content;
 }
 
-:where(body:is(:not([data-content-column]), [data-content-column~='simple' i]) > *) {
+:where(body:not([data-grid]), [data-grid*='content ' i], [data-grid$='content' i]) > :where(:not(footer, header)) {
+	/* Place everything except footer and header to center column. */
 	grid-column: 2;
 }
 
-:where(body:is(:not([data-content-column]), [data-content-column~='simple' i]) > footer),
-:where(body:is(:not([data-content-column]), [data-content-column~='simple' i]) > header) {
+:where(body:not([data-grid]), [data-grid*='content ' i], [data-grid$='content' i]) > :where(footer, header) {
+	/* Keep footer content at the very bottom. */
 	align-self: flex-end;
+	/* Extend to all three columns. */
 	grid-column: 1 / -1;
+}
+
+[data-grid~='narrowContent' i] {
+	/* About 60ch */
+	--content-width: 35rem;
+}
+
+[data-grid~='smallContent' i] {
+	/* About 70ch */
+	--content-width: 40rem;
+}
+
+[data-grid~='mediumContent' i] {
+	/* About 80ch */
+	--content-width: 45rem;
+}
+
+[data-grid~='largeContent' i] {
+	--content-width: 65rem;
 }
 
 /* Correct the font size on `h1` elements within `section` and `article` contexts in Chrome, Edge, Firefox, and Safari. */
@@ -444,9 +479,11 @@ hr {
 	text-indent: 0;
 }
 
-/* Workaround glitch in Chrome and Firefox border rendering when background color is applied to table cell */
+/* Remove border rendering glitch when a background is applied to table cell that is given a filter. */
 :where(td, th) {
+	/* In Firefox the undesired appearance always occurs, but not when border is excluded from background draw area. */
 	background-clip: padding-box;
+	/* In Chromiums the undesired appearance triggers when adding filter via JS, but not when filter already exists. */
 	filter: brightness(1);
 }
 

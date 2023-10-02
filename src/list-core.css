@@ -1,4 +1,5 @@
 :where(:root) {
+	--marker-font: var(--mono-font-stack);
 	--ol-indent: 2em;
 	--ul-indent: 1.375em;
 }
