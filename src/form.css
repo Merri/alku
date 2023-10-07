@@ -6,7 +6,7 @@
 	--option-size: 1.5rem;
 }
 
-@supports (color: color-mix(in lch, black, white 50%)) {
+@supports (color: color-mix(in lch, tan, tan 0%)) {
 	:where(:root) {
 		--option-muted-color: color-mix(in lch, FieldText, Field 50%);
 	}
@@ -161,6 +161,7 @@
 
 :where(label > :is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) {
 	flex: 100%;
+	min-width: 0;
 }
 
 :where(:is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) ~ [data-text-color='state' i] {
@@ -193,7 +194,7 @@
 	color: var(--option-background-color);
 	display: inline-grid;
 	font-size: calc(var(--option-size) - 0.5rem);
-	font-weight: bolder;
+	font-weight: var(--default-bolder-weight, bolder);
 	height: var(--option-size);
 	line-height: 1;
 	place-content: center;

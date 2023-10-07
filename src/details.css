@@ -3,6 +3,7 @@
 }
 
 :where(details) {
+	background: var(--muted-02);
 	border: 0.125rem solid var(--muted-10);
 	border-radius: 0.25rem;
 	font-size: var(--default-font-size);
@@ -11,7 +12,7 @@
 }
 
 :where(summary) {
-	font-weight: 600;
+	font-weight: var(--default-bold-weight, bold);
 	margin: 0 -1rem;
 	padding: 1rem;
 	padding-inline-end: 3rem;

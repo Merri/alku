@@ -35,7 +35,6 @@
 	--code-border-color: var(--code-color);
 	--code-text-color: currentColor;
 	--focus-color: Highlight;
-	--hash-underline-color: var(--muted-30);
 	--kbd-color: CanvasText;
 	--kbd-border-color: var(--muted-30);
 	--kbd-text-color: Canvas;
@@ -50,9 +49,11 @@
 	--positive-color-text: white;
 
 	/* Chrome Windows has a light mode ButtonBorder color of #000 which is insanely dark! So... a workaround. */
-	--button-border: ButtonBorder;
+	--ButtonBorder: ButtonBorder;
 	/* Chrome Windows has a dark mode ButtonFace color of #6B6B6B which is way too light! So... a workaround. */
-	--button-face: ButtonFace;
+	--ButtonFace: ButtonFace;
+
+	--link-hash-underline-color: var(--muted-30);
 
 	/* Strong focus indicator */
 	--focus-indication: 3px solid var(--focus-color);
@@ -70,21 +71,21 @@
 }
 
 /* Color utility */
-:where([data-color~='canvas' i]) {
+[data-color~='canvas' i] {
 	background-color: Canvas;
 	color: CanvasText;
 }
 
-:where([data-color~='contrast' i]) {
+[data-color~='contrast' i] {
 	background-color: CanvasText;
 	color: Canvas;
 }
 
-:where([data-color*='dark' i][data-color*='light' i]) {
+[data-color*='dark' i]:where([data-color*='light' i]) {
 	color-scheme: dark light;
 }
 
-:where([data-color*='light' i]:not([data-color*='dark' i])) {
+[data-color*='light' i]:where(:not([data-color*='dark' i])) {
 	color-scheme: light;
 	--muted-02: var(--shadow-02);
 	--muted-04: var(--shadow-04);
@@ -96,7 +97,7 @@
 	--muted-70: var(--shadow-70);
 	--muted-90: var(--shadow-90);
 
-	--button-border: var(--muted-10);
+	--ButtonBorder: var(--muted-10);
 }
 
 /* muted variants like this are especially useful when color-mix is not supported */
@@ -112,11 +113,11 @@
 		--muted-70: var(--shadow-70);
 		--muted-90: var(--shadow-90);
 
-		--button-border: var(--muted-10);
+		--ButtonBorder: var(--muted-10);
 	}
 }
 
-:where([data-color*='dark' i]:not([data-color*='light' i])) {
+[data-color*='dark' i]:where(:not([data-color*='light' i])) {
 	color-scheme: dark;
 	--muted-02: var(--highlight-02);
 	--muted-04: var(--highlight-04);
@@ -128,7 +129,7 @@
 	--muted-70: var(--highlight-70);
 	--muted-90: var(--highlight-90);
 
-	--button-face: Canvas;
+	--ButtonFace: Canvas;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -143,11 +144,11 @@
 		--muted-70: var(--highlight-70);
 		--muted-90: var(--highlight-90);
 
-		--button-face: Canvas;
+		--ButtonFace: Canvas;
 	}
 }
 
-@supports (color: color-mix(in oklab, black, white 50%)) {
+@supports (color: color-mix(in oklab, tan, tan 0%)) {
 	:where(:root:not([data-color-mix='false' i])) {
 		--focus-color: color-mix(in oklab, color-mix(in oklab, Highlight, VisitedText 30%), currentColor 12.5%);
 		--kbd-color: color-mix(in oklab, CanvasText, currentColor 10%);
@@ -165,6 +166,16 @@
 	@supports (color: AccentColor) {
 		:where(:root:not([data-color-mix='false' i])) {
 			--accent-color: color-mix(in oklab, AccentColor, CanvasText 35%);
+		}
+	}
+
+	[data-color*='dark' i]:where(:not([data-color*='light' i])) {
+		--ButtonFace: color-mix(in oklab, ButtonFace, Canvas 65%);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:where(:root) {
+			--ButtonFace: color-mix(in oklab, ButtonFace, Canvas 65%);
 		}
 	}
 }
@@ -198,7 +209,7 @@
 
 :where(:focus-visible) {
 	outline: var(--focus-indication);
-	outline-offset: var(--focus-outside);
+	outline-offset: var(--focus-offset, var(--focus-outside));
 }
 
 /* Indicate element is busy */
@@ -239,9 +250,34 @@
 	/* Disable font size adjustment on orientation changes in iOS */
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
+	/* More gap to underline for visual appeal */
+	text-underline-offset: 0.25em;
 	/* Alternate font aliasing on Apple devices */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography
+ * ========================================================================== */
+
+/* Remove italics for easier reading by default. */
+:where(address, optgroup) {
+	font-style: normal;
+}
+
+/* Allow adjusting default italic via CSS variable. */
+:where(cite, em, i, q, var) {
+	font-style: var(--default-italic, oblique);
+}
+
+/* Allow adjusting default bold via CSS variable. */
+:where(h1, h2, h3, h4, h5, h6, optgroup, strong, th) {
+	font-weight: var(--default-bold-weight, bold);
+}
+
+/* Allow adjusting default bolder via CSS variable. */
+:where(b) {
+	font-weight: var(--default-bolder-weight, bolder);
 }
 
 /* Sections
@@ -331,6 +367,19 @@
 	margin-block: 0;
 }
 
+/* Reset menu styles as it's recommended use is for toolbars / interactive controls */
+:where(menu) {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Designate menu list items as inline to make items render horizontally by default */
+:where(menu > li) {
+	display: inline;
+	margin: 0;
+}
+
 /* Win over a global star reset even if it is imported later */
 hr {
 	box-sizing: border-box;
@@ -356,7 +405,12 @@ hr {
 	color: var(--link-color);
 	cursor: pointer;
 	text-decoration: underline;
-	text-underline-offset: 0.25em;
+	text-underline-offset: var(--link-underline-offset, 0.25em);
+}
+
+/* Decrease underline color strength on links within list elements and in page internal hash links */
+:where(:is(li > a, a[href^='#']):not(:hover, :active)) {
+	text-decoration-color: var(--link-hash-underline-color);
 }
 
 /* Add the correct text decoration in Safari. */
@@ -532,11 +586,6 @@ hr {
 /* Correct the inability to style buttons in iOS and Safari. */
 :where(button, [type='button' i], [type='reset' i], [type='submit' i]) {
 	-webkit-appearance: button;
-}
-
-/* Remove italics for easier reading by default. */
-:where(address, optgroup) {
-	font-style: normal;
 }
 
 /* Resizing both X & Y is hard for some users, and easily breaks layouts. */

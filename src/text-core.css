@@ -15,7 +15,11 @@
 
 	--default-font-size: var(--font-size-16);
 	--default-font-weight: 400;
+	--default-bold-weight: 600;
+	--default-bolder-weight: 700;
+	--default-italic: oblique 10deg;
 
+	--heading-font-weight: var(--default-bold-weight);
 	--heading-line-height: 1.25;
 }
 
@@ -41,7 +45,7 @@
 	font-weight: var(--default-font-weight);
 }
 
-[data-text~='sans' i] {
+[data-text~='sansserif' i] {
 	font-family: sans-serif, var(--emoji-font);
 }
 
@@ -87,14 +91,10 @@
 	font-weight: 500;
 }
 
-:where(h1, h2, h3, h4, h5, h6, strong, optgroup),
-[data-text~='semibold' i],
-[data-text^='heading' i],
-[data-text*=' heading' i] {
+[data-text~='semibold' i] {
 	font-weight: 600;
 }
 
-:where(b),
 [data-text~='bold' i] {
 	font-weight: 700;
 }
@@ -111,19 +111,23 @@
 	font-weight: 950;
 }
 
-:where(cite, em, i),
 [data-text~='italic' i] {
-	font-style: oblique 10deg;
+	font-style: var(--default-italic);
 }
 
 [data-text~='link' i],
 [data-text~='underline' i] {
 	text-decoration: underline;
-	text-underline-offset: 0.25em;
 }
 
-:where(:is(li > a, a[href^='#']):not(:hover, :active)) {
-	text-decoration-color: var(--hash-underline-color);
+[data-text~='link' i] {
+	text-underline-offset: var(--link-underline-offset, 0.25em);
+}
+
+:where(h1, h2, h3, h4, h5, h6),
+[data-text^='heading' i],
+[data-text*=' heading' i] {
+	font-weight: var(--heading-font-weight);
 }
 
 :where(h1),

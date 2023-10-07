@@ -1,3 +1,10 @@
+:where(:root) {
+	--button-font-size: var(--default-font-size, 1rem);
+	--button-font-weight: var(--default-bold-weight, bold);
+	--button-gap: 0.5rem;
+	--button-line-height: 1;
+}
+
 /* fallback colors for color-mix */
 :where(button, [data-button], [type='file' i]) {
 	--system-hover: var(--muted-10);
@@ -11,27 +18,10 @@
 	--canvas-contrast-active: var(--muted-30);
 }
 
-@supports (color: color-mix(in oklab, black, white 50%)) {
-	:where(:root:not([data-color-mix='false' i]) :is(button, [data-button], [type='file' i])) {
-		--canvas-border: color-mix(
-			in oklab,
-			var(--button-color-background, Canvas),
-			var(--button-color-text, CanvasText) 50%
-		);
-		--canvas-hover: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 25%);
-		--canvas-active: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 50%);
-		--button-face: color-mix(in oklab, ButtonFace, Canvas 65%);
-		--system-contrast-hover: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 15%);
-		--system-contrast-active: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 25%);
-		--canvas-contrast-hover: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 15%);
-		--canvas-contrast-active: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 25%);
-	}
-}
-
 /* default system theme */
 :where(button:not([data-button]), [type='file' i], [data-button~='systemColor' i]) {
-	--button-color-background: var(--button-face);
-	--button-color-border: var(--button-border);
+	--button-color-background: var(--ButtonFace);
+	--button-color-border: var(--ButtonBorder);
 	--button-color-text: ButtonText;
 	--button-color-hover: var(--system-hover);
 	--button-color-active: var(--system-active);
@@ -40,15 +30,29 @@
 :where([data-button~='systemContrast' i]) {
 	--button-color-background: ButtonText;
 	--button-color-border: transparent;
-	--button-color-text: var(--button-face);
+	--button-color-text: var(--ButtonFace);
 	--button-color-hover: var(--system-contrast-hover);
 	--button-color-active: var(--system-contrast-active);
 	--button-color-on-state: var(--muted-10);
 }
 
-@supports (color: color-mix(in oklab, black, white 50%)) {
+@supports (color: color-mix(in oklab, tan, tan 0%)) {
+	:where(:root:not([data-color-mix='false' i]) :is(button, [data-button], [type='file' i])) {
+		--canvas-border: color-mix(
+			in oklab,
+			var(--button-color-background, Canvas),
+			var(--button-color-text, CanvasText) 50%
+		);
+		--canvas-hover: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 25%);
+		--canvas-active: color-mix(in oklab, var(--button-color-background, Canvas), Highlight 50%);
+		--system-contrast-hover: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 15%);
+		--system-contrast-active: color-mix(in oklab, var(--button-color-background, ButtonText), currentColor 25%);
+		--canvas-contrast-hover: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 15%);
+		--canvas-contrast-active: color-mix(in oklab, var(--button-color-background, CanvasText), currentColor 25%);
+	}
+
 	:where([data-button~='systemContrast' i]) {
-		--button-color-on-state: color-mix(in oklab, transparent, var(--button-face) 35%);
+		--button-color-on-state: color-mix(in oklab, transparent, var(--ButtonFace) 35%);
 	}
 }
 
@@ -131,10 +135,10 @@
 	cursor: pointer;
 	display: inline-flex;
 	flex-flow: wrap;
-	font-size: var(--default-font-size);
-	font-weight: 600;
-	gap: 0.5rem;
-	line-height: 1;
+	font-size: var(--button-font-size);
+	font-weight: var(--button-font-weight);
+	gap: var(--button-gap);
+	line-height: var(--button-line-height);
 	padding: 0;
 	place-content: center;
 	position: relative;
