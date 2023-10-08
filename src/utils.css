@@ -10,6 +10,10 @@
 	display: inline-grid;
 }
 
+[data--~='newRow' i] {
+	grid-column: 1;
+}
+
 [data--~='fullRow' i] {
 	grid-column: 1 / -1;
 }
@@ -34,8 +38,16 @@
 	max-width: 100%;
 }
 
-[data--~='noWrap' i] {
-	white-space: nowrap;
+@supports not (text-wrap: nowrap) {
+	[data--~='noWrap' i] {
+		white-space: nowrap;
+	}
+}
+
+@supports (text-wrap: nowrap) {
+	[data--~='noWrap' i] {
+		text-wrap: nowrap;
+	}
 }
 
 [data--~='100%'] {
@@ -62,11 +74,15 @@
 	position: absolute;
 }
 
+[data--~='focus' i]:where(:not(:focus-within)) {
+	--focus-offset: unset;
+}
+
 /* Show focus indicator */
-[data--~='focus' i],
+[data--~='focus' i]:where(:not(:focus-within)),
 /* Relocate focus indicator */
-:where([data--~='focus::before' i]:is(:focus-visible, [data--~='focus' i]))::before,
-:where([data--~='focus::after' i]:is(:focus-visible, [data--~='focus' i]))::after {
+:where([data--~='focus::before' i]:is(:focus-visible, [data--~='focus' i]:not(:focus-within)))::before,
+:where([data--~='focus::after' i]:is(:focus-visible, [data--~='focus' i]:not(:focus-within)))::after {
 	outline: var(--focus-indication);
 	outline-offset: var(--focus-offset, var(--focus-outside));
 }

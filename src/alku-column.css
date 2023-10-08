@@ -1,0 +1,51 @@
+:where(:root) {
+	/* Same as in `[data-column="mediumContent"]` = roughly the size of 80ch. */
+	--content-width: 45rem;
+}
+
+:where(body:not([data-column])),
+[data-column]:where(:not([data-column='false' i])) {
+	display: grid;
+}
+
+/* The grid column idea is stolen from Simple.css */
+:where(body:not([data-column])),
+[data-column*='content ' i],
+[data-column$='content' i] {
+	/* Three columns where middle is for content. */
+	grid-template-columns: 1fr min(var(--content-width, 45rem), 90%) 1fr;
+	/* Only allow the last grid item to stretch when viewport taller than total content. */
+	grid-template-rows: max-content;
+}
+
+:where(body:not([data-column]), [data-column*='content ' i], [data-column$='content' i]) > :where(:not(footer, header)) {
+	/* Place everything except footer and header to center column. */
+	grid-column: 2;
+}
+
+:where(body:not([data-column]), [data-column*='content ' i], [data-column$='content' i]) > :where(footer, header) {
+	/* Keep footer content at the very bottom. */
+	align-self: flex-end;
+	/* Extend to all three columns. */
+	grid-column: 1 / -1;
+}
+
+[data-column~='narrowContent' i] {
+	/* About 60ch */
+	--content-width: 35rem;
+}
+
+[data-column~='smallContent' i] {
+	/* About 70ch */
+	--content-width: 40rem;
+}
+
+[data-column~='mediumContent' i] {
+	/* About 80ch */
+	--content-width: 45rem;
+}
+
+[data-column~='largeContent' i] {
+	--content-width: 65rem;
+}
+

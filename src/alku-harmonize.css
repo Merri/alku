@@ -29,6 +29,9 @@
 	--shadow-70: rgb(0 0 0 / 70%);
 	--shadow-90: rgb(0 0 0 / 90%);
 
+	--base-negative-color: crimson;
+	--base-positive-color: seagreen;
+
 	/* we do not use LinkText for links (by default) so it "frees" it up to use as AccentColor fallback */
 	--accent-color: LinkText;
 	--code-color: var(--shadow-10);
@@ -43,9 +46,9 @@
 	--mark-border-color: var(--mark-color);
 	--mark-text-color: MarkText;
 	--muted-color: GrayText;
-	--negative-color: crimson;
+	--negative-color: var(--base-negative-color);
 	--negative-color-text: white;
-	--positive-color: seagreen;
+	--positive-color: var(--base-positive-color);
 	--positive-color-text: white;
 
 	/* Chrome Windows has a light mode ButtonBorder color of #000 which is insanely dark! So... a workaround. */
@@ -59,9 +62,6 @@
 	--focus-indication: 3px solid var(--focus-color);
 	--focus-inside: -3px;
 	--focus-outside: 3px;
-
-	/* Same as in `[data-grid="mediumContent"]` = roughly the size of 80ch. */
-	--content-width: 45rem;
 }
 
 @supports (color: AccentColor) {
@@ -150,7 +150,7 @@
 
 @supports (color: color-mix(in oklab, tan, tan 0%)) {
 	:where(:root:not([data-color-mix='false' i])) {
-		--focus-color: color-mix(in oklab, color-mix(in oklab, Highlight, VisitedText 30%), currentColor 12.5%);
+		--focus-color: color-mix(in oklab, color-mix(in oklab, Highlight, VisitedText 25%), CanvasText 30%);
 		--kbd-color: color-mix(in oklab, CanvasText, currentColor 10%);
 		--kbd-border-color: color-mix(in oklab, CanvasText, currentColor 30%);
 		--kbd-text-color: color-mix(in oklab, Canvas, currentColor 10%);
@@ -159,8 +159,8 @@
 		--accent-color: color-mix(in oklab, LinkText, CanvasText 35%);
 		/* 65% is enough to pass WCAG AAA for normal text (black on white) */
 		--muted-color: color-mix(in oklab, transparent, currentColor 65%);
-		--negative-color: color-mix(in oklab, crimson, CanvasText 12.5%);
-		--positive-color: color-mix(in oklab, seagreen, CanvasText 12.5%);
+		--negative-color: color-mix(in oklab, var(--base-negative-color), CanvasText 12.5%);
+		--positive-color: color-mix(in oklab, var(--base-positive-color), CanvasText 12.5%);
 	}
 
 	@supports (color: AccentColor) {
@@ -208,6 +208,7 @@
 }
 
 :where(:focus-visible) {
+	--focus-offset: unset;
 	outline: var(--focus-indication);
 	outline-offset: var(--focus-offset, var(--focus-outside));
 }
@@ -292,52 +293,6 @@
 	min-height: 100%;
 }
 
-:where(body:not([data-grid])),
-[data-grid]:where(:not([data-grid='false' i])) {
-	display: grid;
-}
-
-/* The grid column idea is stolen from Simple.css */
-:where(body:not([data-grid])),
-[data-grid*='content ' i],
-[data-grid$='content' i] {
-	/* Three columns where middle is for content. */
-	grid-template-columns: 1fr min(var(--content-width, 45rem), 90%) 1fr;
-	/* Only allow the last grid item to stretch when viewport taller than total content. */
-	grid-template-rows: max-content;
-}
-
-:where(body:not([data-grid]), [data-grid*='content ' i], [data-grid$='content' i]) > :where(:not(footer, header)) {
-	/* Place everything except footer and header to center column. */
-	grid-column: 2;
-}
-
-:where(body:not([data-grid]), [data-grid*='content ' i], [data-grid$='content' i]) > :where(footer, header) {
-	/* Keep footer content at the very bottom. */
-	align-self: flex-end;
-	/* Extend to all three columns. */
-	grid-column: 1 / -1;
-}
-
-[data-grid~='narrowContent' i] {
-	/* About 60ch */
-	--content-width: 35rem;
-}
-
-[data-grid~='smallContent' i] {
-	/* About 70ch */
-	--content-width: 40rem;
-}
-
-[data-grid~='mediumContent' i] {
-	/* About 80ch */
-	--content-width: 45rem;
-}
-
-[data-grid~='largeContent' i] {
-	--content-width: 65rem;
-}
-
 /* Correct the font size on `h1` elements within `section` and `article` contexts in Chrome, Edge, Firefox, and Safari. */
 :where(h1) {
 	font-size: 2em;
@@ -417,6 +372,18 @@ hr {
 :where(abbr[title]) {
 	text-decoration: underline;
 	text-decoration: underline dotted;
+}
+
+:where(code > b) {
+	font-weight: inherit;
+}
+
+:where(code > i) {
+	font-style: inherit;
+}
+
+:where(code > u) {
+	text-decoration: inherit;
 }
 
 :where(code, kbd, pre, samp) {
