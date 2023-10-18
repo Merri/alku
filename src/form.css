@@ -151,10 +151,6 @@
 	vertical-align: top;
 }
 
-:where(legend + label) {
-	margin-top: 1rem;
-}
-
 :where(label > *) {
 	user-select: text;
 }

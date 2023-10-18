@@ -31,7 +31,7 @@
 	letter-spacing: inherit;
 }
 
-[data-text] {
+[data-text]:where(:not([data-button], button, input, select, textarea)) {
 	color: inherit;
 	margin: 0;
 	padding: 0;
@@ -121,7 +121,7 @@
 }
 
 [data-text~='link' i] {
-	text-underline-offset: var(--link-underline-offset, 0.25em);
+	text-underline-offset: var(--link-underline-offset, 0.375em);
 }
 
 :where(h1, h2, h3, h4, h5, h6),

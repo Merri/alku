@@ -18,7 +18,7 @@
 	grid-column: 1 / -1;
 }
 
-[data--~='gap½' i] {
+[data--~='gap\C2\BD' i] {
 	gap: 0.5rem;
 }
 
@@ -26,7 +26,7 @@
 	gap: 1rem;
 }
 
-[data--~='gap1½' i] {
+[data--~='gap1\C2\BD' i] {
 	gap: 1.5rem;
 }
 
