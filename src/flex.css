@@ -1,0 +1,16 @@
+[data-flex] {
+	box-sizing: border-box;
+	max-inline-size: 100%;
+}
+
+[data-flex='auto' i] {
+	flex: auto;
+}
+
+[data-flex='100%' i] {
+	flex: 100%;
+}
+
+[data-flex='none' i] {
+	flex: none;
+}

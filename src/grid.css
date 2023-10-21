@@ -1,5 +1,13 @@
-[data-grid] {
+[data-grid]:where(:not([data-grid~='inline' i])) {
 	display: grid;
+}
+
+[data-grid~='inline' i] {
+	display: inline-grid;
+}
+
+[data-grid]:where([hidden]) {
+	display: none;
 }
 
 [data-grid~='centerItems' i] {
@@ -11,8 +19,8 @@
 }
 
 [data-grid~='auto' i] {
-	--grid-auto: var(--default-grid-auto, 16rem);
-	gap: 1rem;
+	--grid-auto: var(--min-desired-size, 16rem);
+	gap: var(--default-spacing, 1rem);
 	/* I think this was stolen somewhere from https://moderncss.dev */
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-auto)), 1fr));
 	grid-template-rows: unset;

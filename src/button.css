@@ -119,9 +119,9 @@
 }
 
 /* all basic button resets + desirable default behavior: color CSS vars, icon support, alignment */
-:where(button),
+:where(button:not([hidden])),
 ::file-selector-button,
-[data-button]:where(:not([type='file' i])) {
+[data-button]:where(:not([hidden], [type='file' i])) {
 	-webkit-appearance: none;
 	appearance: none;
 	background-color: var(--button-color-background, transparent);

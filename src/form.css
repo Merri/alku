@@ -30,8 +30,8 @@
 	border: 0.125rem solid var(--option-muted-color);
 	border-radius: 0.25rem;
 	color: var(--option-color);
-	padding: 0.625rem 1rem;
-	scroll-padding: 0.625rem 1rem;
+	padding: 0.625rem var(--default-spacing, 1rem);
+	scroll-padding: 0.625rem var(--default-spacing, 1rem);
 }
 
 :where(input):is([type='button' i], [type='reset' i], [type='submit' i]), /* Use <button /> */
@@ -49,14 +49,16 @@
 	padding: 0.125rem;
 }
 
-:where([type='range' i]) {
+:where([type='range' i]:not([hidden])) {
 	--outline: unset;
 	--outline-offset: unset;
+	--range-size: calc(var(--default-spacing, 1rem) * 0.5);
+	--range-thumb-size: calc(var(--default-spacing, 1rem) * 1.5);
 	-webkit-appearance: none;
 	appearance: none;
 	background: unset;
 	display: inline-grid;
-	height: 0.5rem;
+	height: calc(var(--default-spacing, 1rem) * 0.5);
 	outline: none;
 }
 
@@ -74,7 +76,7 @@
 	border: 0.125rem solid var(--option-muted-color);
 	border-radius: 0.25rem;
 	box-sizing: border-box;
-	height: 0.5rem;
+	height: var(--range-size);
 	outline: var(--outline);
 	outline-offset: var(--outline-offset);
 }
@@ -84,7 +86,7 @@
 	border: 0.125rem solid var(--option-muted-color);
 	border-radius: 0.25rem;
 	box-sizing: border-box;
-	height: 0.5rem;
+	height: var(--range-size);
 	outline: var(--outline);
 	outline-offset: var(--outline-offset);
 }
@@ -95,11 +97,11 @@
 	background: var(--option-color);
 	border-radius: 50%;
 	box-shadow: 0 0 0 0.125rem var(--option-background-color);
-	height: 1.5rem;
+	height: var(--range-thumb-size);
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%) scale(var(--thumb-scale, 1));
-	width: 1.5rem;
+	width: var(--range-thumb-size);
 }
 
 ::-moz-range-thumb {
@@ -109,11 +111,11 @@
 	border: none;
 	border-radius: 50%;
 	box-shadow: 0 0 0 0.125rem var(--option-background-color);
-	height: 1.5rem;
+	height: var(--range-thumb-size);
 	position: relative;
 	top: 50%;
 	transform: translateY(0%) scale(var(--thumb-scale, 1));
-	width: 1.5rem;
+	width: var(--range-thumb-size);
 }
 
 :where(:active)::-webkit-slider-thumb {
@@ -139,16 +141,20 @@
 	padding-inline-end: 3rem;
 }
 
-:where(label) {
+:where(label:not([hidden])) {
 	align-items: center;
 	align-self: flex-start;
 	display: inline-flex;
 	flex-wrap: wrap;
-	gap: 0.25rem 0.5rem;
-	padding: 0.25rem;
+	gap: calc(var(--default-spacing, 1rem) * 0.25) calc(var(--default-spacing, 1rem) * 0.5);
+	padding: calc(var(--default-spacing, 1rem) * 0.25);
 	position: relative;
 	user-select: none;
 	vertical-align: top;
+}
+
+:where(:is(input, select, textarea) ~ label, :has(> :is(input, select, textarea)) > label) {
+	align-self: unset;
 }
 
 :where(label > *) {
@@ -157,7 +163,7 @@
 
 :where(label > :is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) {
 	flex: 100%;
-	min-width: 0;
+	min-inline-size: 0;
 }
 
 :where(:is(input:not([type='checkbox' i], [type='radio' i]), select, textarea)) ~ [data-text-color='state' i] {
@@ -181,7 +187,7 @@
 	outline: none;
 }
 
-:where(:is([type='checkbox' i], [type='radio' i])) {
+:where(:is([type='checkbox' i], [type='radio' i]):not([hidden])) {
 	-webkit-appearance: none;
 	appearance: none;
 	aspect-ratio: 1 / 1;

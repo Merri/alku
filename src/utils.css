@@ -1,15 +1,3 @@
-[data--~='inlineBlock' i] {
-	display: inline-block;
-}
-
-[data--~='inlineFlex' i] {
-	display: inline-flex;
-}
-
-[data--~='inlineGrid' i] {
-	display: inline-grid;
-}
-
 [data--~='newRow' i] {
 	grid-column: 1;
 }
@@ -18,40 +6,12 @@
 	grid-column: 1 / -1;
 }
 
-[data--~='gap\C2\BD' i] {
-	gap: 0.5rem;
-}
-
-[data--~='gap1' i] {
-	gap: 1rem;
-}
-
-[data--~='gap1\C2\BD' i] {
-	gap: 1.5rem;
-}
-
-[data--~='gap2' i] {
-	gap: 2rem;
-}
-
 [data--~='max100%' i] {
-	max-width: 100%;
-}
-
-@supports not (text-wrap: nowrap) {
-	[data--~='noWrap' i] {
-		white-space: nowrap;
-	}
-}
-
-@supports (text-wrap: nowrap) {
-	[data--~='noWrap' i] {
-		text-wrap: nowrap;
-	}
+	max-inline-size: 100%;
 }
 
 [data--~='100%'] {
-	width: 100%;
+	inline-size: 100%;
 }
 
 [data--~='bottom' i] {

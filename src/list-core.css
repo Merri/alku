@@ -6,7 +6,7 @@
 
 /* List that aligns to content next to floats. */
 :where(ol:not([role='list' i])) {
-	margin-block: 1rem;
+	margin-block: var(--default-spacing, 1rem);
 	margin-inline: 0 var(--ol-indent);
 	padding: 0;
 	transform: translateX(calc(var(--dir-adjust) * var(--ol-indent)));
@@ -14,7 +14,7 @@
 
 /* List that aligns to content next to floats. */
 :where(ul:not([role='list' i])) {
-	margin-block: 1rem;
+	margin-block: var(--default-spacing, 1rem);
 	margin-inline: 0 var(--ul-indent);
 	padding: 0;
 	transform: translateX(calc(var(--dir-adjust) * var(--ul-indent)));

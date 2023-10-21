@@ -1,0 +1,30 @@
+[data-text-wrap] {
+	overflow-wrap: initial;
+	text-wrap: initial;
+	white-space: initial;
+	word-break: initial;
+}
+
+@supports not (text-wrap: nowrap) {
+	[data-text-wrap='none' i] {
+		white-space: nowrap;
+	}
+}
+
+@supports (text-wrap: nowrap) {
+	[data-text-wrap='none' i] {
+		text-wrap: nowrap;
+	}
+}
+
+@supports not (overflow-wrap: anywhere) {
+	[data-text-wrap='anywhere' i] {
+		word-break: break-word;
+	}
+}
+
+@supports (overflow-wrap: anywhere) {
+	[data-text-wrap='anywhere' i] {
+		overflow-wrap: anywhere;
+	}
+}

@@ -11,10 +11,10 @@
 }
 
 /* Render lists as rows inside navigation. */
-:where(nav :is(ol, ul)) {
+:where(nav :is(ol, ul):not([hidden])) {
 	display: flex;
 	flex-flow: wrap;
-	gap: 0.25rem 1rem;
+	gap: calc(var(--default-spacing, 1rem) * 0.25) var(--default-spacing, 1rem);
 }
 
 /* Render lists as columns inside aside navigation. */
