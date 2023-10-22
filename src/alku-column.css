@@ -4,7 +4,7 @@
 }
 
 :where(body:not([data-column])),
-[data-column]:where(:not([data-column='false' i])) {
+[data-column]:where(:not([data-column=''])) {
 	display: grid;
 }
 

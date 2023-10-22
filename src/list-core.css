@@ -26,3 +26,8 @@
 	font-size: 1em;
 	line-height: 1.45rem;
 }
+
+/* Give more spacing for list items. */
+:where(:is(ol, ul):not([role='list' i]) > li) {
+	margin-block: calc(var(--default-spacing, 1rem) * 0.25);
+}

@@ -1,3 +1,12 @@
+:where([data-grid]) {
+	--min-desired-size: unset;
+}
+
+:where([data-grid]) > * {
+	box-sizing: border-box;
+	max-inline-size: 100%;
+}
+
 [data-grid]:where(:not([data-grid~='inline' i])) {
 	display: grid;
 }

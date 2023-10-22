@@ -121,7 +121,7 @@
 }
 
 [data-text~='link' i] {
-	text-underline-offset: var(--link-underline-offset, 0.375em);
+	text-underline-offset: var(--link-underline-offset, 0.375rem);
 }
 
 :where(h1, h2, h3, h4, h5, h6),

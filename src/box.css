@@ -1,8 +1,9 @@
-[data-box] {
-	contain: layout;
+:where([data-box]) {
+	--min-desired-size: unset;
 }
 
 [data-box]:where(:not([data-box~='inline' i], [data-box~='column' i], [data-box~='row' i])) {
+	contain: layout;
 	display: block;
 }
 

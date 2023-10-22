@@ -253,7 +253,7 @@
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	/* More gap to underline for visual appeal */
-	text-underline-offset: 0.375em;
+	text-underline-offset: 0.375rem;
 	/* Alternate font aliasing on Apple devices */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -361,7 +361,7 @@ hr {
 	color: var(--link-color);
 	cursor: pointer;
 	text-decoration: underline;
-	text-underline-offset: var(--link-underline-offset, 0.375em);
+	text-underline-offset: var(--link-underline-offset, 0.375rem);
 }
 
 /* Decrease underline color strength on links within list elements and in page internal hash links */
