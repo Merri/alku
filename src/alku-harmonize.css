@@ -241,7 +241,7 @@
 	font-feature-settings: 'tnum';
 	/* Use equal width numbers when available */
 	font-variant-numeric: tabular-nums;
-	/* Allow minimum 100% viewport height for body */
+	/* Allow minimum 100% viewport height for body (side-effect: background image applied on html will max to viewport height) */
 	height: 100%;
 	/* Improve readability */
 	line-height: 1.5;

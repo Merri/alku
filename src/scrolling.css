@@ -7,17 +7,19 @@
 
 /* Generic scrolling utility */
 [data-scrolling] {
-	overflow: hidden;
+	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 }
 
 /* Generic scrolling utility */
 [data-scrolling='block' i] {
+	overflow: hidden;
 	overflow-block: auto;
 }
 
 /* Generic scrolling utility */
 [data-scrolling='inline' i] {
+	overflow: hidden;
 	overflow-inline: auto;
 }
 
