@@ -1,0 +1,18 @@
+:where(blockquote) {
+	background: var(--muted-02);
+	box-shadow: inset -2px 0 0 2px var(--muted-06);
+	border-inline-start: thick solid var(--muted-color, GrayText);
+	border-radius: 4px;
+	contain: layout;
+	margin-block: var(--default-spacing, 16px);
+	margin-inline: 0;
+	padding: calc(var(--default-spacing, 16px) * 2);
+}
+
+:where(blockquote > :first-child) {
+	margin-block-start: 0;
+}
+
+:where(blockquote > :last-child) {
+	margin-block-end: 0;
+}

@@ -4,8 +4,8 @@
 
 :where(details) {
 	background: var(--muted-02);
-	border: 0.125rem solid var(--muted-10);
-	border-radius: 0.25rem;
+	border: 2px solid var(--muted-10);
+	border-radius: 4px;
 	font-size: var(--default-font-size);
 	margin: var(--default-spacing, 16px) 0;
 	padding: 0 var(--default-spacing, 16px);
@@ -22,7 +22,7 @@
 }
 
 :where(summary:focus-visible) {
-	border-radius: 0.25rem;
+	border-radius: 4px;
 	outline-offset: var(--focus-inside);
 }
 

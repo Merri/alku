@@ -1,0 +1,28 @@
+:where(td, th) {
+	padding-block: 0.5rem;
+	padding-inline: 1rem;
+}
+
+:where(:is(td, th):not([align])) {
+	text-align: start;
+}
+
+:where(th) {
+	background-color: var(--muted-04);
+}
+
+:where(tr) {
+	border-block-end: medium solid var(--muted-06);
+}
+
+:where(tr:first-child) {
+	border-block-start: medium solid var(--muted-06);
+}
+
+:where(tbody:not(:last-child) > tr) {
+	border-block-end: medium solid var(--muted-10);
+}
+
+:where(thead > tr) {
+	border-color: var(--muted-10);
+}

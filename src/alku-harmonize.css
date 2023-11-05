@@ -349,8 +349,8 @@ hr {
 /* Display as rounded divider, support both horizontal and vertical render */
 :where(hr) {
 	block-size: 0;
-	border: 0.125rem solid currentColor;
-	border-radius: 0.125rem;
+	border: medium solid currentColor;
+	border-radius: 3px;
 	color: var(--muted-color, inherit);
 	inline-size: 100%;
 	margin-block: calc(var(--default-spacing, 16px) * 2);
@@ -401,8 +401,8 @@ hr {
 
 :where(code) {
 	background: var(--code-color);
-	border-radius: 0.125rem;
-	box-shadow: 0 0 0 0.125rem var(--code-border-color);
+	border-radius: 2px;
+	box-shadow: 0 0 0 2px var(--code-border-color);
 	color: var(--code-text-color);
 	margin-inline: 0.125rem;
 	padding-inline: 0.125rem;
@@ -419,8 +419,8 @@ hr {
 
 :where(kbd) {
 	background: var(--kbd-color);
-	border-radius: 0.125rem;
-	box-shadow: 0 0 0 0.125rem var(--kbd-border-color);
+	border-radius: 2px;
+	box-shadow: 0 0 0 2px var(--kbd-border-color);
 	color: var(--kbd-text-color);
 	margin-inline: 0.125rem;
 	padding-inline: 0.125rem;
@@ -428,7 +428,7 @@ hr {
 
 :where(mark) {
 	background: var(--mark-color);
-	box-shadow: 0 0 0 0.125rem var(--mark-border-color);
+	box-shadow: 0 0 0 2px var(--mark-border-color);
 	color: var(--mark-text-color);
 	padding-inline: 0.125rem;
 }

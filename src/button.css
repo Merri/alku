@@ -59,7 +59,7 @@
 [data-button] {
 	font-family: var(--default-font);
 	font-size: inherit;
-	line-height: 1.5;
+	line-height: var(--button-line-height);
 	margin: 0;
 }
 
@@ -164,9 +164,9 @@
 :where(button:not([data-button])),
 ::file-selector-button,
 [data-button~='mediumSize' i] {
-	border-radius: 0.5rem;
-	border-width: 0.125rem;
-	line-height: 1.5rem;
+	--button-line-height: 1.5rem;
+	border-radius: 8px;
+	border-width: 2px;
 	padding: calc(var(--default-spacing, 16px) * 0.625) calc(var(--default-spacing, 16px) * 1.5);
 }
 
@@ -175,23 +175,22 @@
 	padding-inline: calc(var(--default-spacing, 16px) * 0.5);
 }
 
-[data-button~='smallCircle' i] {
-	aspect-ratio: 1 / 1;
+[data-button*='Circle ' i],
+[data-button$='Circle' i] {
 	border-radius: 50%;
-	border-width: 0.125rem;
-	padding: calc(var(--default-spacing, 16px) * 0.125);
+	border-width: 2px;
+	flex-basis: calc(var(--button-line-height) + var(--button-padding) * 2);
+	padding: var(--button-padding);
+}
+
+[data-button~='smallCircle' i] {
+	--button-padding: calc(var(--default-spacing, 16px) * 0.125);
 }
 
 [data-button~='mediumCircle' i] {
-	aspect-ratio: 1 / 1;
-	border-radius: 50%;
-	border-width: 0.125rem;
-	padding: calc(var(--default-spacing, 16px) * 0.375);
+	--button-padding: calc(var(--default-spacing, 16px) * 0.375);
 }
 
 [data-button~='largeCircle' i] {
-	aspect-ratio: 1 / 1;
-	border-radius: 50%;
-	border-width: 0.125rem;
-	padding: calc(var(--default-spacing, 16px) * 0.625);
+	--button-padding: calc(var(--default-spacing, 16px) * 0.625);
 }
