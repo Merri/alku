@@ -294,6 +294,11 @@
 	min-height: 100%;
 }
 
+/* Use pixel margin to retain spacing size when default font size has been changed by user. */
+:where(p) {
+	margin-block: var(--default-spacing, 16px);
+}
+
 /* Correct the font size on `h1` elements within `section` and `article` contexts in Chrome, Edge, Firefox, and Safari. */
 :where(h1) {
 	font-size: 2em;
@@ -303,7 +308,7 @@
 	font-family: var(--heading-font);
 	line-height: var(--heading-line-height, inherit);
 	/* Have more space above to make heading more a part of the text below. */
-	margin-block: calc(var(--default-spacing, 1rem) * 2) var(--default-spacing, 1rem);
+	margin-block: calc(var(--default-spacing, 16px) * 2) var(--default-spacing, 16px);
 	margin-inline: 0;
 }
 
@@ -348,7 +353,7 @@ hr {
 	border-radius: 0.125rem;
 	color: var(--muted-color, inherit);
 	inline-size: 100%;
-	margin-block: 2rem;
+	margin-block: calc(var(--default-spacing, 16px) * 2);
 	margin-inline: 0;
 	overflow: visible;
 }
@@ -446,7 +451,7 @@ hr {
 /* This is a commonly used combination, add padding for visual appeal. */
 :where(pre > code:not([hidden])) {
 	display: block;
-	padding: var(--default-spacing, 1rem);
+	padding: var(--default-spacing, 16px);
 }
 
 /* Prevent effecting line height in all browsers. */
@@ -522,7 +527,7 @@ hr {
 /* Remove padding to have expected appearance together with the fieldset reset. */
 :where(legend) {
 	/* Apply spacing to compensate; use border to allow `data-text=""` to work (which does not reset borders). */
-	border-block-end: var(--default-spacing, 1rem) solid transparent;
+	border-block-end: var(--default-spacing, 16px) solid transparent;
 	padding: 0;
 }
 
@@ -580,7 +585,7 @@ hr {
 	height: fit-content;
 	left: 0;
 	margin: auto;
-	padding: 1em;
+	padding: var(--default-spacing, 16px);
 	position: absolute;
 	right: 0;
 	width: -moz-fit-content;

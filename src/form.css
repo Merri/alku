@@ -30,8 +30,8 @@
 	border: 0.125rem solid var(--option-muted-color);
 	border-radius: 0.25rem;
 	color: var(--option-color);
-	padding: 0.625rem var(--default-spacing, 1rem);
-	scroll-padding: 0.625rem var(--default-spacing, 1rem);
+	padding: 0.625rem var(--default-spacing, 16px);
+	scroll-padding: 0.625rem var(--default-spacing, 16px);
 }
 
 :where(input):is([type='button' i], [type='reset' i], [type='submit' i]), /* Use <button /> */
@@ -52,18 +52,18 @@
 :where([type='range' i]:not([hidden])) {
 	--outline: unset;
 	--outline-offset: unset;
-	--range-size: calc(var(--default-spacing, 1rem) * 0.5);
-	--range-thumb-size: calc(var(--default-spacing, 1rem) * 1.5);
+	--range-size: calc(var(--default-spacing, 16px) * 0.5);
+	--range-thumb-size: calc(var(--default-spacing, 16px) * 1.5);
 	-webkit-appearance: none;
 	appearance: none;
 	background: unset;
 	display: inline-grid;
-	height: calc(var(--default-spacing, 1rem) * 0.5);
+	height: calc(var(--default-spacing, 16px) * 0.5);
 	outline: none;
 }
 
 :where(label > [type='range' i]) {
-	padding: 1.125rem 0 1.375rem;
+	padding: calc(var(--default-spacing, 16px) * 1.125) 0 calc(var(--default-spacing, 16px) * 1.375);
 }
 
 :where([type='range' i]:focus-visible) {
@@ -146,8 +146,8 @@
 	align-self: flex-start;
 	display: inline-flex;
 	flex-wrap: wrap;
-	gap: calc(var(--default-spacing, 1rem) * 0.25) calc(var(--default-spacing, 1rem) * 0.5);
-	padding: calc(var(--default-spacing, 1rem) * 0.25);
+	gap: calc(var(--default-spacing, 16px) * 0.25) calc(var(--default-spacing, 16px) * 0.5);
+	padding: calc(var(--default-spacing, 16px) * 0.25);
 	position: relative;
 	user-select: none;
 	vertical-align: top;

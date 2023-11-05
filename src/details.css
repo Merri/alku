@@ -7,14 +7,14 @@
 	border: 0.125rem solid var(--muted-10);
 	border-radius: 0.25rem;
 	font-size: var(--default-font-size);
-	margin: var(--default-spacing, 1rem) 0;
-	padding: 0 var(--default-spacing, 1rem);
+	margin: var(--default-spacing, 16px) 0;
+	padding: 0 var(--default-spacing, 16px);
 }
 
 :where(summary) {
 	font-weight: var(--default-bold-weight, bold);
-	margin: 0 calc(var(--default-spacing, 1rem) * -1);
-	padding: var(--default-spacing, 1rem);
+	margin: 0 calc(var(--default-spacing, 16px) * -1);
+	padding: var(--default-spacing, 16px);
 	padding-inline-end: 3rem;
 	position: relative;
 	user-select: none;
@@ -39,7 +39,7 @@
 	-webkit-mask-image: var(--mask-chevron-down);
 	mask-image: var(--mask-chevron-down);
 	position: absolute;
-	inset-inline-end: var(--default-spacing, 1rem);
+	inset-inline-end: var(--default-spacing, 16px);
 	top: 50%;
 	transform: translateY(-50%) rotate(0deg);
 	width: 1.5rem;
@@ -65,9 +65,9 @@
 }
 
 :where(details > summary + div) {
-	margin: calc(var(--default-spacing, 1rem) * -1);
+	margin: calc(var(--default-spacing, 16px) * -1);
 	overflow: hidden;
-	padding: var(--default-spacing, 1rem);
+	padding: var(--default-spacing, 16px);
 }
 
 /* Higher specificity than a global star reset */

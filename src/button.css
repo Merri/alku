@@ -1,7 +1,7 @@
 :where(:root) {
 	--button-font-size: var(--default-font-size, 1rem);
 	--button-font-weight: var(--default-bold-weight, bold);
-	--button-gap: 0.5rem;
+	--button-gap: calc(var(--default-spacing, 16px) * 0.5);
 	--button-line-height: 1;
 }
 
@@ -167,31 +167,31 @@
 	border-radius: 0.5rem;
 	border-width: 0.125rem;
 	line-height: 1.5rem;
-	padding: 0.625rem 1.5rem;
+	padding: calc(var(--default-spacing, 16px) * 0.625) calc(var(--default-spacing, 16px) * 1.5);
 }
 
 ::file-selector-button {
-	margin-right: 0.5rem;
-	padding-inline: 0.5rem;
+	margin-right: calc(var(--default-spacing, 16px) * 0.5);
+	padding-inline: calc(var(--default-spacing, 16px) * 0.5);
 }
 
 [data-button~='smallCircle' i] {
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	border-width: 0.125rem;
-	padding: 0.125rem;
+	padding: calc(var(--default-spacing, 16px) * 0.125);
 }
 
 [data-button~='mediumCircle' i] {
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	border-width: 0.125rem;
-	padding: 0.375rem;
+	padding: calc(var(--default-spacing, 16px) * 0.375);
 }
 
 [data-button~='largeCircle' i] {
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	border-width: 0.125rem;
-	padding: 0.625rem;
+	padding: calc(var(--default-spacing, 16px) * 0.625);
 }

@@ -40,7 +40,7 @@
 }
 
 :where([data-box~='column' i], [data-box~='row' i]) {
-	gap: var(--default-spacing, 1rem);
+	gap: var(--default-spacing, 16px);
 }
 
 :where([data-box]) > * {

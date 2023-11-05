@@ -14,7 +14,7 @@
 :where(nav :is(ol, ul):not([hidden])) {
 	display: flex;
 	flex-flow: wrap;
-	gap: calc(var(--default-spacing, 1rem) * 0.25) var(--default-spacing, 1rem);
+	gap: calc(var(--default-spacing, 16px) * 0.25) var(--default-spacing, 16px);
 }
 
 /* Render lists as columns inside aside navigation. */

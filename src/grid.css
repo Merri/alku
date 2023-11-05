@@ -29,7 +29,7 @@
 
 [data-grid~='auto' i] {
 	--grid-auto: var(--min-desired-size, 16rem);
-	gap: var(--default-spacing, 1rem);
+	gap: var(--default-spacing, 16px);
 	/* I think this was stolen somewhere from https://moderncss.dev */
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-auto)), 1fr));
 	grid-template-rows: unset;
