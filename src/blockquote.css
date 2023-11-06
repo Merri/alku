@@ -1,8 +1,8 @@
 :where(blockquote) {
 	background: var(--muted-02);
-	box-shadow: inset -2px 0 0 2px var(--muted-06);
+	box-shadow: inset -1px 0 0 2px var(--muted-06);
 	border-inline-start: thick solid var(--muted-color, GrayText);
-	border-radius: 4px;
+	border-radius: 2px;
 	contain: layout;
 	margin-block: var(--default-spacing, 16px);
 	margin-inline: 0;

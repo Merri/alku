@@ -177,20 +177,20 @@
 
 [data-button*='Circle ' i],
 [data-button$='Circle' i] {
+	align-self: center;
 	border-radius: 50%;
 	border-width: 2px;
-	flex-basis: calc(var(--button-line-height) + var(--button-padding) * 2);
-	padding: var(--button-padding);
+	padding: calc(var(--default-spacing, 16px) * var(--button-padding));
 }
 
 [data-button~='smallCircle' i] {
-	--button-padding: calc(var(--default-spacing, 16px) * 0.125);
+	--button-padding: 0.125;
 }
 
 [data-button~='mediumCircle' i] {
-	--button-padding: calc(var(--default-spacing, 16px) * 0.375);
+	--button-padding: 0.375;
 }
 
 [data-button~='largeCircle' i] {
-	--button-padding: calc(var(--default-spacing, 16px) * 0.625);
+	--button-padding: 0.625;
 }

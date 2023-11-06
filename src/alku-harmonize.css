@@ -60,7 +60,7 @@
 
 	/* Strong focus indicator */
 	--focus-indication: 3px solid var(--focus-color);
-	--focus-inside: -3px;
+	--focus-inside: -6px;
 	--focus-outside: 3px;
 }
 
@@ -351,7 +351,7 @@ hr {
 	block-size: 0;
 	border: medium solid currentColor;
 	border-radius: 3px;
-	color: var(--muted-color, inherit);
+	color: var(--muted-30, inherit);
 	inline-size: 100%;
 	margin-block: calc(var(--default-spacing, 16px) * 2);
 	margin-inline: 0;
@@ -529,6 +529,12 @@ hr {
 	/* Apply spacing to compensate; use border to allow `data-text=""` to work (which does not reset borders). */
 	border-block-end: var(--default-spacing, 16px) solid transparent;
 	padding: 0;
+}
+
+/* When applying flexbox to fieldset and you have word-break enabled the legend element will glitch to minimum width on Safari. */
+:root legend {
+	overflow-wrap: normal;
+	word-break: normal;
 }
 
 /* Use similar font on controls and inherit it by default. */
