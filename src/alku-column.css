@@ -1,51 +1,97 @@
 :where(:root) {
-	/* Same as in `[data-column="mediumContent"]` = roughly the size of 80ch. */
-	--content-width: 45rem;
+	/* Same as in `[data-column="mediumContent"]` */
+	--measure: 45rem;
 }
 
 :where(body:not([data-column])),
-[data-column]:where(:not([data-column=''])) {
+:where(alku[column]:not([hidden]):not([column=''])),
+[data-column]:where(:not([hidden]):not([data-column=''])) {
 	display: grid;
 }
 
 /* The grid column idea is stolen from Simple.css */
 :where(body:not([data-column])),
+:where(alku:is([column*='content ' i], [column$='content' i])),
 [data-column*='content ' i],
 [data-column$='content' i] {
 	/* Three columns where middle is for content. */
-	grid-template-columns: 1fr min(var(--content-width, 45rem), 90%) 1fr;
+	grid-template-columns: 1fr min(var(--measure, 45rem), 90%) 1fr;
 	/* Only allow the last grid item to stretch when viewport taller than total content. */
 	grid-template-rows: max-content;
 }
 
-:where(body:not([data-column]), [data-column*='content ' i], [data-column$='content' i]) > :where(:not(footer, header)) {
+:where(
+		body:not([data-column]),
+		alku:is([column*='content ' i], [column$='content' i]),
+		[data-column*='content ' i],
+		[data-column$='content' i]
+	)
+	> :where(:not(footer, header)) {
 	/* Place everything except footer and header to center column. */
 	grid-column: 2;
 }
 
-:where(body:not([data-column]), [data-column*='content ' i], [data-column$='content' i]) > :where(footer, header) {
+:where(
+		body:not([data-column]),
+		alku:is([column*='content ' i], [column$='content' i]),
+		[data-column*='content ' i],
+		[data-column$='content' i]
+	)
+	> :where(footer, header) {
 	/* Keep footer content at the very bottom. */
 	align-self: flex-end;
 	/* Extend to all three columns. */
 	grid-column: 1 / -1;
 }
 
+:where(alku[column~='breakout' i]),
+[data-column~='breakout' i] {
+	/* Extend to all three columns. */
+	grid-column: 1 / -1;
+}
+
+:where(alku[column~='narrowContent' i]),
 [data-column~='narrowContent' i] {
-	/* About 60ch */
-	--content-width: 35rem;
+	--measure: 35rem;
 }
 
+:where(alku[column~='smallContent' i]),
 [data-column~='smallContent' i] {
-	/* About 70ch */
-	--content-width: 40rem;
+	--measure: 40rem;
 }
 
+:where(alku[column~='mediumContent' i]),
 [data-column~='mediumContent' i] {
-	/* About 80ch */
-	--content-width: 45rem;
+	--measure: 45rem;
 }
 
+:where(alku[column~='largeContent' i]),
 [data-column~='largeContent' i] {
-	--content-width: 65rem;
+	--measure: 65rem;
 }
 
+@supports (width: round(80ch, 1rem)) {
+	:where(:root) {
+		--measure: round(80ch, 1rem);
+	}
+
+	:where(alku[column~='narrowContent' i]),
+	[data-column~='narrowContent' i] {
+		--measure: round(60ch, 1rem);
+	}
+
+	:where(alku[column~='smallContent' i]),
+	[data-column~='smallContent' i] {
+		--measure: round(70ch, 1rem);
+	}
+
+	:where(alku[column~='mediumContent' i]),
+	[data-column~='mediumContent' i] {
+		--measure: round(80ch, 1rem);
+	}
+
+	:where(alku[column~='largeContent' i]),
+	[data-column~='largeContent' i] {
+		--measure: round(115ch, 1rem);
+	}
+}

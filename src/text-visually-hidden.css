@@ -1,5 +1,7 @@
 /* Skip links, visually hidden utility */
-:root [data-text='visuallyHidden' i]:not(:focus):not(:active) {
+:root [data-text='visuallyHidden' i]:not(:focus):not(:active),
+/* For native elements that have an alternate visual representation */
+[hidden][aria-hidden='false' i] {
 	/* Remove all styling from cascade (most importantly to reset border, margin, padding) */
 	all: initial;
 	clip-path: inset(50%);

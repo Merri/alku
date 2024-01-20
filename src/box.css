@@ -1,53 +1,55 @@
-:where([data-box]) {
+:where(alku[box], [data-box]) {
 	--min-desired-size: unset;
 }
 
-[data-box]:where(:not([data-box~='inline' i], [data-box~='column' i], [data-box~='row' i])) {
+:where(alku[box]:not([hidden], [box~='inline' i], [box~='column' i], [box~='row' i])),
+[data-box]:where(:not([hidden], [data-box~='inline' i], [data-box~='column' i], [data-box~='row' i])) {
 	contain: layout;
 	display: block;
 }
 
-:is([data-box~='column' i], [data-box~='row' i]):where(:not([data-box~='inline' i])) {
+:where(alku:is([box~='column' i], [box~='row' i]):not([hidden], [box~='inline' i])),
+:is([data-box~='column' i], [data-box~='row' i]):where(:not([hidden], [data-box~='inline' i])) {
 	display: flex;
 }
 
-[data-box~='inline' i]:where(:not([data-box~='column' i], [data-box~='row' i])) {
+:where(alku[box~='inline' i]:not([hidden], [box~='column' i], [box~='row' i])),
+[data-box~='inline' i]:where(:not([hidden], [data-box~='column' i], [data-box~='row' i])) {
 	display: inline-block;
 }
 
-[data-box~='inline' i]:where([data-box~='column' i], [data-box~='row' i]) {
+:where(alku[box~='inline' i]:not([hidden]):is([box~='column' i], [box~='row' i])),
+[data-box~='inline' i]:where(:is([data-box~='column' i], [data-box~='row' i]):not([hidden])) {
 	display: inline-flex;
 }
 
-[data-box]:where([hidden]) {
-	display: none;
-}
-
+:where(alku[box~='column' i]),
 [data-box~='column' i] {
 	flex-flow: column;
 }
 
+:where(alku[box~='row' i]),
 [data-box~='row' i] {
 	flex-flow: wrap;
 }
 
-:where([data-box~='trim' i]) > :first-child {
+:where(alku[box~='trim' i], [data-box~='trim' i]) > :first-child {
 	margin-block-start: 0;
 }
 
-:where([data-box~='trim' i]) > :last-child {
+:where(alku[box~='trim' i], [data-box~='trim' i]) > :last-child {
 	margin-block-end: 0;
 }
 
-:where([data-box~='column' i], [data-box~='row' i]) {
+:where(alku[box~='column' i], alku[box~='row' i], [data-box~='column' i], [data-box~='row' i]) {
 	gap: var(--default-spacing, 16px);
 }
 
-:where([data-box]) > * {
+:where(alku[box], [data-box]) > * {
 	box-sizing: border-box;
 	max-inline-size: 100%;
 }
 
-:where([data-box~='column' i], [data-box~='row' i]) > * {
+:where(alku[box~='column' i], alku[box~='row' i], [data-box~='column' i], [data-box~='row' i]) > * {
 	flex: var(--min-desired-size, none);
 }

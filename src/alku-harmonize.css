@@ -70,21 +70,30 @@
 	}
 }
 
+/* Avoid overriding `hidden` attribute by giving it a higher specificity. */
+[hidden]:not([aria-hidden='false' i]) {
+	display: none;
+}
+
 /* Color utility */
+:where(alku[color~='canvas' i]),
 [data-color~='canvas' i] {
 	background-color: Canvas;
 	color: CanvasText;
 }
 
+:where(alku[color~='contrast' i]),
 [data-color~='contrast' i] {
 	background-color: CanvasText;
 	color: Canvas;
 }
 
+:where(alku[color*='dark' i][color*='light' i]),
 [data-color*='dark' i]:where([data-color*='light' i]) {
 	color-scheme: dark light;
 }
 
+:where(alku[color*='light' i]:not([color*='dark' i])),
 [data-color*='light' i]:where(:not([data-color*='dark' i])) {
 	color-scheme: light;
 	--muted-02: var(--shadow-02);
@@ -117,6 +126,7 @@
 	}
 }
 
+:where(alku[color*='dark' i]:not([color*='light' i])),
 [data-color*='dark' i]:where(:not([data-color*='light' i])) {
 	color-scheme: dark;
 	--muted-02: var(--highlight-02);
@@ -170,6 +180,7 @@
 		}
 	}
 
+	:where(alku[color*='dark' i]:not([color*='light' i])),
 	[data-color*='dark' i]:where(:not([data-color*='light' i])) {
 		--ButtonFace: color-mix(in oklab, ButtonFace, Canvas 65%);
 	}
