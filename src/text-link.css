@@ -2,12 +2,20 @@
 	--mask-new-screen: url("data:image/svg+xml,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M20 4L9.99997 14M20 4L20 9.99999M20 4L14 3.99998M10 4H4V20H20V14' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'/></svg>");
 }
 
-[data-text~='link' i] {
+[data-text~='link' i]:where(:not([data-text-color])) {
 	color: var(--link-color);
+}
+
+[data-text~='link' i] {
 	cursor: pointer;
 }
 
-:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button])),
+:where(
+		a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not(
+				[data-button],
+				[data-text~='link' i]
+			)
+	),
 [data-text*='external link' i] {
 	padding-right: calc(var(--external-link-width, 1.25rem) + 0.25rem);
 }
@@ -19,7 +27,12 @@
 	}
 }
 
-:where(a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not([data-button]))::after,
+:where(
+		a[target='_blank' i][rel~='noopener' i][rel~='noreferrer' i][aria-describedby]:not(
+				[data-button],
+				[data-text~='link' i]
+			)
+	)::after,
 [data-text*='external link' i]::after {
 	background: currentColor;
 	content: '';

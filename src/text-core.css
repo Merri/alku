@@ -31,8 +31,11 @@
 	letter-spacing: inherit;
 }
 
-[data-text]:where(:not([data-button], button, input, select, textarea)) {
+[data-text]:where(:not([data-text-color], [data-button], button, input, select, textarea)) {
 	color: inherit;
+}
+
+[data-text]:where(:not([data-button], button, input, select, textarea)) {
 	margin: 0;
 	padding: 0;
 	text-decoration: inherit;
