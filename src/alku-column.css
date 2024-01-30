@@ -15,7 +15,7 @@
 [data-column*='content ' i],
 [data-column$='content' i] {
 	/* Three columns where middle is for content. */
-	grid-template-columns: 1fr min(var(--measure, 80ch), 90%) 1fr;
+	grid-template-columns: 1fr min(var(--measure, 80ch), 90vw) 1fr;
 	/* Only allow the last grid item to stretch when viewport taller than total content. */
 	grid-template-rows: max-content;
 }
