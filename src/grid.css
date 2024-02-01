@@ -1,32 +1,32 @@
-:where(alku[grid], [data-grid]) {
+:where(al-ku[grid], [data-grid]) {
 	--min-desired-size: unset;
 }
 
-:where(alku[grid], [data-grid]) > * {
+:where(al-ku[grid], [data-grid]) > * {
 	box-sizing: border-box;
 	max-inline-size: 100%;
 }
 
-:where(alku[grid]:not([hidden], [inline])),
+:where(al-ku[grid]:not([hidden], [inline])),
 [data-grid]:where(:not([hidden], [data-grid~='inline' i])) {
 	display: grid;
 }
 
-:where(alku[grid~='inline' i]:not([hidden])),
+:where(al-ku[grid~='inline' i]:not([hidden])),
 [data-grid~='inline' i]:where(:not([hidden])) {
 	display: inline-grid;
 }
 
-:where(alku[grid~='centerItems' i]),
+:where(al-ku[grid~='centerItems' i]),
 [data-grid~='centerItems' i] {
 	place-content: center;
 }
 
-:where(:is(alku[grid~='stackItems' i], [data-grid~='stackItems' i]) > *) {
+:where(:is(al-ku[grid~='stackItems' i], [data-grid~='stackItems' i]) > *) {
 	grid-area: 1 / 1;
 }
 
-:where(alku[grid~='auto' i]),
+:where(al-ku[grid~='auto' i]),
 [data-grid~='auto' i] {
 	--grid-auto: var(--min-desired-size, 16rem);
 	gap: var(--default-spacing, 16px);
@@ -35,17 +35,17 @@
 	grid-template-rows: unset;
 }
 
-:where(alku[grid~='padding' i]),
+:where(al-ku[grid~='padding' i]),
 [data-grid~='padding' i] {
 	padding-inline: var(--default-grid-padding-medium, 15%);
 }
 
-:where(alku[grid~='paddingStart' i]),
+:where(al-ku[grid~='paddingStart' i]),
 [data-grid~='paddingStart' i] {
 	padding-inline-start: var(--default-grid-padding-large, 30%);
 }
 
-:where(alku[grid~='paddingEnd' i]),
+:where(al-ku[grid~='paddingEnd' i]),
 [data-grid~='paddingEnd' i] {
 	padding-inline-end: var(--default-grid-padding-large, 30%);
 }

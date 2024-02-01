@@ -4,14 +4,14 @@
 }
 
 :where(body:not([data-column])),
-:where(alku[column]:not([hidden]):not([column=''])),
+:where(al-ku[column]:not([hidden]):not([column=''])),
 [data-column]:where(:not([hidden]):not([data-column=''])) {
 	display: grid;
 }
 
 /* The grid column idea is stolen from Simple.css */
 :where(body:not([data-column])),
-:where(alku:is([column*='content ' i], [column$='content' i])),
+:where(al-ku:is([column*='content ' i], [column$='content' i])),
 [data-column*='content ' i],
 [data-column$='content' i] {
 	/* Three columns where middle is for content. */
@@ -22,7 +22,7 @@
 
 :where(
 		body:not([data-column]),
-		alku:is([column*='content ' i], [column$='content' i]),
+		al-ku:is([column*='content ' i], [column$='content' i]),
 		[data-column*='content ' i],
 		[data-column$='content' i]
 	)
@@ -33,7 +33,7 @@
 
 :where(
 		body:not([data-column]),
-		alku:is([column*='content ' i], [column$='content' i]),
+		al-ku:is([column*='content ' i], [column$='content' i]),
 		[data-column*='content ' i],
 		[data-column$='content' i]
 	)
@@ -44,28 +44,28 @@
 	grid-column: 1 / -1;
 }
 
-:where(alku[column~='breakout' i]),
+:where(al-ku[column~='breakout' i]),
 [data-column~='breakout' i] {
 	/* Extend to all three columns. */
 	grid-column: 1 / -1;
 }
 
-:where(alku[column~='narrowContent' i]),
+:where(al-ku[column~='narrowContent' i]),
 [data-column~='narrowContent' i] {
 	--measure: 60ch;
 }
 
-:where(alku[column~='smallContent' i]),
+:where(al-ku[column~='smallContent' i]),
 [data-column~='smallContent' i] {
 	--measure: 70ch;
 }
 
-:where(alku[column~='mediumContent' i]),
+:where(al-ku[column~='mediumContent' i]),
 [data-column~='mediumContent' i] {
 	--measure: 80ch;
 }
 
-:where(alku[column~='largeContent' i]),
+:where(al-ku[column~='largeContent' i]),
 [data-column~='largeContent' i] {
 	--measure: 115ch;
 }
@@ -75,22 +75,22 @@
 		--measure: round(80ch, 1rem);
 	}
 
-	:where(alku[column~='narrowContent' i]),
+	:where(al-ku[column~='narrowContent' i]),
 	[data-column~='narrowContent' i] {
 		--measure: round(60ch, 1rem);
 	}
 
-	:where(alku[column~='smallContent' i]),
+	:where(al-ku[column~='smallContent' i]),
 	[data-column~='smallContent' i] {
 		--measure: round(70ch, 1rem);
 	}
 
-	:where(alku[column~='mediumContent' i]),
+	:where(al-ku[column~='mediumContent' i]),
 	[data-column~='mediumContent' i] {
 		--measure: round(80ch, 1rem);
 	}
 
-	:where(alku[column~='largeContent' i]),
+	:where(al-ku[column~='largeContent' i]),
 	[data-column~='largeContent' i] {
 		--measure: round(115ch, 1rem);
 	}
