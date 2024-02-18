@@ -1,10 +1,15 @@
 {
 	"name": "alku",
-	"version": "1.0.1",
-	"description": "Opinionated classless CSS with HTML attribute utilities",
+	"type": "module",
+	"version": "1.1.0-rc.30",
+	"description": "We are divergent. The CSS framework for people who desire to have more accessible defaults.",
 	"main": "index.css",
 	"scripts": {
-		"build": "npx postcss src/*.css --dir ./ && cat ./src/*.css | npx postcss > ./index.css",
+		"build": "npx postcss src/*.css --dir ./ && npm run build-index && npm run build-alku && npm run build-list && npm run build-text",
+		"build-alku": "cat ./src/alku-*.css | npx postcss > ./alku.css",
+		"build-index": "cat ./src/*.css | npx postcss > ./index.css",
+		"build-list": "cat ./src/list-*.css | npx postcss > ./list.css",
+		"build-text": "cat ./src/text-*.css | npx postcss > ./text.css",
 		"win-shell-bash": "npm config set script-shell \"C:\\\\Program Files\\\\git\\\\bin\\\\bash.exe\"",
 		"win-shell-none": "npm config delete script-shell"
 	},
@@ -30,8 +35,10 @@
 	},
 	"homepage": "https://github.com/Merri/alku#readme",
 	"devDependencies": {
-		"cssnano": "6.0.1",
-		"postcss": "8.4.29",
-		"postcss-cli": "10.1.0"
+		"astro": "4.4.0",
+		"cssnano": "6.0.3",
+		"postcss": "8.4.35",
+		"postcss-cli": "11.0.0",
+		"react": "18.2.0"
 	}
 }

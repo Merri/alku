@@ -15,7 +15,7 @@
 [data-column*='content ' i],
 [data-column$='content' i] {
 	/* Three columns where middle is for content. */
-	grid-template-columns: 1fr min(var(--measure, 80ch), 90vw) 1fr;
+	grid-template-columns: minmax(0, 1fr) min(var(--measure, 80ch), 90vw) minmax(0, 1fr);
 	/* Only allow the last grid item to stretch when viewport taller than total content. */
 	grid-template-rows: max-content;
 }
@@ -40,12 +40,6 @@
 	> :where(footer, header) {
 	/* Keep footer content at the very bottom. */
 	align-self: flex-end;
-	/* Extend to all three columns. */
-	grid-column: 1 / -1;
-}
-
-:where(al-ku[column~='breakout' i]),
-[data-column~='breakout' i] {
 	/* Extend to all three columns. */
 	grid-column: 1 / -1;
 }
