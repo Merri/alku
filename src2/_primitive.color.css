@@ -1,0 +1,43 @@
+@layer primitive {
+	:root {
+		--COLOR-white: white;
+		--COLOR-black: black;
+
+		/* OKLCH lightness... 10%, 15%, 20% etc... maybe a bad idea? */
+		--ALPHA-100: 1.18%;
+		--ALPHA-150: 4.31%;
+		--ALPHA-200: 8.63%;
+		--ALPHA-250: 13.33%;
+		--ALPHA-300: 18.04%;
+		--ALPHA-350: 22.75%;
+		--ALPHA-400: 28.24%;
+		--ALPHA-500: 38.82%;
+		--ALPHA-600: 50.2%;
+		--ALPHA-700: 61.96%;
+		--ALPHA-800: 74.51%;
+		--ALPHA-900: 87.06%;
+		--ALPHA-975: 96.86%;
+
+		--COLOR-white-100: rgb(255 255 255 / var(--ALPHA-100));
+		--COLOR-white-200: rgb(255 255 255 / var(--ALPHA-200));
+		--COLOR-white-300: rgb(255 255 255 / var(--ALPHA-300));
+		--COLOR-white-400: rgb(255 255 255 / var(--ALPHA-400));
+		--COLOR-white-500: rgb(255 255 255 / var(--ALPHA-500));
+		--COLOR-white-600: rgb(255 255 255 / var(--ALPHA-600));
+		--COLOR-white-700: rgb(255 255 255 / var(--ALPHA-700));
+		--COLOR-white-800: rgb(255 255 255 / var(--ALPHA-800));
+		--COLOR-white-900: rgb(255 255 255 / var(--ALPHA-900));
+		--COLOR-white-975: rgb(255 255 255 / var(--ALPHA-975));
+
+		--COLOR-black-100: rgb(0 0 0 / var(--ALPHA-100));
+		--COLOR-black-200: rgb(0 0 0 / var(--ALPHA-200));
+		--COLOR-black-300: rgb(0 0 0 / var(--ALPHA-300));
+		--COLOR-black-400: rgb(0 0 0 / var(--ALPHA-400));
+		--COLOR-black-500: rgb(0 0 0 / var(--ALPHA-500));
+		--COLOR-black-600: rgb(0 0 0 / var(--ALPHA-600));
+		--COLOR-black-700: rgb(0 0 0 / var(--ALPHA-700));
+		--COLOR-black-800: rgb(0 0 0 / var(--ALPHA-800));
+		--COLOR-black-900: rgb(0 0 0 / var(--ALPHA-900));
+		--COLOR-black-975: rgb(0 0 0 / var(--ALPHA-975));
+	}
+}

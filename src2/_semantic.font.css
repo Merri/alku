@@ -1,0 +1,31 @@
+@layer semantic {
+	:root {
+		--fontFamily-content: var(--FONT-stack-sans-system);
+		--fontWeight-content: var(--FONT-weight-100);
+
+		--font-content: var(--fontWeight-content) var(--FONT-size-100) / var(--FONT-lineHeight-500)
+			var(--fontFamily-content);
+
+		--font-strapline: var(--FONT-weight-400) var(--FONT-size-075) / var(--FONT-lineHeight-200)
+			var(--FONT-stack-monoSerif-slab);
+
+		--fontFamily-display: var(--FONT-stack-serif-oldStyle);
+		--fontWeight-display: var(--FONT-weight-400);
+		--fontFamily-title: var(--FONT-stack-serif-transitional);
+		--fontWeight-title: var(--FONT-weight-300);
+
+		--font-displayLarge: var(--fontWeight-display) var(--FONT-size-500) / var(--FONT-lineHeight-100)
+			var(--fontFamily-display);
+		--font-displayMedium: var(--fontWeight-display) var(--FONT-size-400) / var(--FONT-lineHeight-200)
+			var(--fontFamily-display);
+		--font-displaySmall: var(--fontWeight-display) var(--FONT-size-350) / var(--FONT-lineHeight-200)
+			var(--fontFamily-display);
+
+		--font-titleLarge: var(--fontWeight-title) var(--FONT-size-300) / var(--FONT-lineHeight-300)
+			var(--fontFamily-title);
+		--font-titleMedium: var(--fontWeight-title) var(--FONT-size-250) / var(--FONT-lineHeight-300)
+			var(--fontFamily-title);
+		--font-titleSmall: var(--fontWeight-title) var(--FONT-size-200) / var(--FONT-lineHeight-400)
+			var(--fontFamily-title);
+	}
+}

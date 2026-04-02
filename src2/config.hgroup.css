@@ -1,0 +1,31 @@
+@layer config {
+	:root {
+		--hgroup-large-marginBlock: var(--margin-fluidSmall);
+		--hgroup-medium-marginBlock: var(--margin-fluidMedium);
+		--hgroup-small-marginBlock: var(--margin-fluidLarge);
+
+		--hgroup-large-strapline-font: var(--font-strapline);
+		--hgroup-medium-strapline-font: var(--font-strapline);
+		--hgroup-small-strapline-font: var(--font-strapline);
+
+		--hgroup-large-strapline-gap: 0.5rem;
+		--hgroup-medium-strapline-gap: 0.5rem;
+		--hgroup-small-strapline-gap: 0.5rem;
+
+		--hgroup-large-heading-font: var(--font-displayLarge);
+		--hgroup-medium-heading-font: var(--font-displayMedium);
+		--hgroup-small-heading-font: var(--font-displaySmall);
+
+		--hgroup-large-heading-marginBlock: 0rem;
+		--hgroup-medium-heading-marginBlock: 0rem;
+		--hgroup-small-heading-marginBlock: 0rem;
+
+		--hgroup-large-subtitle-font: var(--font-titleLarge);
+		--hgroup-medium-subtitle-font: var(--font-titleMedium);
+		--hgroup-small-subtitle-font: var(--font-titleSmall);
+
+		--hgroup-large-subtitle-gap: 1rem;
+		--hgroup-medium-subtitle-gap: 1rem;
+		--hgroup-small-subtitle-gap: 1rem;
+	}
+}

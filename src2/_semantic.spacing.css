@@ -1,0 +1,15 @@
+@layer semantic {
+	:root {
+		--margin-fluidLarge: 1.5em 1rem;
+		--margin-fluidMedium: 1.375em 1rem;
+		--margin-fluidSmall: 1.25em 1rem;
+
+		--margin-contentMedium: 1rem 1rem;
+
+		--gap-contentMedium: 1rem 1rem;
+
+		--gap-layoutSmall: 0.5rem 0.25rem;
+		--gap-layoutMedium: 1rem 0.5rem;
+		--gap-layoutLarge: 1.5rem 1rem;
+	}
+}
